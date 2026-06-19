@@ -38,6 +38,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Clone OpenAPI spec repository
+        run: git clone --depth=1 https://github.com/wellnessliving/openapi.git /tmp/openapi-spec
+
       - name: Generate browser SDK (stable + dev + production if available)
         run: node scripts/generate.js
 

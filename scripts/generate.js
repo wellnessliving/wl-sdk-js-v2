@@ -1,68 +1,26 @@
 'use strict';
 
-const https = require('https');
-const http = require('http');
+const { execSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 const yaml = require('js-yaml');
 
-const SPEC_URLS = {
-  stable: 'https://raw.githubusercontent.com/wellnessliving/openapi/main/stable/openapi.yaml',
-  dev: 'https://raw.githubusercontent.com/wellnessliving/openapi/main/dev/openapi.yaml',
-  production: 'https://raw.githubusercontent.com/wellnessliving/openapi/main/production/openapi.yaml',
-};
+const OPENAPI_REPO = 'https://github.com/wellnessliving/openapi.git';
+const CLONE_DIR = '/tmp/openapi-spec';
+const CHANNELS = ['stable', 'dev', 'production'];
 
 const HTTP_METHODS = new Set(['get', 'put', 'post', 'delete', 'options', 'head', 'patch', 'trace']);
 
 /**
- * Downloads text content from a URL, following up to 5 redirects.
- *
- * @param {string} url
- * @param {number} [redirectsLeft]
- * @returns {Promise<string>}
+ * Clones the OpenAPI spec repository if not already present.
  */
-function fetchText(url, redirectsLeft)
+function ensureSpec()
 {
-  if (redirectsLeft === undefined)
+  if (!fs.existsSync(path.join(CLONE_DIR, 'stable', 'openapi.yaml')))
   {
-    redirectsLeft = 5;
+    console.log('Cloning OpenAPI spec repository...');
+    execSync('git clone --depth=1 ' + OPENAPI_REPO + ' ' + CLONE_DIR, { stdio: 'inherit' });
   }
-
-  return new Promise((resolve, reject) =>
-  {
-    const client = url.startsWith('https') ? https : http;
-    const req = client.get(url, { timeout: 120000 }, (res) =>
-    {
-      if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location)
-      {
-        if (redirectsLeft <= 0)
-        {
-          reject(new Error('Too many redirects for ' + url));
-          return;
-        }
-        fetchText(res.headers.location, redirectsLeft - 1).then(resolve, reject);
-        return;
-      }
-
-      if (res.statusCode !== 200)
-      {
-        reject(new Error('HTTP ' + res.statusCode + ' for ' + url));
-        return;
-      }
-
-      const chunks = [];
-      res.on('data', (chunk) => chunks.push(chunk));
-      res.on('end', () => resolve(Buffer.concat(chunks).toString('utf8')));
-      res.on('error', reject);
-    });
-
-    req.on('error', reject);
-    req.on('timeout', () =>
-    {
-      req.destroy();
-      reject(new Error('Request timed out: ' + url));
-    });
-  });
 }
 
 /**
@@ -501,35 +459,31 @@ function buildSdk(spec, version, templateSrc)
     .replace('// {{GENERATED_METHODS}}', methodsCode.replace(/\n+$/, ''));
 }
 
-async function main()
+function main()
 {
   const arg = process.argv[2];
-  const versions = arg ? [arg] : ['stable', 'dev', 'production'];
+  const versions = arg ? [arg] : CHANNELS;
 
   for (const version of versions)
   {
-    if (!SPEC_URLS[version])
+    if (!CHANNELS.includes(version))
     {
       console.error('Unknown version: "' + version + '". Use "stable", "dev", or "production".');
       process.exit(1);
     }
 
-    console.log('[' + version + '] Downloading spec from ' + SPEC_URLS[version]);
-    let raw;
-    try
+    ensureSpec();
+
+    const specFile = path.join(CLONE_DIR, version, 'openapi.yaml');
+    if (!fs.existsSync(specFile))
     {
-      raw = await fetchText(SPEC_URLS[version]);
+      console.log('[' + version + '] Spec not available - skipping.');
+      continue;
     }
-    catch (err)
-    {
-      if (err.message && err.message.includes('HTTP 404'))
-      {
-        console.log('[' + version + '] Spec not available (404) - skipping.');
-        continue;
-      }
-      throw err;
-    }
-    console.log('[' + version + '] Downloaded ' + Math.round(raw.length / 1024) + ' KB');
+
+    console.log('[' + version + '] Reading spec...');
+    const raw = fs.readFileSync(specFile, 'utf8');
+    console.log('[' + version + '] Read ' + Math.round(raw.length / 1024) + ' KB');
 
     console.log('[' + version + '] Parsing YAML...');
     const spec = yaml.load(raw);
@@ -555,8 +509,4 @@ async function main()
   console.log('Done.');
 }
 
-main().catch((err) =>
-{
-  console.error('Fatal:', err.message || err);
-  process.exit(1);
-});
+main();
