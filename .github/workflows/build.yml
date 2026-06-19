@@ -14,6 +14,10 @@ on:
       - 'package.json'
       - 'package-lock.json'
 
+concurrency:
+  group: build-sdk
+  cancel-in-progress: false
+
 permissions:
   contents: write
 
@@ -65,6 +69,7 @@ jobs:
           DEV_VER="${{ steps.changes.outputs.dev_ver }}"
           MSG=$(printf 'chore: regenerate SDK from OpenAPI spec\n\nstable: %s\ndev: %s' "$STABLE_VER" "$DEV_VER")
           git commit -m "$MSG"
+          git pull --rebase origin main
           git push
 
       - name: Create GitHub Release

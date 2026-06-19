@@ -13,6 +13,9 @@ push to stable/openapi.yaml    -->  repository_dispatch: openapi-updated
                                 -->  node scripts/generate.js
                                 -->  git commit stable/wl-sdk.js dev/wl-sdk.js
                                 -->  git push
+                                -->  gh release create vX.X.XXXXXXXX
+                                         wl-sdk-stable.js
+                                         wl-sdk-dev.js
 ```
 
 ## Step 1 — Create a Personal Access Token
@@ -70,6 +73,41 @@ jobs:
 Push any change to `stable/openapi.yaml` in the openapi repo.
 After a few seconds, a new workflow run should appear in
 **github.com/wellnessliving/wl-sdk-js-v2 → Actions**.
+
+Once the run completes, check:
+
+- **Commits** — a new commit `chore: regenerate SDK from OpenAPI spec` should appear on `main`.
+- **Releases** — a new release tagged `vX.X.XXXXXXXX` should appear under
+  **github.com/wellnessliving/wl-sdk-js-v2 → Releases**, with two attached files:
+  `wl-sdk-stable.js` and `wl-sdk-dev.js`.
+
+If the spec version did not change (same tag already exists), the release step is skipped
+and only the commit is made.
+
+## GitHub Release details
+
+The release is created automatically by `build.yml` at the end of a successful build.
+
+**Tag format:** `v{stable spec version}`, e.g. `v1.1.20260619090040`.
+
+**Assets attached to each release:**
+
+| File               | Description                          |
+|--------------------|--------------------------------------|
+| `wl-sdk-stable.js` | SDK built from `stable/openapi.yaml` |
+| `wl-sdk-dev.js`    | SDK built from `dev/openapi.yaml`    |
+
+**Pinned CDN link** (always points to a specific release, safe for production):
+
+```html
+<script src="https://cdn.jsdelivr.net/gh/wellnessliving/wl-sdk-js-v2@v1.1.20260619090040/stable/wl-sdk.js"></script>
+```
+
+**Latest CDN link** (always points to the most recent commit on `main`):
+
+```html
+<script src="https://cdn.jsdelivr.net/gh/wellnessliving/wl-sdk-js-v2@main/stable/wl-sdk.js"></script>
+```
 
 ## Token expiry
 
