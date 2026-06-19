@@ -9,6 +9,7 @@ const yaml = require('js-yaml');
 const SPEC_URLS = {
   stable: 'https://raw.githubusercontent.com/wellnessliving/openapi/main/stable/openapi.yaml',
   dev: 'https://raw.githubusercontent.com/wellnessliving/openapi/main/dev/openapi.yaml',
+  production: 'https://raw.githubusercontent.com/wellnessliving/openapi/main/production/openapi.yaml',
 };
 
 const HTTP_METHODS = new Set(['get', 'put', 'post', 'delete', 'options', 'head', 'patch', 'trace']);
@@ -503,18 +504,31 @@ function buildSdk(spec, version, templateSrc)
 async function main()
 {
   const arg = process.argv[2];
-  const versions = arg ? [arg] : ['stable', 'dev'];
+  const versions = arg ? [arg] : ['stable', 'dev', 'production'];
 
   for (const version of versions)
   {
     if (!SPEC_URLS[version])
     {
-      console.error('Unknown version: "' + version + '". Use "stable" or "dev".');
+      console.error('Unknown version: "' + version + '". Use "stable", "dev", or "production".');
       process.exit(1);
     }
 
     console.log('[' + version + '] Downloading spec from ' + SPEC_URLS[version]);
-    const raw = await fetchText(SPEC_URLS[version]);
+    let raw;
+    try
+    {
+      raw = await fetchText(SPEC_URLS[version]);
+    }
+    catch (err)
+    {
+      if (err.message && err.message.includes('HTTP 404'))
+      {
+        console.log('[' + version + '] Spec not available (404) - skipping.');
+        continue;
+      }
+      throw err;
+    }
     console.log('[' + version + '] Downloaded ' + Math.round(raw.length / 1024) + ' KB');
 
     console.log('[' + version + '] Parsing YAML...');

@@ -15,8 +15,8 @@ function compile(version)
 
   if (!fs.existsSync(path.join(srcDir, 'index.ts')))
   {
-    console.error('[' + version + '] src/' + version + '/index.ts not found — run generate-ts.js first.');
-    process.exit(1);
+    console.log('[' + version + '] src/' + version + '/index.ts not found - skipping.');
+    return;
   }
 
   fs.mkdirSync(outDir, { recursive: true });
@@ -75,14 +75,16 @@ function compile(version)
   console.log('[' + version + '] Written: ' + version + '/wl-sdk.cjs.js');
 }
 
+const VALID_VERSIONS = new Set(['stable', 'dev', 'production']);
+
 const arg = process.argv[2];
-const versions = arg ? [arg] : ['stable', 'dev'];
+const versions = arg ? [arg] : ['stable', 'dev', 'production'];
 
 for (const version of versions)
 {
-  if (version !== 'stable' && version !== 'dev')
+  if (!VALID_VERSIONS.has(version))
   {
-    console.error('Unknown version: "' + version + '". Use "stable" or "dev".');
+    console.error('Unknown version: "' + version + '". Use "stable", "dev", or "production".');
     process.exit(1);
   }
   compile(version);

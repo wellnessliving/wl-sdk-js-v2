@@ -18,7 +18,7 @@ Each rebuild produces files for both `stable/` and `dev/` channels:
 ## How it works
 
 ```
-openapi repo                        wl-sdk-js-v2 repo
+openapi repo                        wl-openapi-js repo
 ─────────────────────────────────   ──────────────────────────────────
 push to stable/openapi.yaml    -->  repository_dispatch: openapi-updated
                                 -->  node scripts/generate.js   (browser UMD)
@@ -35,10 +35,10 @@ push to stable/openapi.yaml    -->  repository_dispatch: openapi-updated
 1. Go to **GitHub -> Settings -> Developer settings -> Personal access tokens -> Fine-grained tokens**.
 2. Click **Generate new token**.
 3. Set:
-   - **Token name**: `wl-sdk-js-v2 dispatch`
+   - **Token name**: `wl-openapi-js dispatch`
    - **Expiration**: choose a suitable period (or "No expiration")
    - **Resource owner**: `wellnessliving`
-   - **Repository access**: only `wl-sdk-js-v2`
+   - **Repository access**: only `wl-openapi-js`
    - **Permissions**:
      - **Actions** - Read and write
      - **Contents** - Read and write
@@ -76,7 +76,7 @@ jobs:
         uses: peter-evans/repository-dispatch@v3
         with:
           token: ${{ secrets.SDK_DISPATCH_TOKEN }}
-          repository: wellnessliving/wl-sdk-js-v2
+          repository: wellnessliving/wl-openapi-js
           event-type: openapi-updated
 ```
 
@@ -84,13 +84,13 @@ jobs:
 
 Push any change to `stable/openapi.yaml` in the openapi repo.
 After a few seconds, a new workflow run should appear in
-**github.com/wellnessliving/wl-sdk-js-v2 -> Actions**.
+**github.com/wellnessliving/wl-openapi-js -> Actions**.
 
 Once the run completes, check:
 
 - **Commits** - a new commit `chore: regenerate SDK from OpenAPI spec` should appear on `main`.
 - **Releases** - a new release tagged `vX.X.XXXXXXXX` should appear under
-  **github.com/wellnessliving/wl-sdk-js-v2 -> Releases**, with 8 attached files
+  **github.com/wellnessliving/wl-openapi-js -> Releases**, with 8 attached files
   (stable and dev variants of `.js`, `.esm.js`, `.cjs.js`, `.d.ts`).
 - **Packages** - `@wellnessliving/sdk` should appear under
   **github.com/wellnessliving -> Packages**.
@@ -119,10 +119,10 @@ skipped and only the commit is made.
 
 ```html
 <!-- Pinned to a specific release -->
-<script src="https://cdn.jsdelivr.net/gh/wellnessliving/wl-sdk-js-v2@v1.1.20260619090040/stable/wl-sdk.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/wellnessliving/wl-openapi-js@v1.1.20260619090040/stable/wl-sdk.js"></script>
 
 <!-- Latest on main branch -->
-<script src="https://cdn.jsdelivr.net/gh/wellnessliving/wl-sdk-js-v2@main/stable/wl-sdk.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/wellnessliving/wl-openapi-js@main/stable/wl-sdk.js"></script>
 ```
 
 ## npm package (GitHub Packages)

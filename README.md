@@ -1,86 +1,162 @@
-# WellnessLiving JS SDK
+# WellnessLiving JS/TS SDK
 
-Auto-generated JavaScript SDK for the WellnessLiving API.
+Auto-generated JavaScript and TypeScript SDK for the WellnessLiving API,
+built from the OpenAPI spec at https://github.com/wellnessliving/openapi.
 
-Built automatically from the OpenAPI specification published at
-https://github.com/wellnessliving/openapi
+## Channels: stable vs dev vs production
 
-## Versions
+| Channel        | Based on                     | When to use                                              |
+|----------------|------------------------------|----------------------------------------------------------|
+| `stable/`      | `stable/openapi.yaml`        | Current release — endpoints available in production now  |
+| `dev/`         | `dev/openapi.yaml`           | Preview — includes endpoints not yet in stable           |
+| `production/`  | `production/openapi.yaml`    | _(soon)_ Strictly released endpoints only, no beta       |
 
-| Channel   | SDK file                             | OpenAPI spec                                                                                   |
-|-----------|--------------------------------------|------------------------------------------------------------------------------------------------|
-| `stable/` | [stable/wl-sdk.js](stable/wl-sdk.js) | [stable/openapi.yaml](https://github.com/wellnessliving/openapi/blob/main/stable/openapi.yaml) |
-| `dev/`    | [dev/wl-sdk.js](dev/wl-sdk.js)       | [dev/openapi.yaml](https://github.com/wellnessliving/openapi/blob/main/dev/openapi.yaml)       |
+`production` is generated automatically if `production/openapi.yaml` appears in the openapi repo.
+Until then the `production/` folder does not exist.
 
-## Usage
+## File formats
 
-### Browser (script tag)
+Each channel produces four files:
+
+| File             | Format                  | Use case                                  |
+|------------------|-------------------------|-------------------------------------------|
+| `wl-sdk.js`      | Browser UMD             | `<script>` tag, CDN, no bundler needed    |
+| `wl-sdk.esm.js`  | ES Module               | Bundlers (Vite, webpack, Rollup)          |
+| `wl-sdk.cjs.js`  | CommonJS                | Node.js `require()`                       |
+| `wl-sdk.d.ts`    | TypeScript declarations | IDE autocompletion for all three above    |
+
+The UMD file (`wl-sdk.js`) is self-contained — no imports, works directly in a browser.
+The ESM and CJS files are the TypeScript-compiled versions with full type information.
+
+---
+
+## Option A: Browser `<script>` tag (UMD)
+
+No install required — load directly from CDN.
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/wellnessliving/wl-sdk-js-v2@main/stable/wl-sdk.js"></script>
-<script>
-  var client = new WlSdk({
-    token: 'YOUR_JWT_TOKEN',
-    // baseUrl: 'https://demo.wellnessliving.com'  // for Australia data center
-  });
+<!-- Pinned to a specific version (recommended for production) -->
+<script src="https://cdn.jsdelivr.net/gh/wellnessliving/wl-openapi-js@v1.1.20260619090040/stable/wl-sdk.js"></script>
 
-  client.coreRequestExample()
+<!-- Always latest (use for development) -->
+<script src="https://cdn.jsdelivr.net/gh/wellnessliving/wl-openapi-js@main/stable/wl-sdk.js"></script>
+
+<script>
+  var client = new WlSdk({ token: 'YOUR_JWT_TOKEN' });
+
+  client.wlBusinessData({ k_business: '1000' })
     .then(function(data) { console.log(data); })
-    .catch(function(err) { console.error(err.status, err.response); });
+    .catch(function(err) { console.error(err.status, err.message); });
 </script>
 ```
 
-### CommonJS (Node.js)
+The UMD build exposes a flat method API: one method per API endpoint.
+Method names are derived from the URL path in camelCase:
+`/Wl/Business/Data.json` → `client.wlBusinessData(params)`.
 
-```js
-var WlSdk = require('./stable/wl-sdk.js');
+---
 
-var client = new WlSdk({ token: 'YOUR_JWT_TOKEN' });
-client.wlBusinessInformation({ k_business: '1000' }).then(console.log);
+## Option B: npm package with TypeScript (ESM / CJS)
+
+```bash
+# Add to .npmrc first:
+@wellnessliving:registry=https://npm.pkg.github.com
+
+npm install @wellnessliving/sdk
 ```
 
-### AMD (RequireJS)
+The npm package uses a **namespace-based API** that mirrors the URL structure:
 
-```js
-define(['stable/wl-sdk'], function(WlSdk) {
-  var client = new WlSdk({ token: 'YOUR_JWT_TOKEN' });
-});
+```typescript
+import WlClient, { WlApiError } from '@wellnessliving/sdk';
+
+const client = new WlClient({ token: 'YOUR_JWT_TOKEN' });
+
+// URL: /Wl/Business/Data.json
+const data = await client.wl.business.data({ k_business: '1000' });
+
+// URL: /Thoth/WlPay/Account/Charge.json
+const charge = await client.thoth.wlPay.account.charge({ ... });
 ```
 
-## Constructor options
+### Error handling
 
-| Option    | Type     | Default                              | Description                                                      |
-|-----------|----------|--------------------------------------|------------------------------------------------------------------|
-| `token`   | `string` | `null`                               | JWT Bearer token for authentication.                             |
-| `baseUrl` | `string` | `https://staging.wellnessliving.com` | API server. Use `https://demo.wellnessliving.com` for Australia. |
-| `timeout` | `number` | `30000`                              | Request timeout in milliseconds.                                 |
-
-## Error handling
-
-On a non-2xx response the returned `Promise` rejects with an `Error` that has two extra properties:
-
-```js
-client.someMethod({ ... }).catch(function(err) {
-  console.log(err.status);    // HTTP status code, e.g. 401
-  console.log(err.response);  // parsed JSON body from the API
-});
+```typescript
+try {
+  const result = await client.wl.business.data({ k_business: '1000' });
+} catch (e) {
+  if (e instanceof WlApiError) {
+    console.error(e.status);    // HTTP status code, e.g. 401
+    console.error(e.errors);    // WlApiErrorDetail[] from the API response body
+  }
+}
 ```
+
+### Dev channel
+
+```typescript
+import WlClient from '@wellnessliving/sdk/dev';
+```
+
+### Production channel _(soon)_
+
+```typescript
+import WlClient from '@wellnessliving/sdk/production';
+```
+
+### Constructor options
+
+| Option    | Type     | Default                              | Description                                                                     |
+|-----------|----------|--------------------------------------|---------------------------------------------------------------------------------|
+| `token`   | `string` | `null`                               | JWT Bearer token for authentication.                                            |
+| `baseUrl` | `string` | `https://staging.wellnessliving.com` | API server. Use `https://demo.wellnessliving.com` for the Australia datacenter. |
+| `timeout` | `number` | `30000`                              | Request timeout in milliseconds.                                                |
+
+---
 
 ## Rebuilding locally
 
 ```bash
 npm install
-npm run generate          # regenerates both stable/ and dev/
-npm run generate:stable   # only stable
-npm run generate:dev      # only dev
+
+# Regenerate browser UMD (stable + dev)
+npm run generate
+
+# Regenerate TypeScript source and compile to ESM + CJS + .d.ts
+npm run compile
+
+# Do both at once
+npm run build
 ```
+
+Individual channels:
+
+```bash
+npm run generate:stable   # stable/wl-sdk.js
+npm run generate:dev      # dev/wl-sdk.js
+npm run compile:stable    # stable/wl-sdk.esm.js, .cjs.js, .d.ts
+npm run compile:dev       # dev/wl-sdk.esm.js, .cjs.js, .d.ts
+```
+
+---
 
 ## Automatic builds
 
-A GitHub Actions workflow (`.github/workflows/build.yml`) runs every day at 08:00 UTC and
-commits updated SDK files if the upstream OpenAPI spec has changed.
+A GitHub Actions workflow (`.github/workflows/build.yml`) rebuilds and commits
+all files whenever the upstream OpenAPI spec changes, and also runs daily at 08:00 UTC.
 
-The workflow also triggers on any push to `scripts/` or `package.json`.
+Each build:
+1. Downloads the latest `stable/openapi.yaml` and `dev/openapi.yaml`
+2. Generates `stable/wl-sdk.js` and `dev/wl-sdk.js` (browser UMD)
+3. Generates `src/stable/index.ts` and `src/dev/index.ts` (TypeScript source)
+4. Compiles to `*.esm.js`, `*.cjs.js`, `*.d.ts`
+5. Commits and pushes all output files
+6. Creates a GitHub Release with all 8 files as assets
+7. Publishes `@wellnessliving/sdk` to GitHub Packages
+
+See [docs/notify-setup.md](docs/notify-setup.md) for cross-repo trigger setup.
+
+---
 
 ## Links
 

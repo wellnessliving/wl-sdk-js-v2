@@ -9,6 +9,7 @@ const yaml = require('js-yaml');
 const SPEC_URLS = {
   stable: 'https://raw.githubusercontent.com/wellnessliving/openapi/main/stable/openapi.yaml',
   dev: 'https://raw.githubusercontent.com/wellnessliving/openapi/main/dev/openapi.yaml',
+  production: 'https://raw.githubusercontent.com/wellnessliving/openapi/main/production/openapi.yaml',
 };
 
 const HTTP_METHODS = new Set(['get', 'put', 'post', 'delete', 'options', 'head', 'patch', 'trace']);
@@ -60,22 +61,23 @@ function safeComment(text)
 // Schema -> TypeScript type string
 // ---------------------------------------------------------------------------
 
-function schemaToTs(spec, schema, depth)
+function schemaToTs(spec, schema, depth, indent)
 {
   if (!schema) return 'unknown';
   if (depth === undefined) depth = 0;
+  if (indent === undefined) indent = 1;
   if (depth > 4) return 'unknown';
 
   if (schema.$ref)
   {
     const resolved = resolveRef(spec, schema.$ref);
-    return resolved ? schemaToTs(spec, resolved, depth + 1) : 'unknown';
+    return resolved ? schemaToTs(spec, resolved, depth + 1, indent) : 'unknown';
   }
 
   if (schema.oneOf || schema.anyOf)
   {
     const parts = (schema.oneOf || schema.anyOf)
-      .map((s) => schemaToTs(spec, s, depth + 1));
+      .map((s) => schemaToTs(spec, s, depth + 1, indent));
     return [...new Set(parts)].join(' | ');
   }
 
@@ -95,19 +97,46 @@ function schemaToTs(spec, schema, depth)
       return 'string' + nullSuffix;
     case 'array':
     {
-      const item = schema.items ? schemaToTs(spec, schema.items, depth + 1) : 'unknown';
+      const item = schema.items ? schemaToTs(spec, schema.items, depth + 1, indent) : 'unknown';
       return 'Array<' + item + '>' + nullSuffix;
     }
     case 'object':
     {
       if (depth >= 3 || !schema.properties) return 'Record<string, unknown>' + nullSuffix;
       const req = new Set(schema.required || []);
-      const props = Object.entries(schema.properties).map(([k, v]) =>
+      const entries = Object.entries(schema.properties);
+
+      // Use multi-line format with JSDoc when any property has a description.
+      const hasDescriptions = entries.some(([, v]) =>
       {
-        const safeKey = /[^a-zA-Z0-9_$]/.test(k) ? "'" + k.replace(/\\/g, '\\\\').replace(/'/g, "\\'") + "'" : k;
-        return safeKey + (req.has(k) ? '' : '?') + ': ' + schemaToTs(spec, v, depth + 1);
+        const r = (v && v.$ref) ? (resolveRef(spec, v.$ref) || v) : v;
+        return r && r.description;
       });
-      return '{ ' + props.join('; ') + ' }' + nullSuffix;
+
+      if (!hasDescriptions)
+      {
+        const props = entries.map(([k, v]) =>
+        {
+          const safeKey = /[^a-zA-Z0-9_$]/.test(k) ? "'" + k.replace(/\\/g, '\\\\').replace(/'/g, "\\'") + "'" : k;
+          return safeKey + (req.has(k) ? '' : '?') + ': ' + schemaToTs(spec, v, depth + 1, indent + 1);
+        });
+        return '{ ' + props.join('; ') + ' }' + nullSuffix;
+      }
+
+      const pad = '  '.repeat(indent);
+      const propPad = '  '.repeat(indent + 1);
+      const propLines = [];
+      for (const [k, v] of entries)
+      {
+        const r = (v && v.$ref) ? (resolveRef(spec, v.$ref) || v) : v;
+        if (r && r.description)
+        {
+          propLines.push(propPad + '/** ' + safeComment(firstLine(r.description, 100)) + ' */');
+        }
+        const safeKey = /[^a-zA-Z0-9_$]/.test(k) ? "'" + k.replace(/\\/g, '\\\\').replace(/'/g, "\\'") + "'" : k;
+        propLines.push(propPad + safeKey + (req.has(k) ? '' : '?') + ': ' + schemaToTs(spec, r || v, depth + 1, indent + 1) + ';');
+      }
+      return '{\n' + propLines.join('\n') + '\n' + pad + '}' + nullSuffix;
     }
     default:
       if (!mainType && nullable) return 'null';
@@ -536,18 +565,31 @@ function buildTs(spec, version)
 async function main()
 {
   const arg = process.argv[2];
-  const versions = arg ? [arg] : ['stable', 'dev'];
+  const versions = arg ? [arg] : ['stable', 'dev', 'production'];
 
   for (const version of versions)
   {
     if (!SPEC_URLS[version])
     {
-      console.error('Unknown version: "' + version + '".');
+      console.error('Unknown version: "' + version + '". Use "stable", "dev", or "production".');
       process.exit(1);
     }
 
     console.log('[' + version + '] Downloading spec...');
-    const raw = await fetchText(SPEC_URLS[version]);
+    let raw;
+    try
+    {
+      raw = await fetchText(SPEC_URLS[version]);
+    }
+    catch (err)
+    {
+      if (err.message && err.message.includes('HTTP 404'))
+      {
+        console.log('[' + version + '] Spec not available (404) - skipping.');
+        continue;
+      }
+      throw err;
+    }
     console.log('[' + version + '] Downloaded ' + Math.round(raw.length / 1024) + ' KB');
 
     const spec = yaml.load(raw);

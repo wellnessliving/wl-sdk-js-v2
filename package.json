@@ -18,11 +18,18 @@
       "require": "./dev/wl-sdk.cjs.js",
       "browser": "./dev/wl-sdk.js",
       "types": "./dev/wl-sdk.d.ts"
+    },
+    "./production": {
+      "import": "./production/wl-sdk.esm.js",
+      "require": "./production/wl-sdk.cjs.js",
+      "browser": "./production/wl-sdk.js",
+      "types": "./production/wl-sdk.d.ts"
     }
   },
   "files": [
     "stable/",
-    "dev/"
+    "dev/",
+    "production/"
   ],
   "publishConfig": {
     "registry": "https://npm.pkg.github.com",
