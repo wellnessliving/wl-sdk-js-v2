@@ -85,8 +85,11 @@ jobs:
           printf '## WellnessLiving JavaScript SDK %s\n\n| | |\n|---|---|\n| Stable spec | `%s` |\n| Dev spec | `%s` |\n| Endpoints | %s |\n\n## CDN links (jsDelivr)\n\n```html\n<!-- Stable -->\n<script src="https://cdn.jsdelivr.net/gh/wellnessliving/wl-sdk-js-v2@%s/stable/wl-sdk.js"></script>\n\n<!-- Dev -->\n<script src="https://cdn.jsdelivr.net/gh/wellnessliving/wl-sdk-js-v2@%s/dev/wl-sdk.js"></script>\n```\n\n---\nAuto-generated from [wellnessliving/openapi](https://github.com/wellnessliving/openapi).\n' \
             "$TAG" "$STABLE_VER" "$DEV_VER" "$METHOD_COUNT" "$TAG" "$TAG" > /tmp/release-notes.md
 
+          cp stable/wl-sdk.js /tmp/wl-sdk-stable.js
+          cp dev/wl-sdk.js /tmp/wl-sdk-dev.js
+
           gh release create "$TAG" \
-            "stable/wl-sdk.js#wl-sdk-stable.js" \
-            "dev/wl-sdk.js#wl-sdk-dev.js" \
+            /tmp/wl-sdk-stable.js \
+            /tmp/wl-sdk-dev.js \
             --title "SDK ${TAG}" \
             --notes-file /tmp/release-notes.md
