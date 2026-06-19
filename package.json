@@ -1,0 +1,17 @@
+{
+  "name": "wl-sdk-js",
+  "version": "2.0.0",
+  "description": "WellnessLiving JavaScript SDK - auto-generated from OpenAPI spec",
+  "private": true,
+  "scripts": {
+    "generate": "node scripts/generate.js",
+    "generate:stable": "node scripts/generate.js stable",
+    "generate:dev": "node scripts/generate.js dev"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

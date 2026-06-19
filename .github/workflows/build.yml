@@ -1,0 +1,92 @@
+name: Build SDK
+
+on:
+  repository_dispatch:
+    types: [openapi-updated]
+  schedule:
+    # Fallback: runs daily at 08:00 UTC in case the dispatch was missed.
+    - cron: '0 8 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/**'
+      - 'package.json'
+      - 'package-lock.json'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate stable SDK
+        run: node scripts/generate.js stable
+
+      - name: Generate dev SDK
+        run: node scripts/generate.js dev
+
+      - name: Check for changes
+        id: changes
+        run: |
+          git add stable/wl-sdk.js dev/wl-sdk.js
+          if git diff --staged --quiet; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "No changes - SDK is up to date."
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+            STABLE_VER=$(grep -m1 'Spec version:' stable/wl-sdk.js | awk '{print $NF}')
+            echo "stable_ver=${STABLE_VER}" >> $GITHUB_OUTPUT
+            echo "dev_ver=$(grep -m1 'Spec version:' dev/wl-sdk.js | awk '{print $NF}')" >> $GITHUB_OUTPUT
+            echo "method_count=$(grep -m1 'Endpoints:' stable/wl-sdk.js | awk '{print $NF}')" >> $GITHUB_OUTPUT
+            echo "Changes detected - will commit and release."
+          fi
+
+      - name: Commit and push
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          STABLE_VER="${{ steps.changes.outputs.stable_ver }}"
+          DEV_VER="${{ steps.changes.outputs.dev_ver }}"
+          MSG=$(printf 'chore: regenerate SDK from OpenAPI spec\n\nstable: %s\ndev: %s' "$STABLE_VER" "$DEV_VER")
+          git commit -m "$MSG"
+          git push
+
+      - name: Create GitHub Release
+        if: steps.changes.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="v${{ steps.changes.outputs.stable_ver }}"
+          STABLE_VER="${{ steps.changes.outputs.stable_ver }}"
+          DEV_VER="${{ steps.changes.outputs.dev_ver }}"
+          METHOD_COUNT="${{ steps.changes.outputs.method_count }}"
+
+          if gh release view "$TAG" > /dev/null 2>&1; then
+            echo "Release $TAG already exists - skipping."
+            exit 0
+          fi
+
+          printf '## WellnessLiving JavaScript SDK %s\n\n| | |\n|---|---|\n| Stable spec | `%s` |\n| Dev spec | `%s` |\n| Endpoints | %s |\n\n## CDN links (jsDelivr)\n\n```html\n<!-- Stable -->\n<script src="https://cdn.jsdelivr.net/gh/wellnessliving/wl-sdk-js-v2@%s/stable/wl-sdk.js"></script>\n\n<!-- Dev -->\n<script src="https://cdn.jsdelivr.net/gh/wellnessliving/wl-sdk-js-v2@%s/dev/wl-sdk.js"></script>\n```\n\n---\nAuto-generated from [wellnessliving/openapi](https://github.com/wellnessliving/openapi).\n' \
+            "$TAG" "$STABLE_VER" "$DEV_VER" "$METHOD_COUNT" "$TAG" "$TAG" > /tmp/release-notes.md
+
+          gh release create "$TAG" \
+            "stable/wl-sdk.js#wl-sdk-stable.js" \
+            "dev/wl-sdk.js#wl-sdk-dev.js" \
+            --title "SDK ${TAG}" \
+            --notes-file /tmp/release-notes.md
