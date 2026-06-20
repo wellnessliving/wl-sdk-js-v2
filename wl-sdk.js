@@ -1,11 +1,11 @@
 /*!
- * WellnessLiving JavaScript SDK (stable)
- * Spec version: 1.1.20260619124930
+ * WellnessLiving JavaScript SDK (production)
+ * Spec version: 1.1.20260619124936
  * Build date:   2026-06-19
  * Endpoints:    454
  *
  * Auto-generated from:
- * https://github.com/wellnessliving/openapi/blob/main/stable/openapi.yaml
+ * https://github.com/wellnessliving/openapi/blob/main/production/openapi.yaml
  *
  * Usage (browser via script tag):
  *   <script src="wl-sdk.js"></script>
@@ -204,13 +204,13 @@
    * SDK channel: 'stable' or 'dev'.
    * @type {string}
    */
-  WlClient.CHANNEL = 'stable';
+  WlClient.CHANNEL = 'production';
 
   /**
    * OpenAPI spec version this SDK was generated from.
    * @type {string}
    */
-  WlClient.SPEC_VERSION = '1.1.20260619124930';
+  WlClient.SPEC_VERSION = '1.1.20260619124936';
 
   // ---------------------------------------------------------------------------
   // Generated API methods (454 total)
