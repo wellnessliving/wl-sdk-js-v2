@@ -48,6 +48,7 @@ export interface ThothExplorerSearchClassSessionClassSessionSearchParams {
     m_price_min?: string | null;
 }
 export interface ThothExplorerSearchClassSessionClassSessionSearchResponse {
+    /** List of found class sessions. */
     a_class_session: Array<{
         /** Date and time when booking for this session starts in UTC. `null` if there is no "too early" limi... */
         dtu_book_begin: string | null;
@@ -121,6 +122,7 @@ export interface ThothWlPayAccountAccountParams {
     uid: string;
 }
 export interface ThothWlPayAccountAccountResponse {
+    /** A list of the user's accounts. */
     a_account: Array<{
         /** A list of currencies. */
         id_currency: number;
@@ -155,6 +157,7 @@ export interface ThothWlPayFormEnvironmentUserResponse {
     a_card_system: Array<number>;
     /** A list of payment methods enabled for staff members. The ID is one of [RsPayMethodSid](#/componen... */
     a_method_staff: Array<number>;
+    /** A list of all payment methods that can be used within this business. */
     a_method_support: Array<{
         /** A list of payment methods. */
         id_pay_method: number;
@@ -167,6 +170,7 @@ export interface ThothWlPayFormEnvironmentUserResponse {
     }>;
     /** The configuration array that's sent to mobile card reader plugin. */
     a_mobile_config: Array<unknown> | null;
+    /** Represents information about payment processors. */
     a_pay_processor: Array<{
         /** Public keys configured for this payment processor. */
         a_public_keys: Array<unknown> | null;
@@ -217,6 +221,7 @@ export interface ThothWlPayFormEnvironmentResponse {
     a_card_system: Array<number>;
     /** A list of payment methods enabled for staff members. The ID is one of [RsPayMethodSid](#/componen... */
     a_method_staff: Array<number>;
+    /** A list of all payment methods that can be used within this business. */
     a_method_support: Array<{
         /** A list of payment methods. */
         id_pay_method: number;
@@ -229,6 +234,7 @@ export interface ThothWlPayFormEnvironmentResponse {
     }>;
     /** The configuration array that's sent to mobile card reader plugin. */
     a_mobile_config: Array<unknown> | null;
+    /** Represents information about payment processors. */
     a_pay_processor: Array<{
         /** Public keys configured for this payment processor. */
         a_public_keys: Array<unknown> | null;
@@ -275,6 +281,7 @@ export interface ThothWlPayMethodListParams {
     uid: string;
 }
 export interface ThothWlPayMethodListResponse {
+    /** A list of payment methods: */
     a_pay_method: Array<{
         /** A list of payment methods. */
         id_pay_method: number;
@@ -351,6 +358,7 @@ export interface CoreGeoComboboxParams {
     s_value: string;
 }
 export interface CoreGeoComboboxResponse {
+    /** A list of items to show in the combobox list. */
     a_list: Array<{
         /** The human-readable name of the city, including the state/province and country. */
         s_value: string;
@@ -362,6 +370,7 @@ export type CoreGoogleGoogleCaptchaParams = Record<string, unknown>;
 export type CoreGoogleGoogleCaptchaResponse = Record<string, unknown>;
 export type CoreWebSocketSubscribeParams = Record<string, unknown>;
 export interface CoreWebSocketSubscribeResponse {
+    /** All messages in queue. Key is a message key. Value is message data. */
     a_message_broadcast: Array<{
         /** A CAS (compare-and-swap) number that allows to track changes in the report storage. */
         i_cas_change: number;
@@ -555,6 +564,7 @@ export interface CoreSidCoreSidParams {
     s_class_name: string;
 }
 export interface CoreSidCoreSidResponse {
+    /** List of items. Keys are IDs, values are arrays with additional information: */
     a_list: Array<{
         /** String ID. */
         sid: number;
@@ -687,6 +697,7 @@ export interface WlVisitVisitStatusGetParams {
     k_timezone?: string | null;
 }
 export interface WlVisitVisitStatusGetResponse {
+    /** Information about whether the given user can cancel an online booking and what */
     a_cancel: Array<{
         /** `null` if penalty must be not applied. */
         a_penalty: {
@@ -708,6 +719,7 @@ export interface WlVisitVisitStatusGetResponse {
     }>;
     /** An array of service resources. */
     a_resource: Array<string> | null;
+    /** An array of service resources. */
     a_resource_alias: Array<{
         /** Resource . */
         k_resource: string;
@@ -795,6 +807,7 @@ export interface WlLocationListBulkParams {
     s_location: string;
 }
 export interface WlLocationListBulkResponse {
+    /** Short-form information about locations. */
     a_location: Array<{
         /** The latitude coordinate. */
         f_latitude: number;
@@ -815,6 +828,7 @@ export interface WlLocationListBulkResponse {
         /** The location logo. */
         url_logo?: string;
     }>;
+    /** A list of models with full information about each location. */
     a_location_full: Array<{
         /** A list of ages that are permitted for visiting this location. */
         a_age: Array<number>;
@@ -945,6 +959,7 @@ export interface WlLocationListParams {
     show_remove: boolean;
 }
 export interface WlLocationListResponse {
+    /** Information about the business's location(s). If you've specified multiple businesses for this en... */
     a_location: Array<{
         /** List of directories from [RsProjectSid](#/components/schemas/RsProjectSid), where location is pub... */
         a_directories: Array<number>;
@@ -1233,6 +1248,7 @@ export interface WlBusinessBusinessAccessParams {
 export interface WlBusinessBusinessAccessResponse {
     /** The businesses the staff member belongs to. */
     a_business: Array<string>;
+    /** The list of accessible businesses with their corresponding data. Each value is an array with the ... */
     a_business_data: Array<{
         /** List of available data center regions. */
         id_region: number;
@@ -1317,6 +1333,7 @@ export interface WlCollectorDebtListParams {
     k_business?: string | null;
 }
 export interface WlCollectorDebtListResponse {
+    /** A list of debts for the given business added within the previous month. */
     a_debt: Array<{
         /** The birth date of the debtor client. */
         dl_client_birth: string;
@@ -1383,6 +1400,7 @@ export interface WlCollectorDebtTransactionParams {
     k_business?: string | null;
 }
 export interface WlCollectorDebtTransactionResponse {
+    /** A list of debt payments for a given business added within the previous day. */
     a_transaction: Array<{
         /** The date and time in UTC of the payment transaction. */
         dtu_pay: string;
@@ -1415,6 +1433,7 @@ export interface WlAnnouncementAnnouncementListParams {
     k_location?: string | null;
 }
 export interface WlAnnouncementAnnouncementListResponse {
+    /** List of announcements. Each element has the following keys: */
     a_list: Array<{
         /** Location keys where the announcement is published. */
         a_location: Array<string>;
@@ -1469,6 +1488,7 @@ export interface WlLeadLeadGetParams {
     k_skin: string;
 }
 export interface WlLeadLeadGetResponse {
+    /** A list of profile fields in the business. Every element has the following keys: */
     a_field_list: Array<{
         /** A list of possible options for an HTML select field. This value is only used if this field is an ... */
         a_item: {
@@ -1488,6 +1508,7 @@ export interface WlLeadLeadGetResponse {
         /** The field title. */
         text_field: string;
     }>;
+    /** The skin configuration: */
     a_skin: Array<{
         /** List of compiled CSS style blocks. Each element: */
         a_style: {
@@ -1582,6 +1603,7 @@ export interface WlPromotionPromotionListParams {
     k_business: string;
 }
 export interface WlPromotionPromotionListResponse {
+    /** A list of promotions. */
     a_promotion: Array<{
         /** Program types. */
         id_program: number;
@@ -1609,6 +1631,7 @@ export interface WlPromotionPromotionGetParams {
     k_promotion: string;
 }
 export interface WlPromotionPromotionGetResponse {
+    /** Promotion information. */
     a_promotion: Array<{
         /** Information about services that can be attended with this pass or membership. */
         a_access: {
@@ -1759,6 +1782,7 @@ export interface WlLoginLoginPostParams {
     k_business: string;
 }
 export interface WlLoginLoginPostResponse {
+    /** List of information about users: */
     a_login: Array<{
         /** String identifiers for gender. */
         id_gender: number;
@@ -1812,6 +1836,7 @@ export interface WlQuizQuizElementGetParams {
     uid_client: string;
 }
 export interface WlQuizQuizElementGetResponse {
+    /** Access log data. */
     a_access_log: Array<{
         /** Date and time of the quiz changes. */
         dtu_activity: string;
@@ -1828,6 +1853,7 @@ export interface WlQuizQuizElementGetResponse {
         /** Url for view information about the user who made activity (admin, staff, client). */
         url_actor: string;
     }>;
+    /** List of quiz elements. */
     a_element: Array<{
         /** List of amendments. */
         a_amendment: Record<string, unknown>;
@@ -2111,6 +2137,7 @@ export interface WlQuizQuizElementGetResponse {
         /** Heading XML. */
         xml_heading: string;
     }>;
+    /** Quiz settings. */
     a_setting: Array<{
         /** List of additional email addresses which should receive email notification after quiz is submitted. */
         a_notify_additional: Array<string>;
@@ -2207,6 +2234,7 @@ export interface WlQuizQuizElementPutParams {
     k_quiz_login: string;
 }
 export interface WlQuizQuizElementPutResponse {
+    /** Quiz settings. */
     a_setting: Array<{
         /** List of additional email addresses which should receive email notification after quiz is submitted. */
         a_notify_additional: Array<string>;
@@ -2290,6 +2318,7 @@ export interface WlQuizQuizElement72GetParams {
     uid_client: string;
 }
 export interface WlQuizQuizElement72GetResponse {
+    /** Access log data. */
     a_access_log: Array<{
         /** Date and time of the quiz changes. */
         dtu_activity: string;
@@ -2306,6 +2335,7 @@ export interface WlQuizQuizElement72GetResponse {
         /** Url for view information about the user who made activity (admin, staff, client). */
         url_actor: string;
     }>;
+    /** List of quiz elements. */
     a_element: Array<{
         /** List of amendments. */
         a_amendment: Record<string, unknown>;
@@ -2589,6 +2619,7 @@ export interface WlQuizQuizElement72GetResponse {
         /** Heading XML. */
         xml_heading: string;
     }>;
+    /** Quiz settings. */
     a_setting: Array<{
         /** List of additional email addresses which should receive email notification after quiz is submitted. */
         a_notify_additional: Array<string>;
@@ -2685,6 +2716,7 @@ export interface WlQuizQuizElement72PutParams {
     k_quiz_login: string;
 }
 export interface WlQuizQuizElement72PutResponse {
+    /** Quiz settings. */
     a_setting: Array<{
         /** List of additional email addresses which should receive email notification after quiz is submitted. */
         a_notify_additional: Array<string>;
@@ -2762,6 +2794,7 @@ export interface WlVideoVideoElementGetResponse {
     a_location: Array<string>;
     /** The keys of the user staff members who are on the video. */
     a_staff: Array<string>;
+    /** A list of staff members associated with the video. Every item has the following structure: */
     a_staff_info: Array<{
         /** <b>Deprecated</b> The staff member key. */
         k_staff: string;
@@ -2905,6 +2938,7 @@ export interface WlVideoVideoListGetParams {
     uid?: string | null;
 }
 export interface WlVideoVideoListGetResponse {
+    /** A list of videos. */
     a_list: Array<{
         /** List of staff members associated with the video. */
         a_staff: {
@@ -2980,6 +3014,7 @@ export interface WlVideoVideoListGetResponse {
         /** URL of the video file (HLS stream). `null` if not available. */
         url_video: string | null;
     }>;
+    /** Pagination data. Empty array if pagination is not active (total video count is within */
     a_page: Array<{
         /** `true` for the "next page" navigation entry. Only present on the next-page entry. */
         'is-next'?: boolean;
@@ -3072,6 +3107,7 @@ export interface WlTagTagListGetParams {
     k_business: string;
 }
 export interface WlTagTagListGetResponse {
+    /** The tag list. */
     a_list: Array<{
         /** The sort order of the tag. */
         i_sort: number;
@@ -3090,6 +3126,7 @@ export interface WlTagTagListPostParams {
     k_business: string;
 }
 export interface WlTagTagListPostResponse {
+    /** The tag list. */
     a_list: Array<{
         /** The sort order of the tag. */
         i_sort: number;
@@ -3112,6 +3149,7 @@ export interface WlTaxTaxListParams {
     k_business: string;
 }
 export interface WlTaxTaxListResponse {
+    /** A list of taxes. */
     a_list: Array<{
         /** The amount of the tax. */
         f_value: number;
@@ -3159,6 +3197,7 @@ export interface WlRankRankParams {
     k_business: string;
 }
 export interface WlRankRankResponse {
+    /** A list of belts, keys, and information. Each element is an array with the following information: */
     a_rank_list: Array<{
         /** A belt key. */
         k_rank: string;
@@ -3189,6 +3228,7 @@ export interface WlHolidayBulkBusinessHolidayParams {
     k_business: string;
 }
 export interface WlHolidayBulkBusinessHolidayResponse {
+    /** An array consisting of the business's closed day data for all locations by holiday keys [HolidayA... */
     a_business_holidays: Array<{
         /** List of effected classes, keys are class keys. */
         a_class: Array<boolean>;
@@ -3272,6 +3312,7 @@ export interface ThothWlPayBankCardListParams {
     uid: string;
 }
 export interface ThothWlPayBankCardListResponse {
+    /** A list of bank cards. */
     a_bank_card: Array<{
         /** The month when the payment card expires, represented by a number (1=January and 12=December). */
         i_month: number;
@@ -3308,6 +3349,7 @@ export interface CoreDriveImageUploadImageUploadGetParams {
     s_class: string;
 }
 export interface CoreDriveImageUploadImageUploadGetResponse {
+    /** Information about the text for an empty image upload. */
     a_text_empty: Array<{
         /** Class to change view of the upload form. */
         s_class: string;
@@ -3352,6 +3394,7 @@ export interface CoreDriveImageUploadImageUploadPostParams {
     s_class: string;
 }
 export interface CoreDriveImageUploadImageUploadPostResponse {
+    /** Image information for every ID. */
     a_image: Array<{
         /** Information about the text on the empty upload image. */
         a_text_empty: {
@@ -3399,6 +3442,7 @@ export interface CoreDriveImageUploadImageUploadPutParams {
     s_class: string;
 }
 export interface CoreDriveImageUploadImageUploadPutResponse {
+    /** Information about the text for an empty image upload. */
     a_text_empty: Array<{
         /** Class to change view of the upload form. */
         s_class: string;
@@ -3495,6 +3539,7 @@ export interface CoreGeoRegionRegionParams {
     is_locale_all: boolean;
 }
 export interface CoreGeoRegionRegionResponse {
+    /** A list of regions grouped by their country. */
     a_region: Array<{
         /** A list of regions in the country. Every element has the next keys: */
         a_region: {
@@ -3565,6 +3610,7 @@ export type WlScheduleClassListClassList68Params = Record<string, unknown>;
 export interface WlScheduleClassListClassList68Response {
     /** Keys are dates of the days inside requested date range, when there is at least one class in the b... */
     a_calendar: Array<string>;
+    /** Information about classes/events for quick filter. */
     a_quick: Array<{
         /** Type of class ("class" || "event") */
         text_type: string;
@@ -3575,6 +3621,7 @@ export interface WlScheduleClassListClassList68Response {
         /** Total sessions found. */
         i_class: number;
     }>;
+    /** A list of classes sessions starting with the date [ClassListApi](/Wl/Schedule/ClassList/ClassList... */
     a_session: Array<{
         /** Keys of class tab. */
         a_class_tab: Array<string>;
@@ -3680,6 +3727,7 @@ export interface WlScheduleClassListClassListParams {
 export interface WlScheduleClassListClassListResponse {
     /** Keys are dates of the days inside requested date range, when there is at least one class in the b... */
     a_calendar: Array<string>;
+    /** A list of classes sessions starting with the date `dt_date` */
     a_session: Array<{
         /** Keys of class tab. */
         a_class_tab: Array<string>;
@@ -3750,6 +3798,7 @@ export interface WlScheduleTabTabParams {
     uid: string;
 }
 export interface WlScheduleTabTabResponse {
+    /** An array containing information about tabs to present to the user. */
     a_tab: Array<{
         /** List of class tab objects. */
         id_class_tab_object: number;
@@ -3781,6 +3830,7 @@ export interface WlScheduleClassViewClassViewGetParams {
     k_business?: string | null;
 }
 export interface WlScheduleClassViewClassViewGetResponse {
+    /** Asset list data. */
     a_asset: Array<{
         /** Number of sessions. */
         i_count: number;
@@ -3803,6 +3853,7 @@ export interface WlScheduleClassViewClassViewGetResponse {
         /** Asset title that consists of the asset title itself concatenated with its index (in case of multi... */
         text_name: string;
     }> | null;
+    /** Detailed information about the class. */
     a_class: Array<{
         /** Keys are class key. */
         a_class_tab: Array<string>;
@@ -3883,6 +3934,7 @@ export interface WlScheduleClassViewClassViewGetResponse {
         /** Class room. */
         text_room: string;
     }> | null;
+    /** Location data. */
     a_location: Array<{
         /** Location latitude. */
         f_latitude: number;
@@ -3901,6 +3953,7 @@ export interface WlScheduleClassViewClassViewGetResponse {
         /** Location name. */
         s_title: string;
     }> | null;
+    /** A list of sessions with information, received in a multiple session mode. */
     a_session_result: Array<{
         /** Array of asset. */
         a_asset: {
@@ -4042,6 +4095,7 @@ export interface WlScheduleClassViewClassViewGetResponse {
             text_title: string;
         };
     }>;
+    /** Staff member list data. */
     a_staff: Array<{
         /** Information about staff photo: */
         a_logo: {
@@ -4067,6 +4121,7 @@ export interface WlScheduleClassViewClassViewGetResponse {
     }> | null;
     /** List of other locations where virtual class can be booked. */
     a_virtual_location: Array<string>;
+    /** A list of classes and events that clients should visit before this one. */
     a_visits_required: Array<{
         /** Number of visits. */
         i_count: number;
@@ -4096,6 +4151,7 @@ export interface WlScheduleClassViewClassViewPostParams {
     k_business?: string | null;
 }
 export interface WlScheduleClassViewClassViewPostResponse {
+    /** Asset list data. */
     a_asset: Array<{
         /** Number of sessions. */
         i_count: number;
@@ -4118,6 +4174,7 @@ export interface WlScheduleClassViewClassViewPostResponse {
         /** Asset title that consists of the asset title itself concatenated with its index (in case of multi... */
         text_name: string;
     }> | null;
+    /** Detailed information about the class. */
     a_class: Array<{
         /** Keys are class key. */
         a_class_tab: Array<string>;
@@ -4198,6 +4255,7 @@ export interface WlScheduleClassViewClassViewPostResponse {
         /** Class room. */
         text_room: string;
     }> | null;
+    /** Location data. */
     a_location: Array<{
         /** Location latitude. */
         f_latitude: number;
@@ -4216,6 +4274,7 @@ export interface WlScheduleClassViewClassViewPostResponse {
         /** Location name. */
         s_title: string;
     }> | null;
+    /** A list of sessions with information, received in a multiple session mode. */
     a_session_result: Array<{
         /** Array of asset. */
         a_asset: {
@@ -4357,6 +4416,7 @@ export interface WlScheduleClassViewClassViewPostResponse {
             text_title: string;
         };
     }>;
+    /** Staff member list data. */
     a_staff: Array<{
         /** Information about staff photo: */
         a_logo: {
@@ -4390,6 +4450,7 @@ export interface WlSchedulePagePageElementParams {
     k_visit: string;
 }
 export interface WlSchedulePagePageElementResponse {
+    /** Additional visit information about this appointment. Empty array if it's not an appointment. */
     a_appointment_visit_info: Array<{
         /** Possible states of the visit: book, attended, cancelled, etc. */
         id_visit: number;
@@ -4404,12 +4465,14 @@ export interface WlSchedulePagePageElementResponse {
         /** `true` means that appointment was requested, but not confirmed by the staff. */
         is_request: boolean;
     }>;
+    /** List of assets: . */
     a_asset: Array<{
         /** Asset title that consists of the asset title itself concatenated with its index (in case of multi... */
         s_name: string;
         /** Number of sessions. */
         i_count: string;
     }>;
+    /** Class data: */
     a_class_info: Array<{
         /** A total number of booked visits in the class, including all lists: active and waitlist. */
         i_book_active: number;
@@ -4418,6 +4481,7 @@ export interface WlSchedulePagePageElementResponse {
         /** A total number of booked visits in the waitlist. */
         i_wait: number;
     }> | null;
+    /** Resource image data. */
     a_resource_image: Array<{
         /** Image data. */
         a_image: {
@@ -4457,6 +4521,7 @@ export interface WlSchedulePagePageElementResponse {
         /** Path to image. */
         url: string;
     }> | null;
+    /** A list of staff members involved in the visit. */
     a_staff: Array<{
         /** The staff member key. */
         k_staff: string;
@@ -4539,6 +4604,7 @@ export interface WlSchedulePagePageListParams {
     uid?: string | null;
 }
 export interface WlSchedulePagePageListResponse {
+    /** Elements of user's schedule. Every element has next keys: */
     a_visit: Array<{
         /** Date and time of the visit in UTC. */
         dtu_date: string;
@@ -4563,6 +4629,7 @@ export interface WlAppointmentEditAddonUpdateGetParams {
     k_service: string;
 }
 export interface WlAppointmentEditAddonUpdateGetResponse {
+    /** Data to show appointment add-ons: */
     a_addon_data: Array<{
         /** Data about appointment add-ons. */
         a_addon: {
@@ -4668,6 +4735,7 @@ export interface WlAppointmentInfoInfoParams {
     k_appointment: string;
 }
 export interface WlAppointmentInfoInfoResponse {
+    /** Next appointment data, or empty array if there are no appointments in the future: */
     a_next: Array<{
         /** Start date and time of the next appointment in local time in MySQL format. */
         dt_date_local: string;
@@ -4686,6 +4754,7 @@ export interface WlAppointmentInfoInfoResponse {
         /** Full staff name or empty if no staff assigned. */
         text_staff_name: string;
     }>;
+    /** Previous appointment data, or empty array if there are no appointments in the past: */
     a_previous: Array<{
         /** Start date and time of the previous appointment in local time in MySQL format. */
         dt_date_local: string;
@@ -4704,6 +4773,7 @@ export interface WlAppointmentInfoInfoResponse {
         /** Full staff name or empty if no staff assigned. */
         text_staff_name: string;
     }>;
+    /** List of questions and answers: */
     a_question: Array<{
         /** Size of rows for answer. */
         i_size: number;
@@ -4716,6 +4786,7 @@ export interface WlAppointmentInfoInfoResponse {
         /** Question. */
         s_question: string;
     }>;
+    /** List of assets used by this appointment. Each element contains: */
     a_resource: Array<{
         /** Background color of the asset as an integer (RGB). */
         i_color_background: number;
@@ -4736,6 +4807,7 @@ export interface WlAppointmentInfoInfoResponse {
         /** Display alias for the asset slot, if configured. */
         text_resource_alias: string;
     }>;
+    /** List of appointment add-ons. Every element has next keys: */
     a_shop_product_option: Array<{
         /** List of purchased product keys. Empty if no products were purchased. Each element: */
         a_login_product: {
@@ -4809,6 +4881,7 @@ export interface WlBookProcessProcessGroupParams {
     k_class_period: string;
 }
 export interface WlBookProcessProcessGroupResponse {
+    /** List of errors that occurred during booking. */
     a_book_error: Array<{
         /** Error code identifying the type of error that occurred. */
         text_code: string;
@@ -4841,6 +4914,7 @@ export interface WlBookProcessProcessParams {
 export interface WlBookProcessProcessResponse {
     /** Relationships who clients are allowed to book for. */
     a_family_relation_login_allow: Array<number> | null;
+    /** All the steps to be performed to make a booking. Every element has the next keys: */
     a_path: Array<{
         /** Class/Event booking process sid class. */
         id_book_process: number;
@@ -4891,6 +4965,7 @@ export interface WlBookProcessProcess54Params {
 export interface WlBookProcessProcess54Response {
     /** Relationships who clients are allowed to book for. */
     a_family_relation_login_allow: Array<number> | null;
+    /** All the steps to be performed to make a booking. Every element has the next keys: */
     a_path: Array<{
         /** Class/Event booking process sid class. */
         id_book_process: number;
@@ -4941,6 +5016,7 @@ export interface WlBookProcessProcess59Params {
 export interface WlBookProcessProcess59Response {
     /** Relationships who clients are allowed to book for. */
     a_family_relation_login_allow: Array<number> | null;
+    /** All the steps to be performed to make a booking. Every element has the next keys: */
     a_path: Array<{
         /** Class/Event booking process sid class. */
         id_book_process: number;
@@ -4979,6 +5055,7 @@ export interface WlBookCancelCancelCanParams {
     k_visit: string;
 }
 export interface WlBookCancelCancelCanResponse {
+    /** Penalty data. */
     a_penalty: Array<{
         /** `true` in a case of flat penalty type; `false` in a case of percentage penalty type. */
         is_flat: boolean;
@@ -5005,18 +5082,21 @@ export interface WlLocationFlagFlagParams {
     uid?: string | null;
 }
 export interface WlLocationFlagFlagResponse {
+    /** Array with structure: */
     a_flag: Array<{
         /** Key is passport login ID. */
         uid: string;
         /** Value: `true` if user is flagged; `false` otherwise. */
         is_flag: boolean;
     }>;
+    /** Array, where keys are UIDs to be checked and values are same as `a_restrictions_single`. */
     a_restrictions_multiple: Array<{
         /** `true` if the user cannot make new reservations. */
         is_book: boolean;
         /** `true` if the user cannot make new purchases. */
         is_purchase: boolean;
     }> | null;
+    /** `null` if user is not flagged in the location. */
     a_restrictions_single: Array<{
         /** `true` if client cannot make new reservations. */
         is_book: boolean;
@@ -5043,6 +5123,7 @@ export interface WlLocationViewViewResponse {
     a_amenities: Array<number>;
     /** A list of levels that are suitable for visiting this location. */
     a_level: Array<string>;
+    /** Information about the location logo used in WellnessLiving: */
     a_logo: Array<{
         /** The image height. */
         i_height: number;
@@ -5051,6 +5132,7 @@ export interface WlLocationViewViewResponse {
         /** The URL to the image. */
         s_url: string;
     }>;
+    /** A list of the location images. */
     a_slide: Array<{
         /** Height. */
         i_height: number;
@@ -5061,6 +5143,7 @@ export interface WlLocationViewViewResponse {
         /** URL to full image. */
         url_slide: string;
     }>;
+    /** The hours of operation for the location. */
     a_work: Array<{
         /** The time of day end in MySQL format. */
         s_end: string;
@@ -5141,6 +5224,7 @@ export interface WlLocationFacilityFacilitySidParams {
     s_class_name: string;
 }
 export interface WlLocationFacilityFacilitySidResponse {
+    /** List of items. Keys are IDs, values are arrays with additional information: */
     a_list: Array<{
         /** String ID. */
         sid: number;
@@ -5159,6 +5243,7 @@ export interface WlProfileEditEditGetParams {
     id_register_source?: number | null;
 }
 export interface WlProfileEditEditGetResponse {
+    /** List of validation errors. `null` if no error occurred. */
     a_error_list: Array<{
         /** Error code identifying the type of validation failure. */
         code: string;
@@ -5167,6 +5252,7 @@ export interface WlProfileEditEditGetResponse {
         /** Human-readable error message. */
         message: string;
     }> | null;
+    /** An array contained with information about phone inheritance. */
     a_phone_inherit: Array<{
         /** Indicates weather to inherit phone numbers from relative or not. `1` if phone inheritance is need... */
         is_phone_inherit?: boolean;
@@ -5175,6 +5261,7 @@ export interface WlProfileEditEditGetResponse {
         /** User key of relative. */
         uid_relative: string;
     }>;
+    /** The values and structure of all fields. Array keys are field IDs (`k_field`). */
     a_structure: Array<{
         /** List of general fields in user's profile. */
         id_field_general?: number;
@@ -5235,6 +5322,7 @@ export interface WlProfileEditEditPostParams {
     uid_inherit_address?: string | null;
 }
 export interface WlProfileEditEditPostResponse {
+    /** List of validation errors. `null` if no error occurred. */
     a_error_list: Array<{
         /** Error code identifying the type of validation failure. */
         code: string;
@@ -5289,6 +5377,7 @@ export interface WlProfileEditEditByTokenGetParams {
     id_register_source?: number | null;
 }
 export interface WlProfileEditEditByTokenGetResponse {
+    /** List of validation errors. `null` if no error occurred. */
     a_error_list: Array<{
         /** Error code identifying the type of validation failure. */
         code: string;
@@ -5297,6 +5386,7 @@ export interface WlProfileEditEditByTokenGetResponse {
         /** Human-readable error message. */
         message: string;
     }> | null;
+    /** An array contained with information about phone inheritance. */
     a_phone_inherit: Array<{
         /** Indicates weather to inherit phone numbers from relative or not. `1` if phone inheritance is need... */
         is_phone_inherit?: boolean;
@@ -5305,6 +5395,7 @@ export interface WlProfileEditEditByTokenGetResponse {
         /** User key of relative. */
         uid_relative: string;
     }>;
+    /** The values and structure of all fields. Array keys are field IDs (`k_field`). */
     a_structure: Array<{
         /** List of general fields in user's profile. */
         id_field_general?: number;
@@ -5365,6 +5456,7 @@ export interface WlProfileEditEditByTokenPostParams {
     uid_inherit_address?: string | null;
 }
 export interface WlProfileEditEditByTokenPostResponse {
+    /** List of validation errors. `null` if no error occurred. */
     a_error_list: Array<{
         /** Error code identifying the type of validation failure. */
         code: string;
@@ -5414,6 +5506,7 @@ export interface WlProfileAttachAttachListParams {
     uid: string;
 }
 export interface WlProfileAttachAttachListResponse {
+    /** List of client attachments. */
     a_list: Array<{
         /** Date and time of creation in UTC MySQL format. */
         dtu_create: string;
@@ -5521,6 +5614,7 @@ export interface WlProfilePurchasePurchaseElementParams {
     k_business?: string | null;
 }
 export interface WlProfilePurchasePurchaseElementResponse {
+    /** List of components (not empty if this purchase element is a package). Every element has keys: */
     a_component: Array<{
         /** Key of enrollment book. */
         k_enrollment_book?: string;
@@ -5531,6 +5625,7 @@ export interface WlProfilePurchasePurchaseElementResponse {
         /** Session key. */
         k_session_pass?: string;
     }>;
+    /** An array containing information about the image of the purchased item. Every element has the foll... */
     a_logo: Array<{
         /** The height of the image. */
         i_height: number;
@@ -5541,6 +5636,7 @@ export interface WlProfilePurchasePurchaseElementResponse {
         /** The URL for the image. */
         s_url: string;
     }>;
+    /** This field is used only for promotions. It contains restrictions that will */
     a_restrict: Array<{
         /** The number of sessions that may be booked during this period. */
         i_limit: number;
@@ -5549,6 +5645,7 @@ export interface WlProfilePurchasePurchaseElementResponse {
         /** The name of the period type. */
         s_date: string;
     }>;
+    /** The list of taxes paid for the purchased item. Every element has the following fields: */
     a_tax: Array<{
         /** The amount of tax. */
         f_tax_discount: string;
@@ -5695,6 +5792,7 @@ export interface WlProfilePurchasePurchaseListParams {
     uid: string;
 }
 export interface WlProfilePurchasePurchaseListResponse {
+    /** A list of purchased items. Every element contains a sub-array with the following fields: */
     a_purchase: Array<{
         /** The value of `a_purchase['is_active']`. For packages, this also contains the values of `a_purchas... */
         a_active: Array<boolean>;
@@ -5745,6 +5843,7 @@ export interface WlProfilePurchaseListPurchaseListParams {
     uid: string;
 }
 export interface WlProfilePurchaseListPurchaseListResponse {
+    /** A list of purchased items. Every element contains a sub-array with the following fields: */
     a_purchase: Array<{
         /** The value of `a_purchase['is_active']`. For packages, this also contains the values of `a_purchas... */
         a_active: Array<boolean>;
@@ -5809,6 +5908,7 @@ export interface WlProfilePurchaseListPurchaseListElementParams {
     k_business?: string | null;
 }
 export interface WlProfilePurchaseListPurchaseListElementResponse {
+    /** A list of components. This won't be empty if this purchase element is a package or a coupon. */
     a_component: Array<{
         /** The booking enrollment key. */
         k_enrollment_book?: string;
@@ -5826,6 +5926,7 @@ export interface WlProfilePurchaseListPurchaseListElementResponse {
         /** Title of the coupon component. */
         text_title: string;
     }>;
+    /** An array containing information about the image of the purchased item. Every element has the foll... */
     a_logo: Array<{
         /** The height of the image. */
         i_height: number;
@@ -5834,6 +5935,7 @@ export interface WlProfilePurchaseListPurchaseListElementResponse {
         /** If `true`, then the purchased item doesn't have an image. If `false`, then the item has an image. */
         is_empty: boolean;
     }> | null;
+    /** This field is used only for promotions. It contains restrictions that will apply to bookings made... */
     a_restrict: Array<{
         /** The number of sessions that may be booked during this period. */
         i_limit: number;
@@ -5842,6 +5944,7 @@ export interface WlProfilePurchaseListPurchaseListElementResponse {
         /** The name of the period type. */
         text_date: string;
     }>;
+    /** The list of taxes paid for the purchased item. Every element has the following fields: */
     a_tax: Array<{
         /** The amount of tax. */
         f_tax_discount: string;
@@ -6018,6 +6121,7 @@ export interface WlProfileAlertAlertParams {
     uid: string;
 }
 export interface WlProfileAlertAlertResponse {
+    /** A list of alerts. Every element is an array with the following keys: */
     a_alert: Array<{
         /** The date and time in MySQL format in local time when the alert was last modified. */
         dt_date: string | null;
@@ -6032,6 +6136,7 @@ export interface WlProfileAlertAlertResponse {
         /** The alert's text. */
         s_text: string;
     }>;
+    /** A list of warnings. Every element is an array with the following keys: */
     a_warning: Array<{
         /** The list of location keys where this note is flagged. */
         a_location_flag: Array<string>;
@@ -6071,6 +6176,7 @@ export interface WlProfileAlertAlertEditGetParams {
     uid: string;
 }
 export interface WlProfileAlertAlertEditGetResponse {
+    /** Login note information. */
     a_login_note_data: Array<{
         /** List of locations the note applies to. Each element: */
         a_location: {
@@ -6178,6 +6284,7 @@ export interface WlProfileAttendanceAttendanceOverlapParams {
     dtu_date?: string | null;
 }
 export interface WlProfileAttendanceAttendanceOverlapResponse {
+    /** List of visits that overlap with the specified data. */
     a_visit_list: Array<{
         /** Date and time of the visit. */
         dtu_date: string;
@@ -6332,6 +6439,7 @@ export interface WlClassesClassListBookListParams {
     k_location: string;
 }
 export interface WlClassesClassListBookListResponse {
+    /** The class list. Every element has the following structure: */
     a_class: Array<{
         /** The list of class tab keys for the class. */
         a_class_tab: Array<string>;
@@ -6382,6 +6490,7 @@ export interface WlClassesClassListListParams {
     id_class_tab?: number;
 }
 export interface WlClassesClassListListResponse {
+    /** List of classes and events. */
     a_class: Array<{
         /** List of class book now tabs, where this class is presented. Each element is */
         a_class_tab: Array<string>;
@@ -6418,6 +6527,7 @@ export interface WlClassesClassViewElementParams {
     show_cancelled: boolean;
 }
 export interface WlClassesClassViewElementResponse {
+    /** Displays information about the class schedule(s). Each element has the next structure: */
     a_class_list: Array<{
         /** A list of class schedules. Each element has the next structure: */
         a_schedule: {
@@ -6528,6 +6638,7 @@ export interface WlClassesPromotionClassPromotionParams {
     k_class?: string | null;
 }
 export interface WlClassesPromotionClassPromotionResponse {
+    /** Promotion data with the following structure:. */
     a_promotion: Array<{
         /** The promotion key. */
         k_promotion: string;
@@ -6603,6 +6714,7 @@ export interface WlBusinessDesignBusinessDesignParams {
     k_business: string;
 }
 export interface WlBusinessDesignBusinessDesignResponse {
+    /** Design data for a business. */
     a_data: Array<{
         /** Clients only see today's and upcoming sessions. */
         hide_past_days: boolean;
@@ -6713,6 +6825,7 @@ export interface WlBusinessConfigBusinessConfigParams {
     k_business: string;
 }
 export interface WlBusinessConfigBusinessConfigResponse {
+    /** All business policies connected to clients and bookings. */
     a_business_policy: Array<{
         /** List of not allowed decline reasons to payment reattempt. Each element is one of [PayExceptionSid... */
         a_payment_reattempt_not_decline_reason: Array<number>;
@@ -6773,6 +6886,7 @@ export interface WlBusinessConfigBusinessConfigResponse {
         /** List of allowed relation types specific to a given business. */
         a_family_relation_login_allow: Array<number>;
     }>;
+    /** A list of business penalties. */
     a_penalty: Array<{
         /** List of class period keys. */
         a_class_period: Array<string>;
@@ -6849,6 +6963,7 @@ export interface WlBusinessSelectBusinessSelectParams {
     uid: string;
 }
 export interface WlBusinessSelectBusinessSelectResponse {
+    /** Business list with additional parameters for a business select HTML component. */
     a_select: Array<{
         /** List of businesses the user can access. It is an array, each value is an array with the following... */
         a_business: {
@@ -6873,6 +6988,7 @@ export interface WlBusinessSelectBusinessSelectResponse {
 }
 export type WlBusinessTypeBusinessTypeListParams = Record<string, unknown>;
 export interface WlBusinessTypeBusinessTypeListResponse {
+    /** A list of business types. Each element has the next structure: */
     a_business_type: Array<{
         /** Images list for business types. Each element has the next structure: */
         a_image_list: {
@@ -6930,6 +7046,7 @@ export interface WlLeadSourceLeadSourceListParams {
     k_business: string;
 }
 export interface WlLeadSourceLeadSourceListResponse {
+    /** List of Lead Sources. */
     a_lead_source: Array<{
         /** Sorting order. Only used in the Lead Source widget option. `null` is a temporary value that exist... */
         i_sort: number | null;
@@ -6970,6 +7087,7 @@ export interface WlPromotionIndexPromotionIndexParams {
     k_location: string;
 }
 export interface WlPromotionIndexPromotionIndexResponse {
+    /** A list of introductory promotion offers available at the location. */
     a_promotion: Array<{
         /** Information about services that can be attended with this pass or membership. */
         a_access: {
@@ -7107,6 +7225,7 @@ export interface WlLoginPromotionPromotionPayPauseGetParams {
     k_promotion_pay_pause?: string | null;
 }
 export interface WlLoginPromotionPromotionPayPauseGetResponse {
+    /** List of all promotion payment pause periods. Each element has next structure: */
     a_pay_pause_list: Array<{
         /** Date when this hold period was created. `null` for old records. */
         dl_create: string | null;
@@ -7209,6 +7328,7 @@ export interface WlLoginMemberMemberGetParams {
     uid: string;
 }
 export interface WlLoginMemberMemberGetResponse {
+    /** A list of businesses where the client is present. Every element is an array with the following keys: */
     a_business: Array<{
         /** `true` if the user is allowed to sign in into this business; `false` otherwise. */
         can_enter: boolean;
@@ -7258,6 +7378,7 @@ export interface WlLoginMemberMemberValidate63Params {
     uid: string;
 }
 export interface WlLoginMemberMemberValidate63Response {
+    /** List of fields if the user has empty profile fields, which are required for booking. */
     a_empty_fields_booking: Array<{
         /** List of general fields in user's profile. */
         id_field_general: number;
@@ -7266,6 +7387,7 @@ export interface WlLoginMemberMemberValidate63Response {
         /** Human-readable field title describing what value is missing. */
         text_field_title: string;
     }>;
+    /** List of fields if the user has empty profile fields, which are required for registration. */
     a_empty_fields_registration: Array<{
         /** List of general fields in user's profile. */
         id_field_general: number;
@@ -7274,6 +7396,7 @@ export interface WlLoginMemberMemberValidate63Response {
         /** Human-readable field title describing what value is missing. */
         text_field_title: string;
     }>;
+    /** List of profile fields that are required but empty for this user. */
     a_empty_fields_required: Array<{
         /** List of general fields in user's profile. */
         id_field_general: number;
@@ -7311,6 +7434,7 @@ export interface WlLoginMemberLoginMemberListAllResponse {
 }
 export type WlLoginAddMailUseOkParams = Record<string, unknown>;
 export interface WlLoginAddMailUseOkResponse {
+    /** The list of fields with missing information. */
     a_error_list: Array<{
         /** The error message. */
         html_message: string;
@@ -7335,6 +7459,7 @@ export interface WlLoginAttendanceAttendanceListParams {
     k_class_period: string;
 }
 export interface WlLoginAttendanceAttendanceListResponse {
+    /** The list of clients in the active attendance list who haven't confirmed or canceled. */
     a_list_active: Array<{
         /** Information about member. */
         a_info: {
@@ -7580,6 +7705,7 @@ export interface WlLoginAttendanceAttendanceListResponse {
         /** The URL that for the client's profile. */
         'url-profile': string;
     }>;
+    /** The list of clients who have confirmed their attendance. */
     a_list_confirm: Array<{
         /** Information about member. */
         a_info: {
@@ -7825,6 +7951,7 @@ export interface WlLoginAttendanceAttendanceListResponse {
         /** The URL that for the client's profile. */
         'url-profile': string;
     }>;
+    /** The list of clients who are on the wait list. */
     a_list_wait: Array<{
         /** Information about member. */
         a_info: {
@@ -8092,6 +8219,7 @@ export interface WlLoginAttendanceAttendanceInfoParams {
     k_class_period: string;
 }
 export interface WlLoginAttendanceAttendanceInfoResponse {
+    /** Additional visit information about this appointment. Empty array if it's not an appointment: */
     a_appointment_visit_info: Array<{
         /** `true` means that appointment was requested and denied by the staff. */
         is_deny: boolean;
@@ -8102,12 +8230,14 @@ export interface WlLoginAttendanceAttendanceInfoResponse {
         /** `true` means that appointment was requested, but not confirmed by the staff. */
         is_request: boolean;
     }>;
+    /** Service logo information: */
     a_logo: Array<{
         /** Whether service image is empty. */
         is_empty: boolean;
         /** Url link to image. */
         s_url: string;
     }>;
+    /** Default purchase option information. */
     a_purchase_option_default: Array<{
         /** List of sale categories on the store page. */
         id_sale: number;
@@ -8118,6 +8248,7 @@ export interface WlLoginAttendanceAttendanceInfoResponse {
     }>;
     /** Assets which are bound to this session. */
     a_resource: Array<string>;
+    /** Asset layouts of session: */
     a_resource_layout: Array<{
         /** List of clients who occupy assets of class. */
         a_client: {
@@ -8133,6 +8264,7 @@ export interface WlLoginAttendanceAttendanceInfoResponse {
         /** Title of asset category. */
         text_resource_type: string;
     }>;
+    /** List of staff members who provide service: */
     a_staff: Array<{
         /** Data of staff member's photo. Empty if staff has no photo. Otherwise contains next keys: */
         a_logo: {
@@ -8206,6 +8338,7 @@ export interface WlLoginAttendanceAttendanceListByTokenParams {
     text_token: string;
 }
 export interface WlLoginAttendanceAttendanceListByTokenResponse {
+    /** The list of clients in the active attendance list who haven't confirmed or canceled. */
     a_list_active: Array<{
         /** Information about member. */
         a_info: {
@@ -8451,6 +8584,7 @@ export interface WlLoginAttendanceAttendanceListByTokenResponse {
         /** The URL that for the client's profile. */
         'url-profile': string;
     }>;
+    /** The list of clients who have confirmed their attendance. */
     a_list_confirm: Array<{
         /** Information about member. */
         a_info: {
@@ -8696,6 +8830,7 @@ export interface WlLoginAttendanceAttendanceListByTokenResponse {
         /** The URL that for the client's profile. */
         'url-profile': string;
     }>;
+    /** The list of clients who are on the wait list. */
     a_list_wait: Array<{
         /** Information about member. */
         a_info: {
@@ -8965,6 +9100,7 @@ export interface WlLoginAttendanceAttendanceInfoByTokenParams {
     text_token: string;
 }
 export interface WlLoginAttendanceAttendanceInfoByTokenResponse {
+    /** Additional visit information about this appointment. Empty array if it's not an appointment: */
     a_appointment_visit_info: Array<{
         /** `true` means that appointment was requested and denied by the staff. */
         is_deny: boolean;
@@ -8975,12 +9111,14 @@ export interface WlLoginAttendanceAttendanceInfoByTokenResponse {
         /** `true` means that appointment was requested, but not confirmed by the staff. */
         is_request: boolean;
     }>;
+    /** Service logo information: */
     a_logo: Array<{
         /** Whether service image is empty. */
         is_empty: boolean;
         /** Url link to image. */
         s_url: string;
     }>;
+    /** Default purchase option information. */
     a_purchase_option_default: Array<{
         /** List of sale categories on the store page. */
         id_sale: number;
@@ -8991,6 +9129,7 @@ export interface WlLoginAttendanceAttendanceInfoByTokenResponse {
     }>;
     /** Assets which are bound to this session. */
     a_resource: Array<string>;
+    /** Asset layouts of session: */
     a_resource_layout: Array<{
         /** List of clients who occupy assets of class. */
         a_client: {
@@ -9006,6 +9145,7 @@ export interface WlLoginAttendanceAttendanceInfoByTokenResponse {
         /** Title of asset category. */
         text_resource_type: string;
     }>;
+    /** List of staff members who provide service: */
     a_staff: Array<{
         /** Data of staff member's photo. Empty if staff has no photo. Otherwise contains next keys: */
         a_logo: {
@@ -9083,6 +9223,7 @@ export interface WlLoginTypeLoginTypeParams {
     k_business: string;
 }
 export interface WlLoginTypeLoginTypeResponse {
+    /** A list of login types, keys, and information. Each element is an array with the following informa... */
     a_login_type_list: Array<{
         /** A list of client type IDs. */
         id_client_type: number;
@@ -9155,6 +9296,7 @@ export interface WlLoginProductProductParams {
     uid: string;
 }
 export interface WlLoginProductProductResponse {
+    /** List of purchased products: */
     a_login_product: Array<{
         /** Date and time of purchase in UTC. */
         dtu_purchase: string;
@@ -9199,6 +9341,7 @@ export interface WlQuizResponseResponse65GetParams {
     k_quiz_response?: string | null;
 }
 export interface WlQuizResponseResponse65GetResponse {
+    /** Access log data. */
     a_access_log: Array<{
         /** Date and time of the quiz changes. */
         dtu_activity: string;
@@ -9215,6 +9358,7 @@ export interface WlQuizResponseResponse65GetResponse {
         /** Url for view information about the user who made activity (admin, staff, client). */
         url_actor: string;
     }>;
+    /** List of quiz questions with responses. */
     a_element: Array<{
         /** List of amendments. */
         a_amendment: Record<string, unknown>;
@@ -9498,6 +9642,7 @@ export interface WlQuizResponseResponse65GetResponse {
         /** Heading XML. */
         xml_heading: string;
     }>;
+    /** Information about service if response connected to visit. */
     a_service_info: Array<{
         /** Formatted visit date and time in the location's time zone. */
         text_date: string;
@@ -9589,6 +9734,7 @@ export interface WlQuizResponseResponseGetParams {
     k_quiz_response?: string | null;
 }
 export interface WlQuizResponseResponseGetResponse {
+    /** Access log data. */
     a_access_log: Array<{
         /** Date and time of the quiz changes. */
         dtu_activity: string;
@@ -9605,6 +9751,7 @@ export interface WlQuizResponseResponseGetResponse {
         /** Url for view information about the user who made activity (admin, staff, client). */
         url_actor: string;
     }>;
+    /** List of quiz questions with responses. */
     a_element: Array<{
         /** List of amendments. */
         a_amendment: Record<string, unknown>;
@@ -9888,6 +10035,7 @@ export interface WlQuizResponseResponseGetResponse {
         /** Heading XML. */
         xml_heading: string;
     }>;
+    /** Information about service if response connected to visit. */
     a_service_info: Array<{
         /** Formatted visit date and time in the location's time zone. */
         text_date: string;
@@ -10003,6 +10151,7 @@ export interface WlCatalogCatalogListElementParams {
     text_item?: string | null;
 }
 export interface WlCatalogCatalogListElementResponse {
+    /** The age restriction configuration. */
     a_age_restriction: Array<{
         /** The minimum age permitted for the event. This will be `null` if a minimum age isn't set or availa... */
         i_age_from: number | null;
@@ -10011,6 +10160,7 @@ export interface WlCatalogCatalogListElementResponse {
         /** If `true`, age restrictions are public and available. Otherwise, this will be `false` if they're ... */
         is_age_public: boolean;
     }>;
+    /** Additional information specific for the item. */
     a_data: Array<{
         /** Access to services for a purchase option. */
         a_service_access: Array<number>;
@@ -10055,6 +10205,7 @@ export interface WlCatalogCatalogListElementResponse {
         /** Class to process string identifiers for duration types */
         id_duration_type: number;
     }>;
+    /** Image information: */
     a_image: Array<{
         /** The height in pixels. */
         i_height: number;
@@ -10065,6 +10216,7 @@ export interface WlCatalogCatalogListElementResponse {
         /** The image URL. */
         s_url: string;
     }>;
+    /** List of images. */
     a_image_list: Array<{
         /** The height in pixels. */
         i_height: number;
@@ -10075,6 +10227,7 @@ export interface WlCatalogCatalogListElementResponse {
         /** The image URL. */
         s_url: string;
     }>;
+    /** A list of installment plans. Each element has the following next keys: */
     a_installment_template: Array<{
         /** The number of payments. */
         i_count: number;
@@ -10091,6 +10244,7 @@ export interface WlCatalogCatalogListElementResponse {
         /** The title of the installment plan. */
         s_duration: string;
     }>;
+    /** The list of information pertaining to the specified item. */
     a_item: Array<{
         /** Contains additional data for the sale item. */
         a_data: {
@@ -10141,6 +10295,7 @@ export interface WlCatalogCatalogListElementResponse {
         /** The title of the sale item. */
         s_title: string;
     }>;
+    /** A list of the item's taxes. */
     a_tax: Array<{
         /** The calculated tax amount applied by this rule. */
         f_tax: number;
@@ -10232,6 +10387,7 @@ export interface WlCatalogCatalogListListParams {
     uid: string;
 }
 export interface WlCatalogCatalogListListResponse {
+    /** The list of all sale items (de-duplicated). Each element has the following keys: */
     a_product: Array<{
         /** The list of location keys where the sale item is available. */
         a_location: Array<string>;
@@ -10260,6 +10416,7 @@ export interface WlCatalogCatalogListListResponse {
         /** Direct URL to the catalog view page for this item. */
         url_catalog: string;
     }>;
+    /** The list of products to show with duplicates. */
     a_product_duplicate: Array<{
         /** The list of location keys where the sale item is available. */
         a_location: Array<string>;
@@ -10326,6 +10483,7 @@ export interface WlCatalogCatalogListCatalogProductParams {
     s_cache_key: string;
 }
 export interface WlCatalogCatalogListCatalogProductResponse {
+    /** Categories with sort settings. Keys refer to shop category keys. Values refer to sort settings. C... */
     a_category_sort: Array<{
         /** The order of the products by category if [ShopCategorySortSid::CUSTOM](#/components/schemas/Wl.Sh... */
         a_order: Array<number>;
@@ -10334,6 +10492,7 @@ export interface WlCatalogCatalogListCatalogProductResponse {
         /** List of Setup -&gt; Store configuration -&gt; Categories and Layout sort options. */
         id_sort: number;
     }>;
+    /** The list of products. Each element has the following keys: */
     a_product: Array<{
         /** HTML-escaped formatted price of the product. */
         html_price: string;
@@ -10416,6 +10575,7 @@ export interface WlCatalogCartCartParams {
 export interface WlCatalogCartCartResponse {
     /** The list of discounts for each item. */
     a_discount_item: Array<string>;
+    /** The list of items in the cart. */
     a_item: Array<{
         /** The client prorate date. This will be `null` in cases where the client prorate date hasn't passed. */
         dl_client_prorate: string;
@@ -10430,6 +10590,7 @@ export interface WlCatalogCartCartResponse {
         /** Note: */
         k_shop_product_option?: string;
     }>;
+    /** List of prizes that can be redeemed and applied to items in the cart. */
     a_prize_propose: Array<{
         /** Amount of points needed to redeem the prize. */
         i_score: number;
@@ -10440,6 +10601,7 @@ export interface WlCatalogCartCartResponse {
         /** Reward prize title, e.g. 'on any item', 'on Water bottle', 'on any Appointment Pass or Membership... */
         text_title: string;
     }>;
+    /** List of cart items to which the selected prize can be applied */
     a_reward_item: Array<{
         /** The quantity of sale items. */
         i_quantity: number;
@@ -10452,6 +10614,7 @@ export interface WlCatalogCartCartResponse {
         /** The shop product option. If `null`, the sale item has no options. */
         k_shop_product_option: string;
     }>;
+    /** List of login prizes that can be applied to items in the cart. */
     a_reward_propose: Array<{
         /** Login prize key. */
         k_login_prize: string;
@@ -10569,6 +10732,7 @@ export interface WlVideoCategoryCategoryListGetParams {
     text_filter: string;
 }
 export interface WlVideoCategoryCategoryListGetResponse {
+    /** The business video library categories as found in `k_business`. */
     a_video_category: Array<{
         /** Determines whether the video category can be deleted. */
         can_delete: boolean;
@@ -10620,6 +10784,7 @@ export interface WlVideoLevelLevelListGetParams {
     k_business: string;
 }
 export interface WlVideoLevelLevelListGetResponse {
+    /** A list of video levels with the following structure: */
     a_level_list: Array<{
         /** The video level key. */
         k_video_level: string;
@@ -10663,6 +10828,7 @@ export interface WlVideoTagTagListParams {
     k_business: string;
 }
 export interface WlVideoTagTagListResponse {
+    /** A list of video tags with the following structure: */
     a_tag_list: Array<{
         /** The video tag key. */
         k_video_tag: string;
@@ -10720,6 +10886,7 @@ export interface WlReceptionApplicationReceptionScheduleGetParams {
     uid: string;
 }
 export interface WlReceptionApplicationReceptionScheduleGetResponse {
+    /** A list of sessions to display with the following fields: */
     a_class: Array<{
         /** A list of shared resources containing: */
         a_resources_shared: {
@@ -10776,6 +10943,7 @@ export interface WlReceptionApplicationReceptionSchedulePostParams {
     uid: string;
 }
 export interface WlReceptionApplicationReceptionSchedulePostResponse {
+    /** Data for the confirmation screen with the following fields: */
     a_confirmation_data: Array<{
         /** Data for the promotion payment informational card. Each element contains: */
         a_payment: {
@@ -10868,6 +11036,7 @@ export interface WlReceptionApplicationMemberInfoParams {
     a_uid_date?: Array<string> | null;
 }
 export interface WlReceptionApplicationMemberInfoResponse {
+    /** Additional member data or `null` if any data can be shown. */
     a_info: Array<{
         /** List of icons with additional information about business member. */
         a_icon: {
@@ -10941,6 +11110,7 @@ export interface WlReceptionApplicationMemberInfoResponse {
         /** Link to user's waiver page. */
         url_waiver: string;
     }> | null;
+    /** The options presented in the web app. */
     a_items: Array<{
         /** Define colors of notice messages. */
         id_color: number;
@@ -10953,6 +11123,7 @@ export interface WlReceptionApplicationMemberInfoResponse {
         /** Message for info box. */
         html_message: string;
     }>;
+    /** List of users data. */
     a_result_list: Array<{
         /** Additional user's information. */
         a_info: {
@@ -11016,6 +11187,7 @@ export interface WlReceptionApplicationMemberInfoResponse {
         /** Link to barcode image to scan member number. */
         url_barcode: string;
     }> | null;
+    /** Information about last visit of the user. */
     a_visit_last: Array<{
         /** Datetime visit in UTC. */
         dtu_visit: string;
@@ -11026,6 +11198,7 @@ export interface WlReceptionApplicationMemberInfoResponse {
         /** Location key. */
         k_location: string;
     }>;
+    /** Information about next visit of the user. */
     a_visit_next: Array<{
         /** Datetime visit in UTC. */
         dtu_visit: string;
@@ -11062,6 +11235,7 @@ export interface WlReceptionApplicationReceptionAuthorizeParams {
     s_secret: string;
 }
 export interface WlReceptionApplicationReceptionAuthorizeResponse {
+    /** List of the users, which can be authorized. */
     a_select: Array<{
         /** First name of the user. */
         text_name_first: string;
@@ -11082,6 +11256,7 @@ export interface WlReceptionDesignReceptionDesignParams {
     k_location: string;
 }
 export interface WlReceptionDesignReceptionDesignResponse {
+    /** Array of image information for Self Check-In logo. */
     a_reception_logo: Array<{
         /** url for full image. */
         url_view: string;
@@ -11132,6 +11307,7 @@ export interface WlPurchaseReceiptPurchaseReceiptParams {
     k_purchase?: string | null;
 }
 export interface WlPurchaseReceiptPurchaseReceiptResponse {
+    /** Information about the account balance for a user's account after payment for the purchase. Every ... */
     a_account_rest: Array<{
         /** The account balance on the user's account. */
         m_amount: string;
@@ -11140,6 +11316,7 @@ export interface WlPurchaseReceiptPurchaseReceiptResponse {
         /** The payment method title. */
         text_method: string;
     }>;
+    /** Information about the business. */
     a_business: Array<{
         /** The business logo. */
         a_logo: {
@@ -11161,6 +11338,7 @@ export interface WlPurchaseReceiptPurchaseReceiptResponse {
         /** The business name. */
         text_title: string;
     }>;
+    /** Payment transaction information. Every element has the following keys: */
     a_card: Array<{
         /** The card or account number. */
         text_card_number: string;
@@ -11169,6 +11347,7 @@ export interface WlPurchaseReceiptPurchaseReceiptResponse {
         /** The payment account title. This will be 'Account number' for ACH, 'Card' for all other cases. */
         text_title: string;
     }>;
+    /** Information about the customer. */
     a_customer: Array<{
         /** The customer's address. */
         text_address: string;
@@ -11179,6 +11358,7 @@ export interface WlPurchaseReceiptPurchaseReceiptResponse {
         /** The customer's phone number. */
         text_phone: string;
     }>;
+    /** A list of payment methods for the current purchase. Every element has the following keys: */
     a_pay_method: Array<{
         /** The amount of the payment. */
         m_amount: string;
@@ -11187,6 +11367,7 @@ export interface WlPurchaseReceiptPurchaseReceiptResponse {
         /** The payment method title. */
         text_pay_method: string;
     }>;
+    /** Complete information about price information for the purchase. */
     a_price: Array<{
         /** The discount amount. */
         m_discount: string;
@@ -11205,6 +11386,7 @@ export interface WlPurchaseReceiptPurchaseReceiptResponse {
         /** The discount code applied to the purchase. */
         text_discount_code: string;
     }>;
+    /** A list of purchase items. Every element has the following keys: */
     a_purchase_item: Array<{
         /** The purchase item logo. */
         a_logo: {
@@ -11279,6 +11461,7 @@ export interface WlInsuranceCatalogProgramListParams {
     k_promotion: string;
 }
 export interface WlInsuranceCatalogProgramListResponse {
+    /** A List of active programs. */
     a_wellness_program: Array<{
         /** The insurance key. */
         k_wellness_program: string;
@@ -11301,6 +11484,7 @@ export interface WlServiceServiceListListParams {
     k_business: string;
 }
 export interface WlServiceServiceListListResponse {
+    /** Appointment types list: */
     a_service: Array<{
         /** Whether service will be hidden in the White Label mobile application. */
         hide_application: boolean;
@@ -11362,6 +11546,7 @@ export interface WlStaffStaffListStaffListParams {
     k_business: string;
 }
 export interface WlStaffStaffListStaffListResponse {
+    /** Information about staff members. */
     a_staff: Array<{
         /** A list of internal pay rate keys applicable to the staff member. */
         a_pay_rate: Array<string>;
@@ -11419,6 +11604,7 @@ export interface WlStaffStaffViewStaffViewParams {
     a_uid_staff_list?: Array<string> | null;
 }
 export interface WlStaffStaffViewStaffViewResponse {
+    /** An array containing information about the classes this staff member is running. */
     a_class_day: Array<{
         /** A list of sessions in the day: */
         a_class_period: {
@@ -11434,6 +11620,7 @@ export interface WlStaffStaffViewStaffViewResponse {
         /** The day of week. One of [ADateWeekSid](#/components/schemas/ADateWeekSid) constants. */
         i_day: number;
     }>;
+    /** An array listing the class sessions the staff member provides at each location. */
     a_result_list: Array<{
         /** Contains a schedule of classes per day. */
         a_class_day: {
@@ -11488,6 +11675,7 @@ export interface WlStaffStaffViewStaffViewResponse {
             url_schedule: string;
         };
     }>;
+    /** An array containing information about the staff member. */
     a_staff: Array<{
         /** A list of locations keys where staff works. */
         a_location_work: Array<string>;
@@ -11565,6 +11753,7 @@ export interface WlStaffStaffViewStaffView74Params {
     a_uid_staff_list?: Array<string> | null;
 }
 export interface WlStaffStaffViewStaffView74Response {
+    /** An array containing information about the classes this staff member is running. */
     a_class_day: Array<{
         /** A list of sessions in the day: */
         a_class_period: {
@@ -11580,6 +11769,7 @@ export interface WlStaffStaffViewStaffView74Response {
         /** The day of week. One of [ADateWeekSid](#/components/schemas/ADateWeekSid) constants. */
         i_day: number;
     }>;
+    /** An array listing the class sessions the staff member provides at each location. */
     a_result_list: Array<{
         /** Contains a schedule of classes per day. */
         a_class_day: {
@@ -11634,6 +11824,7 @@ export interface WlStaffStaffViewStaffView74Response {
             url_schedule: string;
         };
     }>;
+    /** An array containing information about the staff member. */
     a_staff: Array<{
         /** A list of locations keys where staff works. */
         a_location_work: Array<string>;
@@ -11707,6 +11898,7 @@ export interface WlRewardActionActionParams {
     uid: string;
 }
 export interface WlRewardActionActionResponse {
+    /** A list reward actions. Every element has next keys: */
     a_reward_action: Array<{
         /** List of default categories of the rewards. */
         id_reward_action_category: number;
@@ -11752,6 +11944,7 @@ export interface WlRewardActionActionTypeParams {
     k_business: string;
 }
 export interface WlRewardActionActionTypeResponse {
+    /** Information about reward actions. Every element has next keys: */
     a_reward_action: Array<{
         /** Number of points for this reward action. */
         i_score: number;
@@ -11783,6 +11976,7 @@ export interface WlRewardBoardElementParams {
     a_uid?: Array<string> | null;
 }
 export interface WlRewardBoardElementResponse {
+    /** List of reward board elements. `null` if not loaded. */
     a_reward: Array<{
         /** Score in points. */
         i_score: number;
@@ -11907,6 +12101,7 @@ export interface WlSkinWidgetSkinWidgetListParams {
     k_business: string;
 }
 export interface WlSkinWidgetSkinWidgetListResponse {
+    /** List of Widget skins grouped by widget type. */
     a_widget_skin: Array<{
         /** Skin key. */
         k_skin: string;
@@ -11935,6 +12130,7 @@ export interface WlMemberInfoInfoParams {
     a_uid_date?: Array<string> | null;
 }
 export interface WlMemberInfoInfoResponse {
+    /** Additional member data or `null` if any data can be shown. */
     a_info: Array<{
         /** List of icons with additional information about business member. */
         a_icon: {
@@ -12008,6 +12204,7 @@ export interface WlMemberInfoInfoResponse {
         /** Link to user's waiver page. */
         url_waiver: string;
     }> | null;
+    /** List of users data. */
     a_result_list: Array<{
         /** Additional user's information. */
         a_info: {
@@ -12071,6 +12268,7 @@ export interface WlMemberInfoInfoResponse {
         /** Link to barcode image to scan member number. */
         url_barcode: string;
     }> | null;
+    /** Information about last visit of the user. */
     a_visit_last: Array<{
         /** Datetime visit in UTC. */
         dtu_visit: string;
@@ -12081,6 +12279,7 @@ export interface WlMemberInfoInfoResponse {
         /** Location key. */
         k_location: string;
     }>;
+    /** Information about next visit of the user. */
     a_visit_next: Array<{
         /** Datetime visit in UTC. */
         dtu_visit: string;
@@ -12115,6 +12314,7 @@ export interface WlMemberPurchaseMemberByPromotionParams {
     s_promotion_keys: string;
 }
 export interface WlMemberPurchaseMemberByPromotionResponse {
+    /** The list of active clients with the given Purchase Options. */
     a_clients: Array<{
         /** The list of active Purchase Options. Each element has: */
         a_purchase_options: {
@@ -12144,6 +12344,7 @@ export interface WlUserInfoUserInfoParams {
     uid: string;
 }
 export interface WlUserInfoUserInfoResponse {
+    /** List of the custom user fields. Each value is: */
     a_custom_field: Array<{
         /** Field key. */
         k_field: string;
@@ -12156,6 +12357,7 @@ export interface WlUserInfoUserInfoResponse {
     }>;
     /** List of member groups that the user belongs to. */
     a_member_group: Array<string>;
+    /** Information about the user's photo. The information returned has the following structure: */
     a_photo: Array<{
         /** The height of the photo. */
         i_height: number;
@@ -12164,6 +12366,7 @@ export interface WlUserInfoUserInfoResponse {
         /** The URL of the photo. */
         url_photo: string;
     }>;
+    /** List of user's data. */
     a_result_list: Array<{
         /** List of the custom user fields. Each value is: */
         a_custom_field: {
@@ -12274,6 +12477,7 @@ export interface WlUserInfoUserIntegrationParams {
     uid: string;
 }
 export interface WlUserInfoUserIntegrationResponse {
+    /** Information about the integrations the user is connected to. The information returned has the fol... */
     a_integration: Array<{
         /** `true` if user use the Classpass integration, `false` - otherwise. */
         is_classpass: boolean;
@@ -12290,6 +12494,7 @@ export interface WlUserReferrerReferrerParams {
     s_search: string;
 }
 export interface WlUserReferrerReferrerResponse {
+    /** Information about the referrer's photo. The information returned has the following structure: */
     a_photo: Array<{
         /** The height of the photo. */
         i_height: number;
@@ -12318,6 +12523,7 @@ export interface WlDiscountCodeDiscountCodeParams {
     k_business: string;
 }
 export interface WlDiscountCodeDiscountCodeResponse {
+    /** Discount codes list. */
     a_list: Array<{
         /** Discount code key. */
         k_discount_code: string;
@@ -12330,6 +12536,7 @@ export interface WlShopCategoryCategoryGetParams {
     k_business: string;
 }
 export interface WlShopCategoryCategoryGetResponse {
+    /** An array containing information about all store categories. */
     a_shop_category: Array<{
         /** Whether category is selected as default. */
         is_default: boolean;
@@ -12356,6 +12563,7 @@ export interface WlResourceLayoutLayoutParams {
     k_resource_layout: string;
 }
 export interface WlResourceLayoutLayoutResponse {
+    /** The list of assets. Every element contains the following keys: */
     a_resource: Array<{
         /** The asset's appearance information. */
         a_image: {
@@ -12397,6 +12605,7 @@ export interface WlResourceLayoutLayoutResponse {
         /** The asset title. */
         s_title: string;
     }>;
+    /** A list of custom shapes. Every element is an array with the following keys: */
     a_shape_custom: Array<{
         /** The height for the shape [LayoutShapeSid::RECTANGLE](#/components/schemas/Wl.Resource.Layout.Shap... */
         f_height: number;
@@ -12423,6 +12632,7 @@ export interface WlResourceLayoutLayoutResponse {
         /** The shape's title. */
         s_text: string;
     }>;
+    /** A list of shapes and icons. Every element is an array with the following keys: */
     a_shape_icon: Array<{
         /** The cell number, positioned by the horizontal axis. Empty if grid is turned off. */
         i_cell_x: number;
@@ -12457,6 +12667,7 @@ export interface WlResourceResourceListListParams {
     k_business: string;
 }
 export interface WlResourceResourceListListResponse {
+    /** Resources list: */
     a_resource: Array<{
         /** Whether resource will be hidden in the White Label mobile application. */
         hide_application: boolean;
@@ -12493,6 +12704,7 @@ export interface WlFamilyRelationRelationDeleteParams {
     uid_delete: string;
 }
 export interface WlFamilyRelationRelationDeleteResponse {
+    /** Information about the user's relationships. Every element has the following fields: */
     a_relation: Array<{
         /** Relation type between two relatives. */
         id_family_relation: number;
@@ -12515,6 +12727,7 @@ export interface WlFamilyRelationRelationGetParams {
     uid: string;
 }
 export interface WlFamilyRelationRelationGetResponse {
+    /** Information about the user's relationships. Every element has the following fields: */
     a_relation: Array<{
         /** Relation type between two relatives. */
         id_family_relation: number;
@@ -12537,6 +12750,7 @@ export interface WlFamilyRelationRelationPostParams {
     uid: string;
 }
 export interface WlFamilyRelationRelationPostResponse {
+    /** Information about the user's relationships. Every element has the following fields: */
     a_relation: Array<{
         /** Relation type between two relatives. */
         id_family_relation: number;
@@ -12569,6 +12783,7 @@ export interface WlFamilyRelationRelation72DeleteParams {
     uid_delete: string;
 }
 export interface WlFamilyRelationRelation72DeleteResponse {
+    /** Information about the user's relationships. Every element has the following fields: */
     a_relation: Array<{
         /** Relation type between two relatives. */
         id_family_relation: number;
@@ -12591,6 +12806,7 @@ export interface WlFamilyRelationRelation72GetParams {
     uid: string;
 }
 export interface WlFamilyRelationRelation72GetResponse {
+    /** Information about the user's relationships. Every element has the following fields: */
     a_relation: Array<{
         /** Relation type between two relatives. */
         id_family_relation: number;
@@ -12613,6 +12829,7 @@ export interface WlFamilyRelationRelation72PostParams {
     uid: string;
 }
 export interface WlFamilyRelationRelation72PostResponse {
+    /** Information about the user's relationships. Every element has the following fields: */
     a_relation: Array<{
         /** Relation type between two relatives. */
         id_family_relation: number;
@@ -12692,6 +12909,7 @@ export interface WlIntegrationCurvesCurvesFranchiseLocationParams {
     k_business: string;
 }
 export interface WlIntegrationCurvesCurvesFranchiseLocationResponse {
+    /** The city list. Each element has next structure: */
     a_city_list: Array<{
         /** City key. */
         k_city: string;
@@ -12702,12 +12920,14 @@ export interface WlIntegrationCurvesCurvesFranchiseLocationResponse {
         /** City title. */
         text_title: string;
     }>;
+    /** The country list. Each element has next structure: */
     a_country_list: Array<{
         /** Country key. */
         k_country: string;
         /** Country title. */
         text_title: string;
     }>;
+    /** The location list. Each element has the next structure: */
     a_location_list: Array<{
         /** A list of currencies. */
         id_currency: number;
@@ -12724,12 +12944,14 @@ export interface WlIntegrationCurvesCurvesFranchiseLocationResponse {
         /** Location title. */
         text_title: string;
     }>;
+    /** The region list. Each element has the next structure: */
     a_region_list: Array<{
         /** Franchise region key. */
         k_region: string;
         /** Franchise region title. */
         text_title: string;
     }>;
+    /** The state list. Each element has the next structure: */
     a_state_list: Array<{
         /** Country key. */
         k_country: string;
@@ -12762,6 +12984,7 @@ export interface WlCouponCouponListListParams {
     k_business: string;
 }
 export interface WlCouponCouponListListResponse {
+    /** A list of gift cards. Every element has the following keys: */
     a_coupon: Array<{
         /** List of possible types of Gift Cards. */
         id_type: number;
@@ -12797,6 +13020,7 @@ export interface WlMicrosoftLoginMicrosoftLoginPostParams {
 export type WlMicrosoftLoginMicrosoftLoginPostResponse = Record<string, unknown>;
 export type WlSearchTagSearchTagListParams = Record<string, unknown>;
 export interface WlSearchTagSearchTagListResponse {
+    /** A list of all the search tags. */
     a_search_tag: Array<{
         /** A list of client booking flow types. */
         id_business_category: number;
@@ -12820,6 +13044,7 @@ export interface WlReviewReviewListReviewElementGetParams {
     uid: string;
 }
 export interface WlReviewReviewListReviewElementGetResponse {
+    /** Review data: */
     a_review: Array<{
         /** Date when review was added by user. */
         dt_add: string;
@@ -12862,6 +13087,7 @@ export interface WlReviewReviewListReviewListParams {
     id_order?: number | null;
 }
 export interface WlReviewReviewListReviewListResponse {
+    /** List of reviews. If passed `i_page` then the result will be full, otherwise in result will be key... */
     a_review: Array<{
         /** `true` if can reply to review, `false` otherwise. */
         can_reply: boolean;
@@ -13034,6 +13260,7 @@ export interface WlScheduleScheduleListStaffAppScheduleListParams {
     uid: string;
 }
 export interface WlScheduleScheduleListStaffAppScheduleListResponse {
+    /** The sessions present on the business schedule. These are sorted chronologically in ascending order. */
     a_schedule: Array<{
         /** List of notes. */
         a_note: Array<string>;
@@ -13186,6 +13413,7 @@ export interface WlScheduleScheduleListStaffAppScheduleListByTokenParams {
     uid: string;
 }
 export interface WlScheduleScheduleListStaffAppScheduleListByTokenResponse {
+    /** The sessions present on the business schedule. These are sorted chronologically in ascending order. */
     a_schedule: Array<{
         /** List of notes. */
         a_note: Array<string>;
@@ -13304,6 +13532,7 @@ export interface WlAppointmentBookServiceServiceList52Params {
     i_width?: number | null;
 }
 export interface WlAppointmentBookServiceServiceList52Response {
+    /** A list of services with information about them. */
     a_service: Array<{
         /** The list of tab keys for the service. */
         a_class_tab: Array<string>;
@@ -13439,6 +13668,7 @@ export interface WlAppointmentBookServiceCategoryParams {
     uid: string;
 }
 export interface WlAppointmentBookServiceCategoryResponse {
+    /** A list of information about service categories. */
     a_category: Array<{
         /** `true` - all services are hidden in this category for White Label mobile application. `false` - o... */
         hide_application: boolean;
@@ -13481,6 +13711,7 @@ export interface WlAppointmentBookServiceServiceListParams {
     i_width?: number | null;
 }
 export interface WlAppointmentBookServiceServiceListResponse {
+    /** A list of services with information about them. */
     a_service: Array<{
         /** The list of tab keys for the service. */
         a_class_tab: Array<string>;
@@ -13640,6 +13871,7 @@ export interface WlAppointmentBookFinishFinishMultipleParams {
     uid: string;
 }
 export interface WlAppointmentBookFinishFinishMultipleResponse {
+    /** The booked appointments. Every element has the key: */
     a_appointment: Array<{
         /** The appointment key. */
         k_appointment: string;
@@ -13664,6 +13896,7 @@ export interface WlAppointmentBookFinishFinishGetParams {
     uid: string;
 }
 export interface WlAppointmentBookFinishFinishGetResponse {
+    /** Information for sending an appointment notification. */
     a_notification: Array<{
         /** `true` to send mail; `false` to not send. */
         is_mail?: boolean;
@@ -13784,6 +14017,7 @@ export interface WlAppointmentBookFinishFinishPostParams {
     k_timezone?: string | null;
 }
 export interface WlAppointmentBookFinishFinishPostResponse {
+    /** The keys of the booked appointments. */
     a_appointment: Array<{
         /** The appointment key. */
         k_appointment: string;
@@ -13792,6 +14026,7 @@ export interface WlAppointmentBookFinishFinishPostResponse {
     a_login_activity_visit: Array<string>;
     /** The keys of visits. */
     a_visit: Array<string>;
+    /** Values are arrays with next keys: */
     a_visit_payment: Array<{
         /** `true` if the visit is free; `false` otherwise. */
         is_free: boolean;
@@ -13818,6 +14053,7 @@ export interface WlAppointmentBookFinishFinish47GetParams {
     uid: string;
 }
 export interface WlAppointmentBookFinishFinish47GetResponse {
+    /** Information for sending an appointment notification. */
     a_notification: Array<{
         /** `true` to send mail; `false` to not send. */
         is_mail?: boolean;
@@ -13861,6 +14097,7 @@ export interface WlAppointmentBookFinishFinish47PostParams {
     k_timezone?: string | null;
 }
 export interface WlAppointmentBookFinishFinish47PostResponse {
+    /** The keys of the booked appointments. */
     a_appointment: Array<{
         /** The appointment key. */
         k_appointment: string;
@@ -13869,6 +14106,7 @@ export interface WlAppointmentBookFinishFinish47PostResponse {
     a_login_activity_visit: Array<string>;
     /** The keys of visits. */
     a_visit: Array<string>;
+    /** Values are arrays with next keys: */
     a_visit_payment: Array<{
         /** `true` if the visit is free; `false` otherwise. */
         is_free: boolean;
@@ -13935,6 +14173,7 @@ export interface WlAppointmentBookPurchasePurchaseParams {
     k_timezone?: string | null;
 }
 export interface WlAppointmentBookPurchasePurchaseResponse {
+    /** Data about the login prize which can be used to pay for service. */
     a_login_prize: Array<{
         /** Login prize remaining quantity. */
         i_count: number;
@@ -13943,6 +14182,7 @@ export interface WlAppointmentBookPurchasePurchaseResponse {
         /** User friendly login prize description. */
         text_description: string;
     }>;
+    /** A list of the client's login promotions that can be applied to a given service. */
     a_login_promotion: Array<{
         /** Information about the Purchase Option. It contains the following information: */
         a_login_promotion_info: {
@@ -14006,6 +14246,7 @@ export interface WlAppointmentBookPurchasePurchaseResponse {
         /** The user key of the owner of the promotion. */
         uid_owner: string;
     }>;
+    /** An array with information about available Purchase Options. */
     a_purchase: Array<{
         /** Information describing the logo of the purchase option. This value can be false if there is no lo... */
         a_image: {
@@ -14096,6 +14337,7 @@ export interface WlAppointmentBookPurchasePurchaseResponse {
         /** If this promotion is a package. This field contains list of promotions contained in the package. */
         text_package_item: string;
     }>;
+    /** List of redeemable prizes which can be used to pay for service. */
     a_reward_prize: Array<{
         /** Prize price in points. */
         i_score: number;
@@ -14104,6 +14346,7 @@ export interface WlAppointmentBookPurchasePurchaseResponse {
         /** User friendly prize description. */
         text_description: string;
     }>;
+    /** Session pass information in a case if user books same appointment second time and already has Dro... */
     a_session_pass: Array<{
         /** Number of remaining visits on session pass. */
         i_remain: number;
@@ -14180,6 +14423,7 @@ export interface WlAppointmentBookPurchasePurchase72Params {
     k_timezone?: string | null;
 }
 export interface WlAppointmentBookPurchasePurchase72Response {
+    /** Data about the login prize which can be used to pay for service. */
     a_login_prize: Array<{
         /** Login prize remaining quantity. */
         i_count: number;
@@ -14188,6 +14432,7 @@ export interface WlAppointmentBookPurchasePurchase72Response {
         /** User friendly login prize description. */
         text_description: string;
     }>;
+    /** A list of the client's login promotions that can be applied to a given service. */
     a_login_promotion: Array<{
         /** Information about the Purchase Option. It contains the following information: */
         a_login_promotion_info: {
@@ -14251,6 +14496,7 @@ export interface WlAppointmentBookPurchasePurchase72Response {
         /** The user key of the owner of the promotion. */
         uid_owner: string;
     }>;
+    /** An array with information about available Purchase Options. */
     a_purchase: Array<{
         /** Information describing the logo of the purchase option. This value can be false if there is no lo... */
         a_image: {
@@ -14341,6 +14587,7 @@ export interface WlAppointmentBookPurchasePurchase72Response {
         /** If this promotion is a package. This field contains list of promotions contained in the package. */
         text_package_item: string;
     }>;
+    /** List of redeemable prizes which can be used to pay for service. */
     a_reward_prize: Array<{
         /** Prize price in points. */
         i_score: number;
@@ -14349,6 +14596,7 @@ export interface WlAppointmentBookPurchasePurchase72Response {
         /** User friendly prize description. */
         text_description: string;
     }>;
+    /** Session pass information in a case if user books same appointment second time and already has Dro... */
     a_session_pass: Array<{
         /** Number of remaining visits on session pass. */
         i_remain: number;
@@ -14413,6 +14661,7 @@ export interface WlAppointmentBookScheduleDayTimeParams {
     k_timezone?: string | null;
 }
 export interface WlAppointmentBookScheduleDayTimeResponse {
+    /** An array with a schedule of available appointment booking times. */
     a_time: Array<{
         /** Date of the calendar. */
         dt_date: string;
@@ -14487,6 +14736,7 @@ export interface WlAppointmentBookScheduleCalendarParams {
     k_timezone?: string | null;
 }
 export interface WlAppointmentBookScheduleCalendarResponse {
+    /** A list with all calendar days in the specified month with */
     a_date: Array<{
         /** Date item of the calendar. */
         dt_date: string;
@@ -14509,6 +14759,7 @@ export interface WlAppointmentBookScheduleCalendarResponse {
         /** String representation of week day (one letter, i.e. "F"). */
         s_week: string;
     }>;
+    /** An array with a schedule of available appointment booking times. */
     a_time: Array<{
         /** Date of the calendar. */
         dt_date: string;
@@ -14527,6 +14778,7 @@ export interface WlAppointmentBookScheduleCalendarResponse {
         /** String representation of appointment schedule time. */
         s_title: string;
     }>;
+    /** Information about timezone. */
     a_timezone_data: Array<{
         /** `null` if business settings doesn't allow client to adjust timezone, otherwise list of timezones: */
         a_timezone: {
@@ -14546,6 +14798,7 @@ export interface WlAppointmentBookScheduleCalendarResponse {
         /** `null` if business settings doesn't allow client to adjust timezone, otherwise timezone input name. */
         name: string | null;
     }>;
+    /** Array with short week day's names (2 letters, i.e. 'Fr') for calendar month view. Week days order... */
     a_week_name: Array<{
         /** Week day, one of the [ADateWeekSid](#/components/schemas/ADateWeekSid) constants. */
         i_day: number;
@@ -14650,6 +14903,7 @@ export interface WlAppointmentBookAssetAssetListParams {
     uid?: string | null;
 }
 export interface WlAppointmentBookAssetAssetListResponse {
+    /** A list of information about assets: */
     a_asset: Array<{
         /** Information about age restrictions for this event. */
         a_age_restrictions: {
@@ -14730,6 +14984,7 @@ export interface WlAppointmentBookAssetCategoryParams {
     k_location: string;
 }
 export interface WlAppointmentBookAssetCategoryResponse {
+    /** A list of information about asset categories. */
     a_category: Array<{
         /** `true` - all resources are hidden in this category for White Label mobile application. `false` - ... */
         hide_application: boolean;
@@ -14805,6 +15060,7 @@ export interface WlAppointmentBookPaymentPaymentGetParams {
     k_business?: string | null;
 }
 export interface WlAppointmentBookPaymentPaymentGetResponse {
+    /** Information about selected Purchase Options. */
     a_promotion_data: Array<{
         /** The limit of total visits. */
         i_limit: number;
@@ -14815,6 +15071,7 @@ export interface WlAppointmentBookPaymentPaymentGetResponse {
         /** The title of the Purchase Option. */
         s_title: string;
     }>;
+    /** Information about selected purchase items. */
     a_purchase: Array<{
         /** Contains information about taxes in the following format. A list of taxes to apply. */
         a_tax: {
@@ -14967,6 +15224,7 @@ export interface WlAppointmentBookPaymentPaymentMultipleGetParams {
     uid: string;
 }
 export interface WlAppointmentBookPaymentPaymentMultipleGetResponse {
+    /** Information about the selected login promotion. */
     a_promotion_data: Array<{
         /** The visit count limit of the promotion. */
         i_limit: number;
@@ -14977,6 +15235,7 @@ export interface WlAppointmentBookPaymentPaymentMultipleGetResponse {
         /** The title of the promotion. */
         s_title: string;
     }>;
+    /** Fields refer to strings in the format `id_purchase_item-k_id`. Values refer to an array with the ... */
     a_purchase: Array<{
         /** A list of taxes to apply containing information about taxes. */
         a_tax: {
@@ -15070,6 +15329,7 @@ export interface WlAppointmentBookPaymentPaymentPostGetParams {
     k_business?: string | null;
 }
 export interface WlAppointmentBookPaymentPaymentPostGetResponse {
+    /** Information about selected Purchase Options. */
     a_promotion_data: Array<{
         /** The limit of total visits. */
         i_limit: number;
@@ -15080,6 +15340,7 @@ export interface WlAppointmentBookPaymentPaymentPostGetResponse {
         /** The title of the Purchase Option. */
         s_title: string;
     }>;
+    /** Information about selected purchase items. */
     a_purchase: Array<{
         /** Contains information about taxes in the following format. A list of taxes to apply. */
         a_tax: {
@@ -15151,6 +15412,7 @@ export interface WlAppointmentBookQuestionQuestionParams {
     k_service: string;
 }
 export interface WlAppointmentBookQuestionQuestionResponse {
+    /** A list of questions for the service. Each element contains: */
     a_question: Array<{
         /** Number of text rows for the answer input. Values greater than 1 indicate a multi-line answer. */
         i_size: number;
@@ -15183,6 +15445,7 @@ export interface WlAppointmentBookStaffListParams {
     uid?: string | null;
 }
 export interface WlAppointmentBookStaffListResponse {
+    /** A list of staff members with information about them. */
     a_staff: Array<{
         /** String identifiers for gender. */
         id_gender: number;
@@ -15221,6 +15484,7 @@ export interface WlAppointmentBookProductProduct62Params {
     uid?: string | null;
 }
 export interface WlAppointmentBookProductProduct62Response {
+    /** A list service add-ons. */
     a_product: Array<{
         /** Information about first image connected to the product. */
         a_logo: {
@@ -15264,6 +15528,7 @@ export interface WlAppointmentBookProductProductParams {
     k_service: string;
 }
 export interface WlAppointmentBookProductProductResponse {
+    /** A list service add-ons. */
     a_product: Array<{
         /** Information about first image connected to the product. */
         a_logo: {
@@ -15338,6 +15603,7 @@ export interface WlBookProcessPurchasePurchaseParams {
     k_business?: string | null;
 }
 export interface WlBookProcessPurchasePurchaseResponse {
+    /** Data about the login prize which can be used to pay for service. */
     a_login_prize: Array<{
         /** The price, always '0'. */
         f_price: string;
@@ -15356,6 +15622,7 @@ export interface WlBookProcessPurchasePurchaseResponse {
         /** User-friendly login prize description. */
         text_title: string;
     }>;
+    /** A list of the client's login promotions that can be applied to a given service. */
     a_login_promotion: Array<{
         /** Information about the Purchase Option with the following information: */
         a_login_promotion_info: {
@@ -15423,6 +15690,7 @@ export interface WlBookProcessPurchasePurchaseResponse {
         /** If this promotion is a package, this field will contain a list of Purchase Options contained in t... */
         text_package_item: string;
     }>;
+    /** A list of Purchase Options that are available for the session(s) being booked. Keys refer to uniq... */
     a_purchase: Array<{
         /** A list of installment plans. Every element has the next keys: */
         a_installment_template: {
@@ -15495,6 +15763,7 @@ export interface WlBookProcessPurchasePurchaseResponse {
         /** The unique identifier. */
         s_value: string;
     }>;
+    /** List of redeemable prizes which can be used to pay for service. */
     a_reward_prize: Array<{
         /** The price, always '0'. */
         f_price: string;
@@ -15513,6 +15782,7 @@ export interface WlBookProcessPurchasePurchaseResponse {
         /** User-friendly prize description. */
         text_title: string;
     }>;
+    /** The list of session passes that might be used in booking process. */
     a_session_pass: Array<{
         /** Number of remaining visits on session pass. */
         i_remain: number;
@@ -15615,6 +15885,7 @@ export interface WlBookProcessPurchasePurchase56Params {
     k_business?: string | null;
 }
 export interface WlBookProcessPurchasePurchase56Response {
+    /** Data about the login prize which can be used to pay for service. */
     a_login_prize: Array<{
         /** The price, always '0'. */
         f_price: string;
@@ -15633,6 +15904,7 @@ export interface WlBookProcessPurchasePurchase56Response {
         /** User-friendly login prize description. */
         text_title: string;
     }>;
+    /** A list of the client's login promotions that can be applied to a given service. */
     a_login_promotion: Array<{
         /** Information about the Purchase Option with the following information: */
         a_login_promotion_info: {
@@ -15700,6 +15972,7 @@ export interface WlBookProcessPurchasePurchase56Response {
         /** If this promotion is a package, this field will contain a list of Purchase Options contained in t... */
         text_package_item: string;
     }>;
+    /** A list of Purchase Options that are available for the session(s) being booked. Keys refer to uniq... */
     a_purchase: Array<{
         /** A list of installment plans. Every element has the next keys: */
         a_installment_template: {
@@ -15772,6 +16045,7 @@ export interface WlBookProcessPurchasePurchase56Response {
         /** The unique identifier. */
         s_value: string;
     }>;
+    /** List of redeemable prizes which can be used to pay for service. */
     a_reward_prize: Array<{
         /** The price, always '0'. */
         f_price: string;
@@ -15790,6 +16064,7 @@ export interface WlBookProcessPurchasePurchase56Response {
         /** User-friendly prize description. */
         text_title: string;
     }>;
+    /** The list of session passes that might be used in booking process. */
     a_session_pass: Array<{
         /** Number of remaining visits on session pass. */
         i_remain: number;
@@ -15869,6 +16144,7 @@ export interface WlBookProcessPurchasePurchaseElementListParams {
     k_location?: string | null;
 }
 export interface WlBookProcessPurchasePurchaseElementListResponse {
+    /** Detailed information about the amounts for the purchase item list. */
     a_purchase_item_result: Array<{
         /** Information about taxes. The key refers to the tax key, and the value refers to the tax amount. */
         a_tax: Array<string>;
@@ -15932,6 +16208,7 @@ export interface WlBookProcessResourceResourceGetParams {
     uid: string;
 }
 export interface WlBookProcessResourceResourceGetResponse {
+    /** A list of asset categories which are available for specified session. Every element has next keys: */
     a_resource_all: Array<{
         /** A list of clients who have already occupied assets for this session. */
         a_client: Array<Array<boolean>>;
@@ -16027,6 +16304,7 @@ export interface WlBookProcessResourceResource54GetParams {
     uid: string;
 }
 export interface WlBookProcessResourceResource54GetResponse {
+    /** A list of asset categories which are available for specified session. Every element has next keys: */
     a_resource_all: Array<{
         /** A list of clients who have already occupied assets for this session. */
         a_client: Array<Array<boolean>>;
@@ -16164,6 +16442,7 @@ export interface WlBookProcessStoreStoreGroupParams {
     k_class_period: string;
 }
 export interface WlBookProcessStoreStoreGroupResponse {
+    /** A list of distributed new shared purchase items which are selected by a group of clients. */
     a_purchase_item_distribute: Array<{
         /** List of UIDs of owners who will share this promotion with this client. */
         a_owner: Array<string>;
@@ -16202,6 +16481,7 @@ export interface WlBookProcessInfoInfoGetParams {
 export interface WlBookProcessInfoInfoGetResponse {
     /** Week days available for recurring booking. Constants of [ADateWeekSid](#/components/schemas/ADate... */
     a_day_available: Array<number> | null;
+    /** A list of all class sessions that can be booked together. Every element has the next structure: */
     a_session_all: Array<{
         /** List of staff names that are leading this session. */
         a_staff: Array<string>;
@@ -16238,12 +16518,14 @@ export interface WlBookProcessInfoInfoGetResponse {
         /** String representation of session duration. */
         text_duration: string;
     }>;
+    /** List of sessions that can be paid without new purchases. */
     a_session_free: Array<{
         /** Session date. */
         dt_date: string;
         /** Class period key for the session. */
         k_class_period: string;
     }>;
+    /** The staff member conducting the session. Every element has the next structure: */
     a_staff: Array<{
         /** The staff member photo: */
         a_logo: {
@@ -16351,6 +16633,7 @@ export interface WlBookProcessInfoInfoPostResponse {
     a_login_activity: Array<string>;
     /** The keys of the bookings made. */
     a_visit: Array<string>;
+    /** Values are arrays with next keys: */
     a_visit_payment: Array<{
         /** `true` if the visit is free; `false` otherwise. */
         is_free: boolean;
@@ -16391,6 +16674,7 @@ export interface WlBookProcessInfoInfo54GetParams {
 export interface WlBookProcessInfoInfo54GetResponse {
     /** Week days available for recurring booking. Constants of [ADateWeekSid](#/components/schemas/ADate... */
     a_day_available: Array<number> | null;
+    /** A list of all class sessions that can be booked together. Every element has the next structure: */
     a_session_all: Array<{
         /** List of staff names that are leading this session. */
         a_staff: Array<string>;
@@ -16427,12 +16711,14 @@ export interface WlBookProcessInfoInfo54GetResponse {
         /** String representation of session duration. */
         text_duration: string;
     }>;
+    /** List of sessions that can be paid without new purchases. */
     a_session_free: Array<{
         /** Session date. */
         dt_date: string;
         /** Class period key for the session. */
         k_class_period: string;
     }>;
+    /** The staff member conducting the session. Every element has the next structure: */
     a_staff: Array<{
         /** The staff member photo: */
         a_logo: {
@@ -16540,6 +16826,7 @@ export interface WlBookProcessInfoInfo54PostResponse {
     a_login_activity: Array<string>;
     /** The keys of the bookings made. */
     a_visit: Array<string>;
+    /** Values are arrays with next keys: */
     a_visit_payment: Array<{
         /** `true` if the visit is free; `false` otherwise. */
         is_free: boolean;
@@ -16626,6 +16913,7 @@ export interface WlBookProcessQuizQuizGetParams {
     uid: string;
 }
 export interface WlBookProcessQuizQuizGetResponse {
+    /** The list of quizzes. Each element has the next structure: */
     a_quiz: Array<{
         /** Determines whether the quiz is required. */
         is_require: boolean;
@@ -16694,6 +16982,7 @@ export interface WlBookProcessFrequencyRepeatParams {
     uid_actor: string;
 }
 export interface WlBookProcessFrequencyRepeatResponse {
+    /** List of visits to be created for the given settings: */
     a_visit: Array<{
         /** Visit date and time in UTC. */
         dt_date: string;
@@ -16772,6 +17061,7 @@ export interface WlBookProcessFrequencyRepeatParallelParams {
     uid_actor: string;
 }
 export interface WlBookProcessFrequencyRepeatParallelResponse {
+    /** List of visits to be created for the given settings: */
     a_visit: Array<{
         /** Visit date and time in UTC. */
         dt_date: string;
@@ -16866,6 +17156,7 @@ export interface WlProfileEditEmailEditEmail67GetParams {
 export interface WlProfileEditEmailEditEmail67GetResponse {
     /** List of business keys where a user is already a member. */
     a_business_member_key: Array<string>;
+    /** Information about the user who occupies the specified email. */
     a_user: Array<{
         /** First name. */
         text_firstname: string;
@@ -16916,6 +17207,7 @@ export interface WlProfileEditEmailEditEmailGetParams {
 export interface WlProfileEditEmailEditEmailGetResponse {
     /** List of business keys where a user is already a member. */
     a_business_member_key: Array<string>;
+    /** Information about the user who occupies the specified email. */
     a_user: Array<{
         /** First name. */
         text_firstname: string;
@@ -16966,6 +17258,7 @@ export interface WlProfileFormResponseResponseListParams {
     uid: string;
 }
 export interface WlProfileFormResponseResponseListResponse {
+    /** The list of uncompleted quiz responses. Each element has the next structure: */
     a_quiz_login: Array<{
         /** List of visit keys associated with uncompleted response. */
         a_visit: Array<string>;
@@ -16984,6 +17277,7 @@ export interface WlProfileFormResponseResponseListResponse {
         /** The quiz title. */
         text_title: string;
     }>;
+    /** The list of completed quiz responses. Each element has the next structure: */
     a_quiz_response: Array<{
         /** List of visit keys associated with uncompleted response. */
         a_visit: Array<string>;
@@ -17048,6 +17342,7 @@ export interface WlEventBookEventViewElementParams {
     k_class_period?: string | null;
 }
 export interface WlEventBookEventViewElementResponse {
+    /** Displays information about age restrictions for this event. */
     a_age_restrictions: Array<{
         /** The minimum age for participation in the event. */
         i_age_from: number | null;
@@ -17056,12 +17351,14 @@ export interface WlEventBookEventViewElementResponse {
         /** `true` if age restrictions are public and available, `false` if they're hidden. */
         is_age_public: boolean;
     }>;
+    /** Retrieves information about an event item. */
     a_book_available: Array<{
         /** Date/time when the session starts. In UTC. */
         dt_date: string;
         /** Class session primary keys. */
         k_class_period: string;
     }>;
+    /** Business policies connected to clients and bookings. */
     a_business_policy: Array<{
         /** List of not allowed decline reasons to payment reattempt. Each element is one of [PayExceptionSid... */
         a_payment_reattempt_not_decline_reason: Array<number>;
@@ -17118,6 +17415,7 @@ export interface WlEventBookEventViewElementResponse {
         /** Custom Url of a business */
         url_custom: string;
     }>;
+    /** The logo of event. */
     a_class_logo: Array<{
         /** Is returned only if staff has a photo. Image height. */
         i_height?: number;
@@ -17130,6 +17428,7 @@ export interface WlEventBookEventViewElementResponse {
     }>;
     /** The list of keys from class tab. */
     a_class_tab: Array<string>;
+    /** Information for a large number of events. */
     a_event: Array<{
         /** List of sessions available for booking. */
         a_book_available: {
@@ -17267,6 +17566,7 @@ export interface WlEventBookEventViewElementResponse {
         /** Description of event. Ready to put into browser. */
         xml_description: string;
     }>;
+    /** A list of installment plans. Each element has the following next keys: */
     a_installment_template: Array<{
         /** The number of payments. */
         i_count: number;
@@ -17283,6 +17583,7 @@ export interface WlEventBookEventViewElementResponse {
         /** The title of the installment plan. */
         s_duration: string;
     }>;
+    /** A list of event sessions. Every element has the following next keys: */
     a_schedule: Array<{
         /** Days of the week when the session occurs. */
         a_day: Array<boolean>;
@@ -17335,6 +17636,7 @@ export interface WlEventBookEventViewElementResponse {
     }>;
     /** IDs of online store category. */
     a_shop_category: Array<string>;
+    /** Photos of staff members. Keys are the keys of staff members. The values are the following: */
     a_staff_logo: Array<{
         /** Image height. */
         i_height: number;
@@ -17345,6 +17647,7 @@ export interface WlEventBookEventViewElementResponse {
         /** URL to image. */
         url_logo: string;
     }>;
+    /** Timezone information for all timezones used in the event schedule. */
     a_timezone_info: Array<{
         /** UTC offset in hours for this timezone. */
         i_shift: number;
@@ -17353,6 +17656,7 @@ export interface WlEventBookEventViewElementResponse {
         /** Timezone abbreviation (e.g. `EST`). `null` if not set. */
         text_abbr: string | null;
     }>;
+    /** A list of classes and events that clients should attend before this one. */
     a_visits_required: Array<{
         /** The number of visits required. */
         i_count: number;
@@ -17521,6 +17825,7 @@ export interface WlBusinessAccountSubscriptionSubscriptionInfoParams {
 export interface WlBusinessAccountSubscriptionSubscriptionInfoResponse {
     /** A list of locales. */
     id_locale: number | null;
+    /** Currently active plan ID for requested subscription. */
     id_plan: number;
     /** Whether subscription is active. */
     is_active: boolean;
@@ -17545,6 +17850,7 @@ export interface WlBusinessFranchiseLocationBusinessFranchiseLocationParams {
     k_business: string;
 }
 export interface WlBusinessFranchiseLocationBusinessFranchiseLocationResponse {
+    /** The city list. Each element has next structure: */
     a_city_list: Array<{
         /** City key. */
         k_city: string;
@@ -17555,12 +17861,14 @@ export interface WlBusinessFranchiseLocationBusinessFranchiseLocationResponse {
         /** City title. */
         text_title: string;
     }>;
+    /** The country list. Each element has next structure: */
     a_country_list: Array<{
         /** Country key. */
         k_country: string;
         /** Country title. */
         text_title: string;
     }>;
+    /** The location list. Each element has the next structure: */
     a_location_list: Array<{
         /** A list of currencies. */
         id_currency: number;
@@ -17577,12 +17885,14 @@ export interface WlBusinessFranchiseLocationBusinessFranchiseLocationResponse {
         /** Location title. */
         text_title: string;
     }>;
+    /** The region list. Each element has the next structure: */
     a_region_list: Array<{
         /** Franchise region key. */
         k_region: string;
         /** Franchise region title. */
         text_title: string;
     }>;
+    /** The state list. Each element has the next structure: */
     a_state_list: Array<{
         /** Country key. */
         k_country: string;
@@ -17642,6 +17952,7 @@ export interface WlLoginPromotionConvertConvertGetParams {
     k_login_promotion: string;
 }
 export interface WlLoginPromotionConvertConvertGetResponse {
+    /** Promotion data containing the following structure:. */
     a_promotion: Array<{
         /** The promotion key. */
         k_promotion: string;
@@ -17709,6 +18020,7 @@ export interface WlLoginPromotionGuestPassGuestPassListParams {
     k_location?: string | null;
 }
 export interface WlLoginPromotionGuestPassGuestPassListResponse {
+    /** List of client's guest passes. */
     a_list: Array<{
         /** Thumbnail image data for the guest promotion. */
         a_image: {
@@ -17800,6 +18112,7 @@ export interface WlLoginPromotionGuestPassGuestPassGetParams {
     k_login_promotion: string;
 }
 export interface WlLoginPromotionGuestPassGuestPassGetResponse {
+    /** Guest pass information. */
     a_guest_pass: Array<{
         /** Thumbnail image data for the guest promotion. */
         a_image: {
@@ -17918,12 +18231,14 @@ export interface WlLoginAttendanceAddAddGetParams {
     uid_client: string;
 }
 export interface WlLoginAttendanceAddAddGetResponse {
+    /** Any of the client memberships that can be used to pay for the session. */
     a_login_promotion: Array<{
         /** The login promotion key, available to pay for the session. */
         k_login_promotion: string;
         /** The title of the login promotion. */
         text_title: string;
     }>;
+    /** Any user's session passes that can be used to pay for the session. */
     a_session_pass: Array<{
         /** The session pass key, available to pay for the session. */
         k_session_pass: string;
@@ -17974,6 +18289,7 @@ export interface WlLoginSearchStaffAppListParams {
     text_search: string;
 }
 export interface WlLoginSearchStaffAppListResponse {
+    /** A list of users matching the search string. */
     a_list: Array<{
         /** Client's email. */
         text_mail: string;
@@ -18073,6 +18389,7 @@ export interface WlCatalogStaffAppCatalogCartCatalogCartParams {
     text_discount_code?: string | null;
 }
 export interface WlCatalogStaffAppCatalogCartCatalogCartResponse {
+    /** A list of available discount codes with the next structure: */
     a_discount_code: Array<{
         /** `true` if this code is selected currently, `false` otherwise. */
         is_select: boolean;
@@ -18117,6 +18434,7 @@ export interface WlCatalogStaffAppCatalogListCatalogListParams {
     k_visit: string;
 }
 export interface WlCatalogStaffAppCatalogListCatalogListResponse {
+    /** Products in the online store category. */
     a_shop_product: Array<{
         /** The list of location keys where the current sale item is available. */
         a_location: Array<string>;
@@ -18179,6 +18497,7 @@ export interface WlCatalogStaffAppCatalogViewCatalogViewParams {
     uid: string;
 }
 export interface WlCatalogStaffAppCatalogViewCatalogViewResponse {
+    /** Contains information about calculated taxes. */
     a_tax_data: Array<{
         /** The calculated tax amount applied by this rule. */
         f_tax: number;
@@ -18209,6 +18528,7 @@ export interface WlReceptionRosterDesignReceptionRosterDesignParams {
     k_business: string;
 }
 export interface WlReceptionRosterDesignReceptionRosterDesignResponse {
+    /** Image data for image which will be displayed in attendance web app page. */
     a_image: Array<{
         /** Requested image height. */
         i_height: number;
@@ -18263,6 +18583,7 @@ export interface WlInsuranceEnrollmentFieldEnrollmentFieldListGetParams {
     k_wellness_program: string;
 }
 export interface WlInsuranceEnrollmentFieldEnrollmentFieldListGetResponse {
+    /** The partner field list: */
     a_field_list: Array<{
         /** The list of reimbursement account fields. */
         a_account: {
@@ -18350,6 +18671,7 @@ export interface WlRewardBoardBoardListListParams {
     uid: string;
 }
 export interface WlRewardBoardBoardListListResponse {
+    /** A list of reward boards. `null` if not loaded. */
     a_reward_board: Array<{
         /** Reward board key. */
         k_reward_board: string;
@@ -18411,6 +18733,7 @@ export interface WlSkinApplicationResourceApplicationResourceParams {
     k_business: string;
 }
 export interface WlSkinApplicationResourceApplicationResourceResponse {
+    /** The application data. Key is the business key. */
     a_application: Array<{
         /** List of resource groups for image generation. */
         a_resource: {
@@ -18565,6 +18888,7 @@ export interface WlMemberGroupGroupListListGetParams {
     a_member_group_select?: Array<string> | null;
 }
 export interface WlMemberGroupGroupListListGetResponse {
+    /** Member groups list: */
     a_member_group: Array<{
         /** The key of the member group. */
         k_member_group: string;
@@ -18613,6 +18937,7 @@ export interface WlDiscountCodeEditDiscountCodeEditGetParams {
     k_discount_code: string;
 }
 export interface WlDiscountCodeEditDiscountCodeEditGetResponse {
+    /** List of components that are affected by this discount code. */
     a_component: Array<{
         /** A list of purchase types. */
         id_purchase_item: number;
@@ -18727,6 +19052,7 @@ export interface WlAppointmentBookAssetServiceServiceParams {
 export interface WlAppointmentBookAssetServiceServiceResponse {
     /** A list of reserved assets. */
     a_resource_busy: Array<Array<string>>;
+    /** A list of assets required for the service booking. */
     a_resource_type: Array<{
         /** A list of resources. Every element has the following keys: */
         a_resource: {
@@ -18756,6 +19082,7 @@ export interface WlProfileAttendanceScheduleFrontendLifetimeTotalsParams {
     uid: string;
 }
 export interface WlProfileAttendanceScheduleFrontendLifetimeTotalsResponse {
+    /** Report totals. */
     a_total: Array<{
         /** Total title. */
         text_title: string;
@@ -18806,6 +19133,7 @@ export interface WlLoginPromotionGuestPassInviteInviteListGetParams {
     uid_host?: string | null;
 }
 export interface WlLoginPromotionGuestPassInviteInviteListGetResponse {
+    /** List of guest pass invitations suitable for the specific request parameters. */
     a_list: Array<{
         /** Guest user identity data. */
         a_guest: {
@@ -18935,6 +19263,7 @@ export interface WlMemberProgressLogEditLogGetParams {
     uid?: string | null;
 }
 export interface WlMemberProgressLogEditLogGetResponse {
+    /** Field log data. */
     a_field_list: Array<{
         /** List of progress log fields. */
         id_field: number;
@@ -18963,6 +19292,7 @@ export interface WlMemberProgressLogEditLogPostParams {
     uid?: string | null;
 }
 export interface WlMemberProgressLogEditLogPostResponse {
+    /** Field log data. */
     a_field_list: Array<{
         /** List of progress log fields. */
         id_field: number;
@@ -18996,6 +19326,7 @@ export interface WlMemberProgressLogImageImageGetParams {
     uid?: string | null;
 }
 export interface WlMemberProgressLogImageImageGetResponse {
+    /** Image data: */
     a_image: Array<{
         /** Image storage data. */
         a_image: {
@@ -19054,6 +19385,7 @@ export interface WlMemberProgressGoalEditGoalGetParams {
     uid?: string | null;
 }
 export interface WlMemberProgressGoalEditGoalGetResponse {
+    /** Field log data. */
     a_field_list: Array<{
         /** List of progress log fields. */
         id_field: number;
@@ -19078,6 +19410,7 @@ export interface WlMemberProgressGoalEditGoalPostParams {
     uid?: string | null;
 }
 export interface WlMemberProgressGoalEditGoalPostResponse {
+    /** Field log data. */
     a_field_list: Array<{
         /** List of progress log fields. */
         id_field: number;
@@ -19104,6 +19437,7 @@ export interface WlShopProductOptionInventoryCountInventoryCountGetParams {
     text_barcode: string;
 }
 export interface WlShopProductOptionInventoryCountInventoryCountGetResponse {
+    /** Information about product options for review or search. */
     a_product_option: Array<{
         /** Information about the product option image: */
         a_image: {
