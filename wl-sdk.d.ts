@@ -1658,9 +1658,9 @@ export interface WlPromotionPromotionGetResponse {
         /** Information about Purchase Option image. */
         a_image: {
             /** The height of the image. */
-            i_height: string;
+            i_height: number;
             /** The width of the image. */
-            i_width: string;
+            i_width: number;
             /** The link to the image. */
             'url-thumbnail': string;
         };
@@ -3021,7 +3021,7 @@ export interface WlVideoVideoListGetResponse {
         /** URL of the video file (HLS stream). `null` if not available. */
         url_video: string | null;
     }>;
-    /** Pagination data. Empty array if pagination is not active (total video count is within */
+    /** Pagination data. */
     a_page: {
         /** `true` for the "next page" navigation entry. Only present on the next-page entry. */
         'is-next'?: boolean;
@@ -3248,11 +3248,11 @@ export interface WlHolidayBulkBusinessHolidayResponse {
         /** Date of the start of the holiday. */
         dt_start: string;
         /** `1` if all classes are selected to cancel, `0` - otherwise. */
-        is_class_all: number;
+        is_class_all: boolean;
         /** `1` if all events are selected to cancel, `0` - otherwise. */
-        is_event_all: number;
+        is_event_all: boolean;
         /** `1` if all services are selected to cancel, `0` - otherwise. */
-        is_service_all: number;
+        is_service_all: boolean;
         /** Business key. */
         k_business: string;
         /** Holiday key. */
@@ -3843,8 +3843,8 @@ export interface WlScheduleClassViewClassViewGetResponse {
         i_count: number;
         /** Asset index. */
         i_index: number;
-        /** Type of the asset: Asset or Off-Site Location. */
-        id_category: string;
+        /** List of resource categories. */
+        id_category: number;
         /** City of the asset, if this is Off-Site Location. */
         k_city: string;
         /** Resource key. */
@@ -3968,8 +3968,8 @@ export interface WlScheduleClassViewClassViewGetResponse {
             i_count: number;
             /** Asset index. */
             i_index: number;
-            /** Type of the asset: Asset or Off-Site Location. */
-            id_category: string;
+            /** List of resource categories. */
+            id_category: number;
             /** City of the asset, if this is Off-Site Location. */
             k_city: string;
             /** Resource key. */
@@ -4164,8 +4164,8 @@ export interface WlScheduleClassViewClassViewPostResponse {
         i_count: number;
         /** Asset index. */
         i_index: number;
-        /** Type of the asset: Asset or Off-Site Location. */
-        id_category: string;
+        /** List of resource categories. */
+        id_category: number;
         /** City of the asset, if this is Off-Site Location. */
         k_city: string;
         /** Resource key. */
@@ -4289,8 +4289,8 @@ export interface WlScheduleClassViewClassViewPostResponse {
             i_count: number;
             /** Asset index. */
             i_index: number;
-            /** Type of the asset: Asset or Off-Site Location. */
-            id_category: string;
+            /** List of resource categories. */
+            id_category: number;
             /** City of the asset, if this is Off-Site Location. */
             k_city: string;
             /** Resource key. */
@@ -4477,7 +4477,7 @@ export interface WlSchedulePagePageElementResponse {
         /** Asset title that consists of the asset title itself concatenated with its index (in case of multi... */
         s_name: string;
         /** Number of sessions. */
-        i_count: string;
+        i_count: number;
     }>;
     /** Class data: */
     a_class_info: {
@@ -5691,7 +5691,7 @@ export interface WlProfilePurchasePurchaseElementResponse {
     i_left: number;
     /** The number of visits which can be made with this promotion. This is used only for promotions. */
     i_limit: number;
-    /** The duration of the regular payments interval. This is used only for “membership” type promoti */
+    /** The duration of the regular payments interval. This is used only for "membership" type promotions. */
     i_payment_period: number;
     /** The number of remaining bookings for the promotion. This is used only for promotions. */
     i_remain: number;
@@ -6867,7 +6867,7 @@ export interface WlBusinessConfigBusinessConfigResponse {
         /** if `true` - clients with purchase options are only allowed */
         is_book_inside_active_pay_period: boolean;
         /** 1 if a client's automatic payment fails, their account should not be */
-        is_disable_promotion: number;
+        is_disable_promotion: boolean;
         /** Whether to charge penalty after final auto-payment attempt. */
         is_enable_payment_penalty: boolean;
         /** Whether to reattempt failed auto-payments. */
@@ -6875,7 +6875,7 @@ export interface WlBusinessConfigBusinessConfigResponse {
         /** Whether to restrict which IP addresses staff can login from. */
         is_enable_staff_ip_restriction: boolean;
         /** 1 if booking for a client with negative balance is disabled, 0 - otherwise. Default 0. */
-        is_prevent_booking: number;
+        is_prevent_booking: boolean;
         /** If true, client can not choose provider while appointment wizard. */
         is_staff_restrict: boolean;
         /** Enable\disable wait list. */
@@ -7125,15 +7125,15 @@ export interface WlPromotionIndexPromotionIndexResponse {
         /** This will be an empty array if the Purchase Option doesn't have image. */
         a_image: {
             /** The height of the image. */
-            i_height: string;
+            i_height: number;
             /** The width of the image. */
-            i_width: string;
+            i_width: number;
             /** The link to the image. */
             'url-thumbnail': string;
         };
         /** Attendance restrictions, if available. If unavailable, this will be an empty array. Every element... */
         a_visit_limit: {
-            /** The quantity of sessions every `i_period`. */
+            /** The quantity of sessions int `i_period`. */
             i_limit: number;
             /** The duration of the time period. This depends on a key of `a_visit_limit` array. */
             i_period: number;
@@ -12757,7 +12757,7 @@ export interface WlResourceResourceListListParams {
     id_category: number;
     /** Whether to return franchisee-created resources (if business is franchisor). */
     is_franchise: boolean;
-    /** Business key, primary key in RsBusinessSql. */
+    /** Business key. */
     k_business: string;
 }
 export interface WlResourceResourceListListResponse {
@@ -13767,7 +13767,7 @@ export interface WlAppointmentBookServiceCategoryResponse {
         /** `true` - all services are hidden in this category for White Label mobile application. `false` - o... */
         hide_application: boolean;
         /** Sort key for category. Used to sort categories on category list page. */
-        i_sort: boolean;
+        i_sort: number;
         /** Service category key. */
         k_service_category: string;
         /** Service category title. */
@@ -15819,7 +15819,7 @@ export interface WlBookProcessPurchasePurchaseResponse {
         f_price: string;
         /** The price for early bookings. */
         f_price_early?: string;
-        /** This is only set for Purchase Options with the 'membership' program type. The measurement unit of... */
+        /** This is only set for Purchase Options with the 'membership' program type. The measurement unit in... */
         html_payment_period: string;
         /** The description, ready to paste in a browser. */
         html_description: string;
@@ -15853,7 +15853,7 @@ export interface WlBookProcessPurchasePurchaseResponse {
         m_prorate?: string;
         /** The contract of the Purchase Option. This is only set if `is_contract` is `true`. */
         s_contract?: string;
-        /** This is only set for Purchase Options with the 'membership' program type. The measurement unit of... */
+        /** This is only set for Purchase Options with the 'membership' program type. The measurement unit in... */
         s_payment_duration?: string;
         /** This is only set if `is_convert` is `true`. The title to use for the new Purchase Option instance... */
         s_promotion_convert?: string;
@@ -16101,7 +16101,7 @@ export interface WlBookProcessPurchasePurchase56Response {
         f_price: string;
         /** The price for early bookings. */
         f_price_early?: string;
-        /** This is only set for Purchase Options with the 'membership' program type. The measurement unit of... */
+        /** This is only set for Purchase Options with the 'membership' program type. The measurement unit in... */
         html_payment_period: string;
         /** The description, ready to paste in a browser. */
         html_description: string;
@@ -16135,7 +16135,7 @@ export interface WlBookProcessPurchasePurchase56Response {
         m_prorate?: string;
         /** The contract of the Purchase Option. This is only set if `is_contract` is `true`. */
         s_contract?: string;
-        /** This is only set for Purchase Options with the 'membership' program type. The measurement unit of... */
+        /** This is only set for Purchase Options with the 'membership' program type. The measurement unit in... */
         s_payment_duration?: string;
         /** This is only set if `is_convert` is `true`. The title to use for the new Purchase Option instance... */
         s_promotion_convert?: string;
@@ -17492,7 +17492,7 @@ export interface WlEventBookEventViewElementResponse {
         /** if `true` - clients with purchase options are only allowed */
         is_book_inside_active_pay_period: boolean;
         /** 1 if a client's automatic payment fails, their account should not be */
-        is_disable_promotion: number;
+        is_disable_promotion: boolean;
         /** Whether to charge penalty after final auto-payment attempt. */
         is_enable_payment_penalty: boolean;
         /** Whether to reattempt failed auto-payments. */
@@ -17500,7 +17500,7 @@ export interface WlEventBookEventViewElementResponse {
         /** Whether to restrict which IP addresses staff can login from. */
         is_enable_staff_ip_restriction: boolean;
         /** 1 if booking for a client with negative balance is disabled, 0 - otherwise. Default 0. */
-        is_prevent_booking: number;
+        is_prevent_booking: boolean;
         /** If true, client can not choose provider while appointment wizard. */
         is_staff_restrict: boolean;
         /** Enable\disable wait list. */
@@ -18885,7 +18885,7 @@ export type WlSkinApplicationResourceApplicationResourceUploadResponse = Record<
 export interface WlMemberGroupEditEditGetParams {
     /** The business key. */
     k_business: string;
-    /** Member group primary key in Sql table. */
+    /** Member group key. */
     k_member_group: string;
     /** Key of existing template. */
     k_search_template: string;
@@ -18921,7 +18921,7 @@ export interface WlMemberGroupEditEditGetResponse {
 export interface WlMemberGroupEditEditPostParams {
     /** The business key. */
     k_business: string;
-    /** Member group primary key in Sql table. */
+    /** Member group key. */
     k_member_group: string;
     /** Key of existing template. */
     k_search_template: string;
@@ -18931,7 +18931,7 @@ export interface WlMemberGroupEditEditPostParams {
     uid: string;
 }
 export interface WlMemberGroupEditEditPostResponse {
-    /** Member group primary key in Sql table. */
+    /** Member group key. */
     k_member_group: string;
     /** Key of existing template. */
     k_search_template: string;
@@ -18941,7 +18941,7 @@ export interface WlMemberGroupEditEditPostResponse {
 export interface WlMemberGroupEditEditPutParams {
     /** The business key. */
     k_business: string;
-    /** Member group primary key in Sql table. */
+    /** Member group key. */
     k_member_group: string;
     /** Key of existing template. */
     k_search_template: string;

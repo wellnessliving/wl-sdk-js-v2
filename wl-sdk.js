@@ -1,6 +1,6 @@
 /*!
  * WellnessLiving JavaScript SDK (stable)
- * Spec version: 1.1.20260620093046
+ * Spec version: 1.1.20260621084312
  * Build date:   2026-06-21
  * Endpoints:    454
  *
@@ -210,7 +210,7 @@
    * OpenAPI spec version this SDK was generated from.
    * @type {string}
    */
-  WlClient.SPEC_VERSION = '1.1.20260620093046';
+  WlClient.SPEC_VERSION = '1.1.20260621084312';
 
   // ---------------------------------------------------------------------------
   // Generated API methods (454 total)
@@ -1569,7 +1569,7 @@
    * @param {?string} [params.uid] UID of the client who request list of videos.
    * @returns {Promise<Object>} Response data.
    *  `a_list` {Object[]} A list of videos.
-   *  `a_page` {Object} Pagination data. Empty array if pagination is not active (total video count i...
+   *  `a_page` {Object} Pagination data.
    *  `id_embed_source` {?number} List of embed video sources.
    *  `id_order` {?number} List of possible sort order.
    *  `id_sort` {?number} List of video catalog sorting types.
@@ -6192,7 +6192,7 @@
    * @param {Object} [params] Request parameters.
    * @param {number} params.id_category Type of the resource.
    * @param {boolean} params.is_franchise Whether to return franchisee-created resources (if business is franchisor).
-   * @param {string} params.k_business Business key, primary key in RsBusinessSql.
+   * @param {string} params.k_business Business key.
    * @returns {Promise<Object>} Response data.
    *  `a_resource` {Object[]} Resources list:
    */
@@ -9321,7 +9321,7 @@
    *
    * @param {Object} [params] Request parameters.
    * @param {string} params.k_business The business key.
-   * @param {string} params.k_member_group Member group primary key in Sql table.
+   * @param {string} params.k_member_group Member group key.
    * @param {string} params.k_search_template Key of existing template.
    * @param {string} params.s_search_group Unique string identifying the name of the search group.
    * @param {string} params.uid User key.
@@ -9350,12 +9350,12 @@
    *
    * @param {Object} [params] Request parameters.
    * @param {string} params.k_business The business key.
-   * @param {string} params.k_member_group Member group primary key in Sql table.
+   * @param {string} params.k_member_group Member group key.
    * @param {string} params.k_search_template Key of existing template.
    * @param {string} params.s_search_group Unique string identifying the name of the search group.
    * @param {string} params.uid User key.
    * @returns {Promise<Object>} Response data.
-   *  `k_member_group` {string} Member group primary key in Sql table.
+   *  `k_member_group` {string} Member group key.
    *  `k_search_template` {string} Key of existing template.
    *  `text_warning` {?string} Additional warning message if there were some minor issues with request.
    */
@@ -9371,7 +9371,7 @@
    *
    * @param {Object} [params] Request parameters.
    * @param {string} params.k_business The business key.
-   * @param {string} params.k_member_group Member group primary key in Sql table.
+   * @param {string} params.k_member_group Member group key.
    * @param {string} params.k_search_template Key of existing template.
    * @param {string} params.s_search_group Unique string identifying the name of the search group.
    * @param {string} params.uid User key.
