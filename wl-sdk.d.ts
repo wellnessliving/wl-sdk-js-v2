@@ -3700,9 +3700,9 @@ export interface WlScheduleClassListClassListParams {
     /** Class filter by time of day. */
     a_time: Array<{
         /** Time when the session starts. Example: value `'06:00'`. */
-        tl_start: string;
+        tl_start: number;
         /** Time when the session ends. Example: value `'14:00'`. */
-        tl_end: string;
+        tl_end: number;
     }>;
     /** The list start date in UTC and in MySQL format. */
     dt_date: string;
@@ -6296,15 +6296,15 @@ export interface WlProfileAttendanceAttendanceOverlapResponse {
         /** Date and time of the visit. */
         dtu_date: string;
         /** Duration of a service. */
-        i_duration?: string;
+        i_duration?: number;
         /** End datetime of the visit in unix format. */
-        i_end: string;
+        i_end: number;
         /** Local end datetime of the visit in unix format. */
-        i_end_local?: string;
+        i_end_local?: number;
         /** Start datetime of the visit in unix format. */
-        i_start: string;
+        i_start: number;
         /** Local start datetime of the visit in unix format. */
-        i_start_local?: string;
+        i_start_local?: number;
         /** Appointment key. */
         k_appointment: string;
         /** Business key. */
@@ -15559,7 +15559,7 @@ export interface WlAppointmentBookStaffListResponse {
         /** Position of the staff member in the business. */
         s_position: string;
         /** Name of the staff member. */
-        s_staff: number;
+        s_staff: string;
         /** UID of the staff member. */
         uid: string;
         /** Biography of the staff member. */
@@ -19220,7 +19220,7 @@ export interface WlProfileAttendanceScheduleFrontendLifetimeTotalsResponse {
         /** Total title. */
         text_title: string;
         /** Total value. */
-        s_value: number;
+        s_value: string;
     }>;
 }
 export interface WlBusinessAccountSubscriptionAchieveAchieveSubscriptionParams {
