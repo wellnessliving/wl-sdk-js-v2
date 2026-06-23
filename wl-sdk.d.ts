@@ -7133,7 +7133,7 @@ export interface WlPromotionIndexPromotionIndexResponse {
         };
         /** Attendance restrictions, if available. If unavailable, this will be an empty array. Every element... */
         a_visit_limit: {
-            /** The quantity of sessions int `i_period`. */
+            /** The quantity of sessions every `i_period`. */
             i_limit: number;
             /** The duration of the time period. This depends on a key of `a_visit_limit` array. */
             i_period: number;
@@ -15825,7 +15825,7 @@ export interface WlBookProcessPurchasePurchaseResponse {
         f_price: string;
         /** The price for early bookings. */
         f_price_early?: string;
-        /** This is only set for Purchase Options with the 'membership' program type. The measurement unit in... */
+        /** This is only set for Purchase Options with the 'membership' program type. The measurement unit of... */
         html_payment_period: string;
         /** The description, ready to paste in a browser. */
         html_description: string;
@@ -15859,7 +15859,7 @@ export interface WlBookProcessPurchasePurchaseResponse {
         m_prorate?: string;
         /** The contract of the Purchase Option. This is only set if `is_contract` is `true`. */
         s_contract?: string;
-        /** This is only set for Purchase Options with the 'membership' program type. The measurement unit in... */
+        /** This is only set for Purchase Options with the 'membership' program type. The measurement unit of... */
         s_payment_duration?: string;
         /** This is only set if `is_convert` is `true`. The title to use for the new Purchase Option instance... */
         s_promotion_convert?: string;
@@ -16109,7 +16109,7 @@ export interface WlBookProcessPurchasePurchase56Response {
         f_price: string;
         /** The price for early bookings. */
         f_price_early?: string;
-        /** This is only set for Purchase Options with the 'membership' program type. The measurement unit in... */
+        /** This is only set for Purchase Options with the 'membership' program type. The measurement unit of... */
         html_payment_period: string;
         /** The description, ready to paste in a browser. */
         html_description: string;
@@ -16143,7 +16143,7 @@ export interface WlBookProcessPurchasePurchase56Response {
         m_prorate?: string;
         /** The contract of the Purchase Option. This is only set if `is_contract` is `true`. */
         s_contract?: string;
-        /** This is only set for Purchase Options with the 'membership' program type. The measurement unit in... */
+        /** This is only set for Purchase Options with the 'membership' program type. The measurement unit of... */
         s_payment_duration?: string;
         /** This is only set if `is_convert` is `true`. The title to use for the new Purchase Option instance... */
         s_promotion_convert?: string;
