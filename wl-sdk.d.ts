@@ -4656,6 +4656,13 @@ export declare enum RsServicePriceSid {
     /** Various price */
     VARIES = 3
 }
+/** List of different OTP code delivery strategies. */
+export declare enum WlPassportLoginEnterOtpDeliveryStrategyEnum {
+    /** OTP code is sent to all given communication channels (sms, emails, etc.) */
+    BROADCAST = 1,
+    /** OTP code is sent to the first communication channel that is available, according to the given list of priorities */
+    PRIORITY = 2
+}
 /** Purchase restrictions. */
 export declare enum WlShopProductPurchaseRestrictionSid {
     /** Purchase option available for all clients */
@@ -16171,7 +16178,7 @@ export interface WlPromotionIndexPromotionIndexResponse {
         };
         /** Attendance restrictions, if available. If unavailable, this will be an empty array. Every element... */
         a_visit_limit: {
-            /** The quantity of sessions int `i_period`. */
+            /** The quantity of sessions every `i_period`. */
             i_limit: number;
             /** The duration of the time period. This depends on a key of `a_visit_limit` array. */
             i_period: number;
@@ -17224,6 +17231,20 @@ export interface WlUserReferrerReferrerResponse {
     text_name_public: string | null;
     /** The referrer's user key. */
     uid_referrer: string;
+}
+export interface WlUserReferrerReferralInfoParams {
+    /** Business key. */
+    k_business: string;
+    /** User key of the referrer whose statistics are being requested. */
+    uid: string;
+}
+export interface WlUserReferrerReferralInfoResponse {
+    /** Types of reward actions. @see RsRewardScoreSid */
+    i_point: RsRewardScoreSid | null;
+    /** Number of invited referrals. */
+    i_referral: number;
+    /** Shareable invite link for the referrer. */
+    url_referral: string;
 }
 export interface WlUserInfoUserInfoParams {
     /** A list of user keys. */
@@ -19329,7 +19350,7 @@ export interface WlBookProcessPurchasePurchaseResponse {
         f_price: string;
         /** The price for early bookings. */
         f_price_early?: string;
-        /** This is only set for Purchase Options with the 'membership' program type. The measurement unit in... */
+        /** This is only set for Purchase Options with the 'membership' program type. The measurement unit of... */
         html_payment_period: string;
         /** The description, ready to paste in a browser. */
         html_description: string;
@@ -19363,7 +19384,7 @@ export interface WlBookProcessPurchasePurchaseResponse {
         m_prorate?: string;
         /** The contract of the Purchase Option. This is only set if `is_contract` is `true`. */
         s_contract?: string;
-        /** This is only set for Purchase Options with the 'membership' program type. The measurement unit in... */
+        /** This is only set for Purchase Options with the 'membership' program type. The measurement unit of... */
         s_payment_duration?: string;
         /** This is only set if `is_convert` is `true`. The title to use for the new Purchase Option instance... */
         s_promotion_convert?: string;
@@ -19613,7 +19634,7 @@ export interface WlBookProcessPurchasePurchase56Response {
         f_price: string;
         /** The price for early bookings. */
         f_price_early?: string;
-        /** This is only set for Purchase Options with the 'membership' program type. The measurement unit in... */
+        /** This is only set for Purchase Options with the 'membership' program type. The measurement unit of... */
         html_payment_period: string;
         /** The description, ready to paste in a browser. */
         html_description: string;
@@ -19647,7 +19668,7 @@ export interface WlBookProcessPurchasePurchase56Response {
         m_prorate?: string;
         /** The contract of the Purchase Option. This is only set if `is_contract` is `true`. */
         s_contract?: string;
-        /** This is only set for Purchase Options with the 'membership' program type. The measurement unit in... */
+        /** This is only set for Purchase Options with the 'membership' program type. The measurement unit of... */
         s_payment_duration?: string;
         /** This is only set if `is_convert` is `true`. The title to use for the new Purchase Option instance... */
         s_promotion_convert?: string;
@@ -23468,16 +23489,25 @@ export interface WlAppointmentBookAssetCategoryResponse {
     }>;
 }
 export interface WlPassportLoginEnterPassportOtpGetParams {
+    /** Type of delivery strategy from {@link WlPassportLoginEnterOtpDeliveryStrategyEnum}. */
+    id_delivery_strategy: WlPassportLoginEnterOtpDeliveryStrategyEnum;
     /** Whether OTP code will be sending to user via email. */
     is_mail: boolean;
     /** Whether OTP code will be sending to user via email. */
     is_phone: boolean;
     /** Business key. */
     k_business: string;
+    /** Priority of delivery. */
+    text_delivery_priority: string;
     /** User key. */
     uid: string;
 }
-export type WlPassportLoginEnterPassportOtpGetResponse = Record<string, unknown>;
+export interface WlPassportLoginEnterPassportOtpGetResponse {
+    /** Delivery channel that was selected based on the given priorities and user data. */
+    text_delivery_selected: string;
+    /** Phone number masked with `*` symbols in case if we have priority sending and sms sending was sele... */
+    text_phone_masked: string;
+}
 export interface WlPassportLoginEnterPassportOtpPostParams {
     /** Business key. */
     k_business: string;
@@ -23485,6 +23515,8 @@ export interface WlPassportLoginEnterPassportOtpPostParams {
     uid: string;
 }
 export interface WlPassportLoginEnterPassportOtpPostResponse {
+    /** Number of attempts left to submit the correct otp code. */
+    i_attempt_left: number;
     /** Redirect url after successful authorization. */
     url_redirect: string;
 }
@@ -26620,6 +26652,8 @@ export declare class WlUserReferrerNamespace {
     constructor(_client: WlClient);
     /** Searches for a referrer by the given search string and returns their profile information. */
     referrer(params?: WlUserReferrerReferrerParams): Promise<WlUserReferrerReferrerResponse>;
+    /** Returns referral count, total referral points, and shareable referral link for the given user. */
+    referralInfo(params?: WlUserReferrerReferralInfoParams): Promise<WlUserReferrerReferralInfoResponse>;
 }
 export declare class WlUserInfoNamespace {
     private readonly _client;

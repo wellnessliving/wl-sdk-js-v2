@@ -1,8 +1,8 @@
 /*!
  * WellnessLiving JavaScript SDK (dev)
- * Spec version: 1.1.20260623103551
+ * Spec version: 1.1.20260623151801
  * Build date:   2026-06-23
- * Endpoints:    456
+ * Endpoints:    457
  *
  * Auto-generated from:
  * https://github.com/wellnessliving/openapi/blob/main/dev/openapi.yaml
@@ -210,10 +210,10 @@
    * OpenAPI spec version this SDK was generated from.
    * @type {string}
    */
-  WlClient.SPEC_VERSION = '1.1.20260623103551';
+  WlClient.SPEC_VERSION = '1.1.20260623151801';
 
   // ---------------------------------------------------------------------------
-  // Generated API methods (456 total)
+  // Generated API methods (457 total)
   // ---------------------------------------------------------------------------
 
   /**
@@ -5992,6 +5992,27 @@
   };
 
   /**
+   * Returns referral count, total referral points, and shareable referral link for the given user.
+   *
+   * Computes result fields for the referrer identified:
+   *  - number of invited referrals;
+   *  - reward points earned for referral registrations;
+   *  - the shareable invite link with the referrer's encrypted user key.
+   *
+   * @param {Object} [params] Request parameters.
+   * @param {string} params.k_business Business key.
+   * @param {string} params.uid User key of the referrer whose statistics are being requested.
+   * @returns {Promise<Object>} Response data.
+   *  `i_point` {?number} Types of reward actions. See {@link WlClient.RsRewardScoreSid}.
+   *  `i_referral` {number} Number of invited referrals.
+   *  `url_referral` {string} Shareable invite link for the referrer.
+   */
+  WlClient.prototype.wlUserReferrerReferralInfo = function(params)
+  {
+    return this.request('/Wl/User/Referrer/ReferralInfo.json', params || {}, 'GET');
+  };
+
+  /**
    * Retrieves information about user.
    *
    * Returns profile data for a WellnessLiving user, including name, email, phone, photo, gender,
@@ -9219,15 +9240,24 @@
   /**
    * Sends an OTP code to the user's email or phone number to initiate authorization.
    *
-   * Checks the OTP rate limit, generates a new code for the given user, and dispatches it via email, SMS, or
-   * both depending on `$is_mail` and `$is_phone`. The user must not be already signed in and must not be an admin.
+   * Checks the OTP rate limit, generates a new code for the given user, and dispatches it according to the
+   * chosen delivery strategy. The user must not be already signed in and must not be an admin.
+   * 
+   * There are two ways to specify the delivery channel:
+   * 
+   * **1. Broadcast strategy** (default)
+   * ...
    *
    * @param {Object} [params] Request parameters.
+   * @param {number} params.id_delivery_strategy Type of delivery strategy from {@link WlClient.WlPassportLoginEnterOtpDeliveryStrategyEnum}.
    * @param {boolean} params.is_mail Whether OTP code will be sending to user via email.
    * @param {boolean} params.is_phone Whether OTP code will be sending to user via email.
    * @param {string} params.k_business Business key.
+   * @param {string} params.text_delivery_priority Priority of delivery.
    * @param {string} params.uid User key.
    * @returns {Promise<Object>} Response data.
+   *  `text_delivery_selected` {string} Delivery channel that was selected based on the given priorities and user data.
+   *  `text_phone_masked` {string} Phone number masked with `*` symbols in case if we have priority sending and ...
    */
   WlClient.prototype.wlPassportLoginEnterPassportOtpGet = function(params)
   {
@@ -9244,6 +9274,7 @@
    * @param {string} params.k_business Business key.
    * @param {string} params.uid User key.
    * @returns {Promise<Object>} Response data.
+   *  `i_attempt_left` {number} Number of attempts left to submit the correct otp code.
    *  `url_redirect` {string} Redirect url after successful authorization.
    */
   WlClient.prototype.wlPassportLoginEnterPassportOtpPost = function(params)
@@ -10131,7 +10162,7 @@
   };
 
   // ---------------------------------------------------------------------------
-  // Enum constants (188 total)
+  // Enum constants (189 total)
   // ---------------------------------------------------------------------------
 
   /**
@@ -15614,6 +15645,18 @@
     HIDE: 4,
     /** Various price */
     VARIES: 3,
+  });
+
+  /**
+   * List of different OTP code delivery strategies.
+   *
+   * @enum {number}
+   */
+  WlClient.WlPassportLoginEnterOtpDeliveryStrategyEnum = Object.freeze({
+    /** OTP code is sent to all given communication channels (sms, emails, etc.) */
+    BROADCAST: 1,
+    /** OTP code is sent to the first communication channel that is available, according to the given list of priorities */
+    PRIORITY: 2,
   });
 
   /**

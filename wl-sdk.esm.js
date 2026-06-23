@@ -1,9 +1,9 @@
 // AUTO-GENERATED — DO NOT EDIT
 // WellnessLiving SDK — dev channel
-// OpenAPI spec version: 1.1.20260623103551
+// OpenAPI spec version: 1.1.20260623151801
 // Build date: 2026-06-23
-// Endpoints: 456
-// Enums: 175
+// Endpoints: 457
+// Enums: 176
 export class WlApiError extends Error {
     constructor(status, body) {
         super('WlSdk: HTTP ' + status);
@@ -13,7 +13,7 @@ export class WlApiError extends Error {
         this.errors = (data != null && data.a_error != null) ? data.a_error : [];
     }
 }
-// --- Enum types (175 total) ---
+// --- Enum types (176 total) ---
 /** A list of locales. */
 export var CoreLocaleLocaleSid;
 (function (CoreLocaleLocaleSid) {
@@ -4820,6 +4820,14 @@ export var RsServicePriceSid;
     /** Various price */
     RsServicePriceSid[RsServicePriceSid["VARIES"] = 3] = "VARIES";
 })(RsServicePriceSid || (RsServicePriceSid = {}));
+/** List of different OTP code delivery strategies. */
+export var WlPassportLoginEnterOtpDeliveryStrategyEnum;
+(function (WlPassportLoginEnterOtpDeliveryStrategyEnum) {
+    /** OTP code is sent to all given communication channels (sms, emails, etc.) */
+    WlPassportLoginEnterOtpDeliveryStrategyEnum[WlPassportLoginEnterOtpDeliveryStrategyEnum["BROADCAST"] = 1] = "BROADCAST";
+    /** OTP code is sent to the first communication channel that is available, according to the given list of priorities */
+    WlPassportLoginEnterOtpDeliveryStrategyEnum[WlPassportLoginEnterOtpDeliveryStrategyEnum["PRIORITY"] = 2] = "PRIORITY";
+})(WlPassportLoginEnterOtpDeliveryStrategyEnum || (WlPassportLoginEnterOtpDeliveryStrategyEnum = {}));
 /** Purchase restrictions. */
 export var WlShopProductPurchaseRestrictionSid;
 (function (WlShopProductPurchaseRestrictionSid) {
@@ -7967,6 +7975,10 @@ export class WlUserReferrerNamespace {
     /** Searches for a referrer by the given search string and returns their profile information. */
     referrer(params) {
         return this._client._request('/Wl/User/Referrer/Referrer.json', params, 'GET');
+    }
+    /** Returns referral count, total referral points, and shareable referral link for the given user. */
+    referralInfo(params) {
+        return this._client._request('/Wl/User/Referrer/ReferralInfo.json', params, 'GET');
     }
 }
 export class WlUserInfoNamespace {
