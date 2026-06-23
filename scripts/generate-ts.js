@@ -32,13 +32,112 @@ function resolveRef(spec, ref)
 function firstLine(text, maxLen)
 {
   if (!text) return '';
-  const line = String(text).split('\n')[0].trim();
+  const line = stripYamlLinks(String(text)).split('\n')[0].trim();
   return (!maxLen || line.length <= maxLen) ? line : line.slice(0, maxLen - 3) + '...';
+}
+
+/**
+ * Strips OpenAPI YAML markdown links of the form [text](#/components/schemas/...) to plain text.
+ *
+ * @param {string} text
+ * @returns {string}
+ */
+function stripYamlLinks(text)
+{
+  return String(text || '').replace(/\[([^\]]+)\]\(#\/[^)]+\)/g, '$1');
 }
 
 function safeComment(text)
 {
-  return String(text || '').replace(/\*\//g, '* /').replace(/\r?\n/g, ' ');
+  return stripYamlLinks(String(text || '')).replace(/\*\//g, '* /').replace(/\r?\n/g, ' ');
+}
+
+/**
+ * Parses named enum constants from an OpenAPI schema description.
+ *
+ * Expected format: `- 4 (`CONSTANT_NAME`): Description text.`
+ *
+ * @param {string} description
+ * @returns {{value: number, name: string, description: string}[]}
+ */
+function parseEnumConstants(description)
+{
+  const result = [];
+  const re = /^- (-?\d+) \(`([A-Z][A-Z0-9_]*)`\): (.+)/gm;
+  let m;
+
+  while ((m = re.exec(description)) !== null)
+  {
+    result.push({
+      value: parseInt(m[1], 10),
+      name: m[2],
+      description: m[3].split('\n')[0].trim().replace(/\.$/, ''),
+    });
+  }
+
+  return result;
+}
+
+/**
+ * Converts an OpenAPI schema name (e.g., `Core.Locale.LocaleSid`) to a TypeScript identifier.
+ *
+ * @param {string} name
+ * @returns {string}
+ */
+function schemaNameToTsName(name)
+{
+  return name.replace(/\./g, '');
+}
+
+/**
+ * Generates TypeScript enum declarations for all enum schemas in the spec.
+ *
+ * @param {Object} spec Full parsed OpenAPI spec.
+ * @returns {string}
+ */
+function generateTsEnumSection(spec)
+{
+  const schemas = (spec.components && spec.components.schemas) || {};
+  const blocks = [];
+
+  for (const [schemaName, schema] of Object.entries(schemas))
+  {
+    if (!schema || !Array.isArray(schema.enum))
+    {
+      continue;
+    }
+
+    const constants = parseEnumConstants(schema.description || '');
+    if (constants.length === 0)
+    {
+      continue;
+    }
+
+    const tsName = schemaNameToTsName(schemaName);
+    const firstDescLine = schema.description ? schema.description.split('\n')[0].trim() : '';
+    const lines = [];
+
+    if (firstDescLine)
+    {
+      lines.push('/** ' + safeComment(firstDescLine) + ' */');
+    }
+
+    lines.push('export enum ' + tsName + ' {');
+
+    for (const c of constants)
+    {
+      if (c.description)
+      {
+        lines.push('  /** ' + safeComment(c.description) + ' */');
+      }
+      lines.push('  ' + c.name + ' = ' + c.value + ',');
+    }
+
+    lines.push('}');
+    blocks.push(lines.join('\n'));
+  }
+
+  return blocks.join('\n\n');
 }
 
 // ---------------------------------------------------------------------------
@@ -54,6 +153,17 @@ function schemaToTs(spec, schema, depth, indent)
 
   if (schema.$ref)
   {
+    const refName = schema.$ref.replace('#/components/schemas/', '');
+    const refSchema = spec.components && spec.components.schemas && spec.components.schemas[refName];
+
+    if (refSchema && Array.isArray(refSchema.enum))
+    {
+      const types = Array.isArray(refSchema.type) ? refSchema.type : [refSchema.type];
+      const nullable = types.includes('null');
+      const tsName = schemaNameToTsName(refName);
+      return nullable ? tsName + ' | null' : tsName;
+    }
+
     const resolved = resolveRef(spec, schema.$ref);
     return resolved ? schemaToTs(spec, resolved, depth + 1, indent) : 'unknown';
   }
@@ -517,14 +627,22 @@ function buildTs(spec, version)
     topLevel.push({ key: child.key, className: child.segment + 'Namespace' });
   }
 
+  const enumsCode = generateTsEnumSection(spec);
+  const enumCount = enumsCode ? enumsCode.split('\nexport enum ').length : 0;
+
   const sections = [
     '// AUTO-GENERATED — DO NOT EDIT',
     '// WellnessLiving SDK — ' + version + ' channel',
     '// OpenAPI spec version: ' + specVersion,
     '// Build date: ' + buildDate,
     '// Endpoints: ' + ops.length,
+    '// Enums: ' + enumCount,
     '',
     BASE_TYPES,
+    '',
+    '// --- Enum types (' + enumCount + ' total) ---',
+    '',
+    enumsCode,
     '',
     '// --- Operation interfaces ---',
     '',
