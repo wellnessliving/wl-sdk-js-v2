@@ -12612,6 +12612,20 @@ export interface WlUserReferrerReferrerResponse {
     /** The referrer's user key. */
     uid_referrer: string;
 }
+export interface WlUserReferrerReferralInfoParams {
+    /** Business key. */
+    k_business: string;
+    /** User key of the referrer whose statistics are being requested. */
+    uid: string;
+}
+export interface WlUserReferrerReferralInfoResponse {
+    /** Types of reward actions. */
+    i_point: number | null;
+    /** Number of invited referrals. */
+    i_referral: number;
+    /** Shareable invite link for the referrer. */
+    url_referral: string;
+}
 export interface WlDiscountCodeDiscountCodeParams {
     /** Business key of the discount codes. */
     k_business: string;
@@ -21903,6 +21917,8 @@ export declare class WlUserReferrerNamespace {
     constructor(_client: WlClient);
     /** Searches for a referrer by the given search string and returns their profile information. */
     referrer(params?: WlUserReferrerReferrerParams): Promise<WlUserReferrerReferrerResponse>;
+    /** Returns referral count, total referral points, and shareable referral link for the given user. */
+    referralInfo(params?: WlUserReferrerReferralInfoParams): Promise<WlUserReferrerReferralInfoResponse>;
 }
 export declare class WlUserNamespace {
     private readonly _client;

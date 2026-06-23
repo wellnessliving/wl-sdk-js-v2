@@ -1,8 +1,8 @@
 /*!
  * WellnessLiving JavaScript SDK (stable)
- * Spec version: 1.1.20260623083818
+ * Spec version: 1.1.20260623085953
  * Build date:   2026-06-23
- * Endpoints:    456
+ * Endpoints:    457
  *
  * Auto-generated from:
  * https://github.com/wellnessliving/openapi/blob/main/stable/openapi.yaml
@@ -210,10 +210,10 @@
    * OpenAPI spec version this SDK was generated from.
    * @type {string}
    */
-  WlClient.SPEC_VERSION = '1.1.20260623083818';
+  WlClient.SPEC_VERSION = '1.1.20260623085953';
 
   // ---------------------------------------------------------------------------
-  // Generated API methods (456 total)
+  // Generated API methods (457 total)
   // ---------------------------------------------------------------------------
 
   /**
@@ -6108,6 +6108,27 @@
   WlClient.prototype.wlUserReferrerReferrer = function(params)
   {
     return this.request('/Wl/User/Referrer/Referrer.json', params || {}, 'GET');
+  };
+
+  /**
+   * Returns referral count, total referral points, and shareable referral link for the given user.
+   *
+   * Computes result fields for the referrer identified:
+   *  - number of invited referrals;
+   *  - reward points earned for referral registrations;
+   *  - the shareable invite link with the referrer's encrypted user key.
+   *
+   * @param {Object} [params] Request parameters.
+   * @param {string} params.k_business Business key.
+   * @param {string} params.uid User key of the referrer whose statistics are being requested.
+   * @returns {Promise<Object>} Response data.
+   *  `i_point` {?number} Types of reward actions.
+   *  `i_referral` {number} Number of invited referrals.
+   *  `url_referral` {string} Shareable invite link for the referrer.
+   */
+  WlClient.prototype.wlUserReferrerReferralInfo = function(params)
+  {
+    return this.request('/Wl/User/Referrer/ReferralInfo.json', params || {}, 'GET');
   };
 
   /**

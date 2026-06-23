@@ -1,8 +1,8 @@
 // AUTO-GENERATED — DO NOT EDIT
 // WellnessLiving SDK — stable channel
-// OpenAPI spec version: 1.1.20260623083818
+// OpenAPI spec version: 1.1.20260623085953
 // Build date: 2026-06-23
-// Endpoints: 456
+// Endpoints: 457
 export class WlApiError extends Error {
     constructor(status, body) {
         super('WlSdk: HTTP ' + status);
@@ -3243,6 +3243,10 @@ export class WlUserReferrerNamespace {
     /** Searches for a referrer by the given search string and returns their profile information. */
     referrer(params) {
         return this._client._request('/Wl/User/Referrer/Referrer.json', params, 'GET');
+    }
+    /** Returns referral count, total referral points, and shareable referral link for the given user. */
+    referralInfo(params) {
+        return this._client._request('/Wl/User/Referrer/ReferralInfo.json', params, 'GET');
     }
 }
 export class WlUserNamespace {
