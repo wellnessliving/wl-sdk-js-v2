@@ -10564,7 +10564,7 @@ export interface WlCatalogCartCartParams {
         /** The sale item key. */
         k_id: string;
         /** Key of login prize used on item. */
-        k_login_prize?: string | null;
+        k_login_prize?: string;
         /** Note: */
         k_shop_product_option?: string;
     }>;
@@ -10593,7 +10593,7 @@ export interface WlCatalogCartCartResponse {
         /** The sale item key. */
         k_id: string;
         /** Key of login prize used on item. */
-        k_login_prize?: string | null;
+        k_login_prize?: string;
         /** Note: */
         k_shop_product_option?: string;
     }>;
