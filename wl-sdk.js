@@ -1,6 +1,6 @@
 /*!
  * WellnessLiving JavaScript SDK (stable)
- * Spec version: 1.1.20260624070521
+ * Spec version: 1.1.20260624075924
  * Build date:   2026-06-24
  * Endpoints:    457
  *
@@ -210,7 +210,7 @@
    * OpenAPI spec version this SDK was generated from.
    * @type {string}
    */
-  WlClient.SPEC_VERSION = '1.1.20260624070521';
+  WlClient.SPEC_VERSION = '1.1.20260624075924';
 
   // ---------------------------------------------------------------------------
   // Generated API methods (457 total)
@@ -11851,6 +11851,8 @@
     SERVICE: 6,
     /** Tuition purchase item */
     TUITION: 26,
+    /** Tuition fee purchase item */
+    TUITION_FEE: 27,
   });
 
   /**

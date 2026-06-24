@@ -1502,7 +1502,9 @@ export declare enum RsPurchaseItemSid {
     /** Purchase item for appointments */
     SERVICE = 6,
     /** Tuition purchase item */
-    TUITION = 26
+    TUITION = 26,
+    /** Tuition fee purchase item */
+    TUITION_FEE = 27
 }
 /** List of embed video sources. */
 export declare enum WlVideoVideoEmbedSourceSid {
