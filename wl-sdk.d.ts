@@ -17917,6 +17917,8 @@ export interface WlAppointmentBookServiceServiceList52Response {
         f_online: string;
         /** Determines whether the service will be hidden in the White Label mobile application. */
         hide_application: boolean;
+        /** Human-readable reason why the client cannot book this service. Empty string if there is no deny r... */
+        html_deny_reason: string;
         /** The required minimum client age to book an appointment. */
         i_age_from: number;
         /** The required maximum client age to book an appointment. */
@@ -17927,6 +17929,8 @@ export interface WlAppointmentBookServiceServiceList52Response {
         i_duration: number;
         /** A list of client booking flow types. @see WlServiceServiceBookFlowSid */
         id_book_flow: WlServiceServiceBookFlowSid;
+        /** Reasons why the client can't book this class. @see WlScheduleClassViewDenyReasonSid */
+        id_deny_reason: WlScheduleClassViewDenyReasonSid;
         /** A list of client booking flow types. @see RsServiceRequireSid */
         id_service_require: RsServiceRequireSid;
         /** `true` if age restrictions are public. Otherwise, `false` if they should be hidden from clients. */
@@ -17941,19 +17945,19 @@ export interface WlAppointmentBookServiceServiceList52Response {
         is_book_repeat_client: boolean;
         /** `true` if appointment bookings default to weekly recurring with no end date, `false` otherwise. */
         is_book_repeat_no_end_date_appointment: boolean;
-        /** `true` if `f_deposit` is a percentage. Otherwise, this will be `false` if `f_deposit` is an amoun... */
+        /** `true` if `f_deposit` is a percentage. `false` if `f_deposit` is an amount of money. */
         is_deposit_percent: boolean;
         /** `true` if clients can select the staff member's gender. Otherwise, this will be `false`. */
         is_gender_select: boolean;
-        /** `true` if clients can buy this appointment. Otherwise, this will be `false` if only staff members... */
+        /** `true` if clients can buy this appointment. `false` if only staff members can sell it. */
         is_online_sell: boolean;
         /** `true` if the service requires assets. Otherwise, this will be `false`. */
         is_resource_type: boolean;
-        /** `true` if the appointment can be booked without a Purchase Option. Otherwise, this will be `false... */
+        /** `true` if the appointment can be booked without a Purchase Option. */
         is_single_buy: boolean;
-        /** `true` if the appointment must be confirmed by a staff member after booking. Otherwise, this will... */
+        /** `true` if the appointment must be confirmed by a staff member after booking. Otherwise, `false`. */
         is_staff_confirm: boolean;
-        /** `true` if clients can select a staff member for the appointment. Otherwise, this will be `false` ... */
+        /** `true` if clients can select a staff member for the appointment. Otherwise, `false`. */
         is_staff_skip: boolean;
         /** Determines whether the service will ask for questions or not. */
         is_question: boolean;
@@ -17967,6 +17971,8 @@ export interface WlAppointmentBookServiceServiceList52Response {
         s_duration: string;
         /** The appointment title. */
         s_service: string;
+        /** String representation of the deny reason. `null` if no deny reason. */
+        sid_deny_reason: string | null;
         /** Age restriction header. */
         text_age_restriction: string;
         /** Appointment description (deprecated, use `html_description`). */
@@ -18096,6 +18102,8 @@ export interface WlAppointmentBookServiceServiceListResponse {
         f_online: string;
         /** Determines whether the service will be hidden in the White Label mobile application. */
         hide_application: boolean;
+        /** Human-readable reason why the client cannot book this service. Empty string if there is no deny r... */
+        html_deny_reason: string;
         /** The required minimum client age to book an appointment. */
         i_age_from: number;
         /** The required maximum client age to book an appointment. */
@@ -18106,6 +18114,8 @@ export interface WlAppointmentBookServiceServiceListResponse {
         i_duration: number;
         /** A list of client booking flow types. @see WlServiceServiceBookFlowSid */
         id_book_flow: WlServiceServiceBookFlowSid;
+        /** Reasons why the client can't book this class. @see WlScheduleClassViewDenyReasonSid */
+        id_deny_reason: WlScheduleClassViewDenyReasonSid;
         /** A list of client booking flow types. @see RsServiceRequireSid */
         id_service_require: RsServiceRequireSid;
         /** `true` if age restrictions are public. Otherwise, `false` if they should be hidden from clients. */
@@ -18120,19 +18130,19 @@ export interface WlAppointmentBookServiceServiceListResponse {
         is_book_repeat_client: boolean;
         /** `true` if appointment bookings default to weekly recurring with no end date, `false` otherwise. */
         is_book_repeat_no_end_date_appointment: boolean;
-        /** `true` if `f_deposit` is a percentage. Otherwise, this will be `false` if `f_deposit` is an amoun... */
+        /** `true` if `f_deposit` is a percentage. `false` if `f_deposit` is an amount of money. */
         is_deposit_percent: boolean;
         /** `true` if clients can select the staff member's gender. Otherwise, this will be `false`. */
         is_gender_select: boolean;
-        /** `true` if clients can buy this appointment. Otherwise, this will be `false` if only staff members... */
+        /** `true` if clients can buy this appointment. `false` if only staff members can sell it. */
         is_online_sell: boolean;
         /** `true` if the service requires assets. Otherwise, this will be `false`. */
         is_resource_type: boolean;
-        /** `true` if the appointment can be booked without a Purchase Option. Otherwise, this will be `false... */
+        /** `true` if the appointment can be booked without a Purchase Option. */
         is_single_buy: boolean;
-        /** `true` if the appointment must be confirmed by a staff member after booking. Otherwise, this will... */
+        /** `true` if the appointment must be confirmed by a staff member after booking. Otherwise, `false`. */
         is_staff_confirm: boolean;
-        /** `true` if clients can select a staff member for the appointment. Otherwise, this will be `false` ... */
+        /** `true` if clients can select a staff member for the appointment. Otherwise, `false`. */
         is_staff_skip: boolean;
         /** Determines whether the service will ask for questions or not. */
         is_question: boolean;
@@ -18146,6 +18156,8 @@ export interface WlAppointmentBookServiceServiceListResponse {
         s_duration: string;
         /** The appointment title. */
         s_service: string;
+        /** String representation of the deny reason. `null` if no deny reason. */
+        sid_deny_reason: string | null;
         /** Age restriction header. */
         text_age_restriction: string;
         /** Appointment description (deprecated, use `html_description`). */
