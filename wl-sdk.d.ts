@@ -19291,8 +19291,12 @@ export interface WlAppointmentBookAssetAssetListResponse {
         hide_application: boolean;
         /** The resource age restriction */
         html_age_restriction: string;
+        /** Human-readable reason why the client cannot book this asset. Empty string if there is no deny rea... */
+        html_deny_reason: string;
         /** The resource name. */
         html_title: string;
+        /** Reasons why the client can't book this class. @see WlScheduleClassViewDenyReasonSid */
+        id_deny_reason: WlScheduleClassViewDenyReasonSid;
         /** A list of client booking flow types. @see RsServiceRequireSid */
         id_service_require: RsServiceRequireSid;
         /** Determines whether this service can't be booked due to age restrictions. */
@@ -19303,6 +19307,8 @@ export interface WlAppointmentBookAssetAssetListResponse {
         k_resource: string;
         /** The resource category key. */
         k_resource_category: string;
+        /** String representation of the deny reason. `null` if no deny reason. */
+        sid_deny_reason: string | null;
     }>;
     /** A list of reserved assets. */
     a_asset_busy: Array<Array<string | boolean>>;
