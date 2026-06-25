@@ -11686,7 +11686,7 @@ export interface WlBusinessConfigBusinessConfigResponse {
         /** List of not allowed decline reasons to payment reattempt. Each element is one of PayExceptionSid ... */
         a_payment_reattempt_not_decline_reason: Array<number>;
         /** Keys are list of IDs from {@link WlServiceServiceSid}, and values are flags whether wait list is ... */
-        a_wait_service: Array<unknown>;
+        a_wait_service: Array<boolean>;
         /** Minimum hours|days|months before class should be booked. */
         i_book_before: number;
         /** Maximum hours|days|months after class can be booked. */
@@ -22527,7 +22527,7 @@ export interface WlEventBookEventViewElementResponse {
         /** List of not allowed decline reasons to payment reattempt. Each element is one of PayExceptionSid ... */
         a_payment_reattempt_not_decline_reason: Array<number>;
         /** Keys are list of IDs from {@link WlServiceServiceSid}, and values are flags whether wait list is ... */
-        a_wait_service: Array<unknown>;
+        a_wait_service: Array<boolean>;
         /** Minimum hours|days|months before class should be booked. */
         i_book_before: number;
         /** Maximum hours|days|months after class can be booked. */
