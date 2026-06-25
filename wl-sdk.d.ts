@@ -2168,6 +2168,8 @@ export declare enum WlScheduleClassViewDenyReasonSid {
     BUSINESS_INACTIVE = 10,
     /** Class is canceled */
     CLASS_CANCELED = 11,
+    /** Class is finished */
+    CLASS_FINISHED = 26,
     /** Class is full */
     CLASS_FULL = 14,
     /** Class does not exist anymore */

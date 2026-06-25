@@ -1,6 +1,6 @@
 // AUTO-GENERATED — DO NOT EDIT
 // WellnessLiving SDK — stable channel
-// OpenAPI spec version: 1.1.20260625093753
+// OpenAPI spec version: 1.1.20260625110602
 // Build date: 2026-06-25
 // Endpoints: 457
 // Enums: 176
@@ -2227,6 +2227,8 @@ export var WlScheduleClassViewDenyReasonSid;
     WlScheduleClassViewDenyReasonSid[WlScheduleClassViewDenyReasonSid["BUSINESS_INACTIVE"] = 10] = "BUSINESS_INACTIVE";
     /** Class is canceled */
     WlScheduleClassViewDenyReasonSid[WlScheduleClassViewDenyReasonSid["CLASS_CANCELED"] = 11] = "CLASS_CANCELED";
+    /** Class is finished */
+    WlScheduleClassViewDenyReasonSid[WlScheduleClassViewDenyReasonSid["CLASS_FINISHED"] = 26] = "CLASS_FINISHED";
     /** Class is full */
     WlScheduleClassViewDenyReasonSid[WlScheduleClassViewDenyReasonSid["CLASS_FULL"] = 14] = "CLASS_FULL";
     /** Class does not exist anymore */
