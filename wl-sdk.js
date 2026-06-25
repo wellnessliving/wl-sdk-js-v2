@@ -1,6 +1,6 @@
 /*!
  * WellnessLiving JavaScript SDK (stable)
- * Spec version: 1.1.20260625074320
+ * Spec version: 1.1.20260625085800
  * Build date:   2026-06-25
  * Endpoints:    457
  *
@@ -210,7 +210,7 @@
    * OpenAPI spec version this SDK was generated from.
    * @type {string}
    */
-  WlClient.SPEC_VERSION = '1.1.20260625074320';
+  WlClient.SPEC_VERSION = '1.1.20260625085800';
 
   // ---------------------------------------------------------------------------
   // Generated API methods (457 total)
@@ -9072,6 +9072,7 @@
    * @param {string} params.uid_customer The key of the user who performed the purchase.
    * @returns {Promise<Object>} Response data.
    *  `a_discount_code` {Object} A list of available discount codes with the next structure:
+   *  `a_item` {Object[]} The list of cart items with the next structure:
    *  `is_commission` {boolean} Determines whether the business applied a commission at checkout.
    *  `is_discount_code_mode_select` {boolean} Determines, how staff sees discount codes in Store.
    *  `is_receipt_note` {boolean} Determines whether to display custom receipt notes at checkout.
@@ -10971,7 +10972,7 @@
     RETRY: 3,
     /** Payment is blocked due security reasons (because payment amount is too large) */
     SECURITY_LARGE: 103,
-    /** Only for test, when there is an error in the test that we cannot influence, for example: “server is not available */
+    /** Only for test, when there is an error in the test that we cannot influence, for example: “server is not available” */
     SKIP_IN_TESTS: 188,
     /** Stripe data is empty */
     STRIPE_EMPTY: 31,
@@ -13967,7 +13968,7 @@
     FORM_MY_CLIENTS: 175,
     /** Allow Staff members to view/complete forms for clients that belong to the location that they are selected to work at */
     FORM_MY_LOCATION: 176,
-    /** Allow staff members to delete forms from the client’s profil */
+    /** Allow staff members to delete forms from the client’s profile */
     FORM_RESPONSE_DELETE: 199,
     /** Allow staff members to view form responses */
     FORM_VIEW_RESPONSE: 161,
@@ -13981,9 +13982,9 @@
     INTEGRATION_BRIVO: 179,
     /** Enroll into and manage the WellnessLiving Achieve App. These settings are located under Setup > Achieve Client App */
     INTERFACE_ACHIEVE_APP: 87,
-    /** Modify the look and functionality business’s widgets. These settings are located within Setup > Widget */
+    /** Modify the look and functionality business’s widgets. These settings are located within Setup > Widgets */
     INTERFACE_WIDGET_EDIT: 39,
-    /** View the look and functionality business’s widgets. These settings are located within Setup > Widget */
+    /** View the look and functionality business’s widgets. These settings are located within Setup > Widgets */
     INTERFACE_WIDGET_VIEW: 110,
     /** Permission to Receive or Adjust quantity from the Inventory On Hand Report */
     INVENTORY_UPDATE: 157,
@@ -14021,7 +14022,7 @@
     MARKETING_SUBSCRIPTION: 237,
     /** Enabling this permission for a role will enable making and receiving calls in Message Center */
     MESSAGES_CALLS: 173,
-    /** Enabling this permission for a role will enable the role to use the ‘Assign to’ field and assign a conversation to a staff mem */
+    /** Enabling this permission for a role will enable the role to use the ‘Assign to’ field and assign a conversation to a staff member */
     MESSAGES_CONVERSATIONS: 174,
     /** Enabling this permission for a role will grant access to the inbox tab including viewing and sending messages in the Message Center */
     MESSAGES_MANAGE: 170,
@@ -14117,7 +14118,7 @@
     PROFILE_MERGE: 213,
     /** Manage clients from my location */
     PROFILE_MY_LOCATION: 86,
-    /** View client’s upcoming and past schedul */
+    /** View client’s upcoming and past schedule */
     PROFILE_SCHEDULE: 205,
     /** Manage profile client type */
     PROFILE_TYPE_EDIT: 68,
@@ -14201,7 +14202,7 @@
     SCHEDULE_PAST_EVENT: 100,
     /** View a summary of projected and earned service revenue generated from scheduled and completed sessions */
     SCHEDULE_SUMMARY_REVENUE_SERVICE: 234,
-    /** View a summary of projected pay from upcoming sessions and earned pay from completed sessions, based on the staff’s schedul */
+    /** View a summary of projected pay from upcoming sessions and earned pay from completed sessions, based on the staff’s schedule */
     SCHEDULE_SUMMARY_REVENUE_STAFF: 235,
     /** Allows sign service agreement */
     SERVICE_AGREEMENT_SIGN: 133,

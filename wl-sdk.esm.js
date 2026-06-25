@@ -1,6 +1,6 @@
 // AUTO-GENERATED — DO NOT EDIT
 // WellnessLiving SDK — stable channel
-// OpenAPI spec version: 1.1.20260625074320
+// OpenAPI spec version: 1.1.20260625085800
 // Build date: 2026-06-25
 // Endpoints: 457
 // Enums: 176
@@ -769,7 +769,7 @@ export var RsPayException;
     RsPayException[RsPayException["RETRY"] = 3] = "RETRY";
     /** Payment is blocked due security reasons (because payment amount is too large) */
     RsPayException[RsPayException["SECURITY_LARGE"] = 103] = "SECURITY_LARGE";
-    /** Only for test, when there is an error in the test that we cannot influence, for example: “server is not available */
+    /** Only for test, when there is an error in the test that we cannot influence, for example: “server is not available” */
     RsPayException[RsPayException["SKIP_IN_TESTS"] = 188] = "SKIP_IN_TESTS";
     /** Stripe data is empty */
     RsPayException[RsPayException["STRIPE_EMPTY"] = 31] = "STRIPE_EMPTY";
@@ -3128,7 +3128,7 @@ export var WlCatalogPurchaseOptionViewSid;
     /** Products available for quick buy */
     WlCatalogPurchaseOptionViewSid[WlCatalogPurchaseOptionViewSid["QUICK_BUY"] = 9] = "QUICK_BUY";
 })(WlCatalogPurchaseOptionViewSid || (WlCatalogPurchaseOptionViewSid = {}));
-/** List of Setup -&gt; Store configuration -&gt; Categories and Layout sort options. */
+/** List of Setup -> Store configuration -> Categories and Layout sort options. */
 export var WlShopCategoryShopCategorySortSid;
 (function (WlShopCategoryShopCategorySortSid) {
     /** Custom sort */
@@ -3365,7 +3365,7 @@ export var WlPrivilegePrivilegeSid;
     WlPrivilegePrivilegeSid[WlPrivilegePrivilegeSid["FORM_MY_CLIENTS"] = 175] = "FORM_MY_CLIENTS";
     /** Allow Staff members to view/complete forms for clients that belong to the location that they are selected to work at */
     WlPrivilegePrivilegeSid[WlPrivilegePrivilegeSid["FORM_MY_LOCATION"] = 176] = "FORM_MY_LOCATION";
-    /** Allow staff members to delete forms from the client’s profil */
+    /** Allow staff members to delete forms from the client’s profile */
     WlPrivilegePrivilegeSid[WlPrivilegePrivilegeSid["FORM_RESPONSE_DELETE"] = 199] = "FORM_RESPONSE_DELETE";
     /** Allow staff members to view form responses */
     WlPrivilegePrivilegeSid[WlPrivilegePrivilegeSid["FORM_VIEW_RESPONSE"] = 161] = "FORM_VIEW_RESPONSE";
@@ -3377,17 +3377,17 @@ export var WlPrivilegePrivilegeSid;
     WlPrivilegePrivilegeSid[WlPrivilegePrivilegeSid["INTEGRATION_AUTYMATE"] = 163] = "INTEGRATION_AUTYMATE";
     /** Set up and modify Brivo integration */
     WlPrivilegePrivilegeSid[WlPrivilegePrivilegeSid["INTEGRATION_BRIVO"] = 179] = "INTEGRATION_BRIVO";
-    /** Enroll into and manage the WellnessLiving Achieve App. These settings are located under Setup &gt; Achieve Client App */
+    /** Enroll into and manage the WellnessLiving Achieve App. These settings are located under Setup > Achieve Client App */
     WlPrivilegePrivilegeSid[WlPrivilegePrivilegeSid["INTERFACE_ACHIEVE_APP"] = 87] = "INTERFACE_ACHIEVE_APP";
-    /** Modify the look and functionality business’s widgets. These settings are located within Setup &gt; Widget */
+    /** Modify the look and functionality business’s widgets. These settings are located within Setup > Widgets */
     WlPrivilegePrivilegeSid[WlPrivilegePrivilegeSid["INTERFACE_WIDGET_EDIT"] = 39] = "INTERFACE_WIDGET_EDIT";
-    /** View the look and functionality business’s widgets. These settings are located within Setup &gt; Widget */
+    /** View the look and functionality business’s widgets. These settings are located within Setup > Widgets */
     WlPrivilegePrivilegeSid[WlPrivilegePrivilegeSid["INTERFACE_WIDGET_VIEW"] = 110] = "INTERFACE_WIDGET_VIEW";
     /** Permission to Receive or Adjust quantity from the Inventory On Hand Report */
     WlPrivilegePrivilegeSid[WlPrivilegePrivilegeSid["INVENTORY_UPDATE"] = 157] = "INVENTORY_UPDATE";
     /** Manage my locations except General information */
     WlPrivilegePrivilegeSid[WlPrivilegePrivilegeSid["LOCATION_EDIT"] = 9] = "LOCATION_EDIT";
-    /** Manage tab Location -&gt; General */
+    /** Manage tab Location -> General */
     WlPrivilegePrivilegeSid[WlPrivilegePrivilegeSid["LOCATION_EDIT_GENERAL"] = 126] = "LOCATION_EDIT_GENERAL";
     /** Manage all locations */
     WlPrivilegePrivilegeSid[WlPrivilegePrivilegeSid["LOCATION_FOREIGN"] = 8] = "LOCATION_FOREIGN";
@@ -3419,7 +3419,7 @@ export var WlPrivilegePrivilegeSid;
     WlPrivilegePrivilegeSid[WlPrivilegePrivilegeSid["MARKETING_SUBSCRIPTION"] = 237] = "MARKETING_SUBSCRIPTION";
     /** Enabling this permission for a role will enable making and receiving calls in Message Center */
     WlPrivilegePrivilegeSid[WlPrivilegePrivilegeSid["MESSAGES_CALLS"] = 173] = "MESSAGES_CALLS";
-    /** Enabling this permission for a role will enable the role to use the ‘Assign to’ field and assign a conversation to a staff mem */
+    /** Enabling this permission for a role will enable the role to use the ‘Assign to’ field and assign a conversation to a staff member */
     WlPrivilegePrivilegeSid[WlPrivilegePrivilegeSid["MESSAGES_CONVERSATIONS"] = 174] = "MESSAGES_CONVERSATIONS";
     /** Enabling this permission for a role will grant access to the inbox tab including viewing and sending messages in the Message Center */
     WlPrivilegePrivilegeSid[WlPrivilegePrivilegeSid["MESSAGES_MANAGE"] = 170] = "MESSAGES_MANAGE";
@@ -3515,7 +3515,7 @@ export var WlPrivilegePrivilegeSid;
     WlPrivilegePrivilegeSid[WlPrivilegePrivilegeSid["PROFILE_MERGE"] = 213] = "PROFILE_MERGE";
     /** Manage clients from my location */
     WlPrivilegePrivilegeSid[WlPrivilegePrivilegeSid["PROFILE_MY_LOCATION"] = 86] = "PROFILE_MY_LOCATION";
-    /** View client’s upcoming and past schedul */
+    /** View client’s upcoming and past schedule */
     WlPrivilegePrivilegeSid[WlPrivilegePrivilegeSid["PROFILE_SCHEDULE"] = 205] = "PROFILE_SCHEDULE";
     /** Manage profile client type */
     WlPrivilegePrivilegeSid[WlPrivilegePrivilegeSid["PROFILE_TYPE_EDIT"] = 68] = "PROFILE_TYPE_EDIT";
@@ -3599,7 +3599,7 @@ export var WlPrivilegePrivilegeSid;
     WlPrivilegePrivilegeSid[WlPrivilegePrivilegeSid["SCHEDULE_PAST_EVENT"] = 100] = "SCHEDULE_PAST_EVENT";
     /** View a summary of projected and earned service revenue generated from scheduled and completed sessions */
     WlPrivilegePrivilegeSid[WlPrivilegePrivilegeSid["SCHEDULE_SUMMARY_REVENUE_SERVICE"] = 234] = "SCHEDULE_SUMMARY_REVENUE_SERVICE";
-    /** View a summary of projected pay from upcoming sessions and earned pay from completed sessions, based on the staff’s schedul */
+    /** View a summary of projected pay from upcoming sessions and earned pay from completed sessions, based on the staff’s schedule */
     WlPrivilegePrivilegeSid[WlPrivilegePrivilegeSid["SCHEDULE_SUMMARY_REVENUE_STAFF"] = 235] = "SCHEDULE_SUMMARY_REVENUE_STAFF";
     /** Allows sign service agreement */
     WlPrivilegePrivilegeSid[WlPrivilegePrivilegeSid["SERVICE_AGREEMENT_SIGN"] = 133] = "SERVICE_AGREEMENT_SIGN";
@@ -4831,9 +4831,9 @@ export var WlSearchSearchOperationSid;
     WlSearchSearchOperationSid[WlSearchSearchOperationSid["END_WITH"] = 6] = "END_WITH";
     /** = */
     WlSearchSearchOperationSid[WlSearchSearchOperationSid["EQUAL"] = 13] = "EQUAL";
-    /** &gt; */
+    /** > */
     WlSearchSearchOperationSid[WlSearchSearchOperationSid["GREATER_THAN"] = 17] = "GREATER_THAN";
-    /** &gt;= */
+    /** >= */
     WlSearchSearchOperationSid[WlSearchSearchOperationSid["GREATER_THAN_OR_EQUAL"] = 18] = "GREATER_THAN_OR_EQUAL";
     /** In the last */
     WlSearchSearchOperationSid[WlSearchSearchOperationSid["IN_LAST"] = 23] = "IN_LAST";
@@ -4853,9 +4853,9 @@ export var WlSearchSearchOperationSid;
     WlSearchSearchOperationSid[WlSearchSearchOperationSid["LAST_MONTH"] = 29] = "LAST_MONTH";
     /** Last week */
     WlSearchSearchOperationSid[WlSearchSearchOperationSid["LAST_WEEK"] = 28] = "LAST_WEEK";
-    /** &lt; */
+    /** < */
     WlSearchSearchOperationSid[WlSearchSearchOperationSid["LESS_THAN"] = 15] = "LESS_THAN";
-    /** &lt;= */
+    /** <= */
     WlSearchSearchOperationSid[WlSearchSearchOperationSid["LESS_THAN_OR_EQUAL"] = 16] = "LESS_THAN_OR_EQUAL";
     /** No */
     WlSearchSearchOperationSid[WlSearchSearchOperationSid["NO"] = 19] = "NO";

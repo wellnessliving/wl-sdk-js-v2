@@ -761,7 +761,7 @@ export declare enum RsPayException {
     RETRY = 3,
     /** Payment is blocked due security reasons (because payment amount is too large) */
     SECURITY_LARGE = 103,
-    /** Only for test, when there is an error in the test that we cannot influence, for example: “server is not available */
+    /** Only for test, when there is an error in the test that we cannot influence, for example: “server is not available” */
     SKIP_IN_TESTS = 188,
     /** Stripe data is empty */
     STRIPE_EMPTY = 31,
@@ -3027,7 +3027,7 @@ export declare enum WlCatalogPurchaseOptionViewSid {
     /** Products available for quick buy */
     QUICK_BUY = 9
 }
-/** List of Setup -&gt; Store configuration -&gt; Categories and Layout sort options. */
+/** List of Setup -> Store configuration -> Categories and Layout sort options. */
 export declare enum WlShopCategoryShopCategorySortSid {
     /** Custom sort */
     CUSTOM = 2,
@@ -3257,7 +3257,7 @@ export declare enum WlPrivilegePrivilegeSid {
     FORM_MY_CLIENTS = 175,
     /** Allow Staff members to view/complete forms for clients that belong to the location that they are selected to work at */
     FORM_MY_LOCATION = 176,
-    /** Allow staff members to delete forms from the client’s profil */
+    /** Allow staff members to delete forms from the client’s profile */
     FORM_RESPONSE_DELETE = 199,
     /** Allow staff members to view form responses */
     FORM_VIEW_RESPONSE = 161,
@@ -3269,17 +3269,17 @@ export declare enum WlPrivilegePrivilegeSid {
     INTEGRATION_AUTYMATE = 163,
     /** Set up and modify Brivo integration */
     INTEGRATION_BRIVO = 179,
-    /** Enroll into and manage the WellnessLiving Achieve App. These settings are located under Setup &gt; Achieve Client App */
+    /** Enroll into and manage the WellnessLiving Achieve App. These settings are located under Setup > Achieve Client App */
     INTERFACE_ACHIEVE_APP = 87,
-    /** Modify the look and functionality business’s widgets. These settings are located within Setup &gt; Widget */
+    /** Modify the look and functionality business’s widgets. These settings are located within Setup > Widgets */
     INTERFACE_WIDGET_EDIT = 39,
-    /** View the look and functionality business’s widgets. These settings are located within Setup &gt; Widget */
+    /** View the look and functionality business’s widgets. These settings are located within Setup > Widgets */
     INTERFACE_WIDGET_VIEW = 110,
     /** Permission to Receive or Adjust quantity from the Inventory On Hand Report */
     INVENTORY_UPDATE = 157,
     /** Manage my locations except General information */
     LOCATION_EDIT = 9,
-    /** Manage tab Location -&gt; General */
+    /** Manage tab Location -> General */
     LOCATION_EDIT_GENERAL = 126,
     /** Manage all locations */
     LOCATION_FOREIGN = 8,
@@ -3311,7 +3311,7 @@ export declare enum WlPrivilegePrivilegeSid {
     MARKETING_SUBSCRIPTION = 237,
     /** Enabling this permission for a role will enable making and receiving calls in Message Center */
     MESSAGES_CALLS = 173,
-    /** Enabling this permission for a role will enable the role to use the ‘Assign to’ field and assign a conversation to a staff mem */
+    /** Enabling this permission for a role will enable the role to use the ‘Assign to’ field and assign a conversation to a staff member */
     MESSAGES_CONVERSATIONS = 174,
     /** Enabling this permission for a role will grant access to the inbox tab including viewing and sending messages in the Message Center */
     MESSAGES_MANAGE = 170,
@@ -3407,7 +3407,7 @@ export declare enum WlPrivilegePrivilegeSid {
     PROFILE_MERGE = 213,
     /** Manage clients from my location */
     PROFILE_MY_LOCATION = 86,
-    /** View client’s upcoming and past schedul */
+    /** View client’s upcoming and past schedule */
     PROFILE_SCHEDULE = 205,
     /** Manage profile client type */
     PROFILE_TYPE_EDIT = 68,
@@ -3491,7 +3491,7 @@ export declare enum WlPrivilegePrivilegeSid {
     SCHEDULE_PAST_EVENT = 100,
     /** View a summary of projected and earned service revenue generated from scheduled and completed sessions */
     SCHEDULE_SUMMARY_REVENUE_SERVICE = 234,
-    /** View a summary of projected pay from upcoming sessions and earned pay from completed sessions, based on the staff’s schedul */
+    /** View a summary of projected pay from upcoming sessions and earned pay from completed sessions, based on the staff’s schedule */
     SCHEDULE_SUMMARY_REVENUE_STAFF = 235,
     /** Allows sign service agreement */
     SERVICE_AGREEMENT_SIGN = 133,
@@ -4663,9 +4663,9 @@ export declare enum WlSearchSearchOperationSid {
     END_WITH = 6,
     /** = */
     EQUAL = 13,
-    /** &gt; */
+    /** > */
     GREATER_THAN = 17,
-    /** &gt;= */
+    /** >= */
     GREATER_THAN_OR_EQUAL = 18,
     /** In the last */
     IN_LAST = 23,
@@ -4685,9 +4685,9 @@ export declare enum WlSearchSearchOperationSid {
     LAST_MONTH = 29,
     /** Last week */
     LAST_WEEK = 28,
-    /** &lt; */
+    /** < */
     LESS_THAN = 15,
-    /** &lt;= */
+    /** <= */
     LESS_THAN_OR_EQUAL = 16,
     /** No */
     NO = 19,
@@ -4765,9 +4765,9 @@ export interface ThothExplorerSearchClassSessionClassSessionSearchParams {
     f_longitude?: number | null;
     /** Search radius in kilometers. Required. */
     f_radius?: number | null;
-    /** Maximum price to search by (inclusive). Decimal string in dollars (e.g. `&quot;100.00&quot;`). */
+    /** Maximum price to search by (inclusive). Decimal string in dollars (e.g. `"100.00"`). */
     m_price_max?: string | null;
-    /** Minimum price to search by (inclusive). Decimal string in dollars (e.g. `&quot;0.00&quot;`). */
+    /** Minimum price to search by (inclusive). Decimal string in dollars (e.g. `"0.00"`). */
     m_price_min?: string | null;
 }
 export interface ThothExplorerSearchClassSessionClassSessionSearchResponse {
@@ -6572,6 +6572,8 @@ export interface WlLoginLoginPostResponse {
         s_last_name: string;
         /** Client`s mail. */
         text_mail_client: string;
+        /** Staff`s mail. */
+        text_mail_staff: string;
         /** Staff's first name. */
         text_name_first_staff: string;
         /** Full client name. User login is returned in a case neither first name, nor last name specified. */
@@ -7929,6 +7931,8 @@ export interface WlTaxTaxListParams {
 export interface WlTaxTaxListResponse {
     /** A list of taxes. */
     a_list: Array<{
+        /** The locations where the tax is applicable. */
+        a_location: Array<string>;
         /** The amount of the tax. */
         f_value: number;
         /** The tax key. */
@@ -11680,7 +11684,7 @@ export interface WlBusinessConfigBusinessConfigResponse {
         /** List of not allowed decline reasons to payment reattempt. Each element is one of PayExceptionSid ... */
         a_payment_reattempt_not_decline_reason: Array<number>;
         /** Keys are list of IDs from {@link WlServiceServiceSid}, and values are flags whether wait list is ... */
-        a_wait_service: number;
+        a_wait_service: Array<unknown>;
         /** Minimum hours|days|months before class should be booked. */
         i_book_before: number;
         /** Maximum hours|days|months after class can be booked. */
@@ -12321,8 +12325,22 @@ export interface WlLoginAttendanceAttendanceListResponse {
             a_note: Record<string, unknown>;
             /** Amount the client owns to the business. */
             html_credit: string;
-            /** User`s login notes.&lt;/dd&gt; */
+            /** User`s login notes. */
             html_note: string;
+            /** Count of unpaid visits if client has at least one. */
+            i_visit_credit: number;
+            /** If the user has a positive balance on his account. */
+            is_account_positive: boolean;
+            /** If a user has a birthday today. */
+            is_birthday: boolean;
+            /** `true` if client has some contracts that he should agree. */
+            is_contract: boolean;
+            /** `true` if the user makes payments for a family member, `false` otherwise. */
+            is_family_payer: boolean;
+            /** `true` if this is a first visit of the client. */
+            is_first: boolean;
+            /** `true` if the client has uncompleted one or more forms. */
+            is_form: boolean;
             /** `true` if for user exists not completed tasks. */
             is_task_active: boolean;
             /** `true` if for user exists urgent tasks. */
@@ -12567,8 +12585,22 @@ export interface WlLoginAttendanceAttendanceListResponse {
             a_note: Record<string, unknown>;
             /** Amount the client owns to the business. */
             html_credit: string;
-            /** User`s login notes.&lt;/dd&gt; */
+            /** User`s login notes. */
             html_note: string;
+            /** Count of unpaid visits if client has at least one. */
+            i_visit_credit: number;
+            /** If the user has a positive balance on his account. */
+            is_account_positive: boolean;
+            /** If a user has a birthday today. */
+            is_birthday: boolean;
+            /** `true` if client has some contracts that he should agree. */
+            is_contract: boolean;
+            /** `true` if the user makes payments for a family member, `false` otherwise. */
+            is_family_payer: boolean;
+            /** `true` if this is a first visit of the client. */
+            is_first: boolean;
+            /** `true` if the client has uncompleted one or more forms. */
+            is_form: boolean;
             /** `true` if for user exists not completed tasks. */
             is_task_active: boolean;
             /** `true` if for user exists urgent tasks. */
@@ -12813,8 +12845,22 @@ export interface WlLoginAttendanceAttendanceListResponse {
             a_note: Record<string, unknown>;
             /** Amount the client owns to the business. */
             html_credit: string;
-            /** User`s login notes.&lt;/dd&gt; */
+            /** User`s login notes. */
             html_note: string;
+            /** Count of unpaid visits if client has at least one. */
+            i_visit_credit: number;
+            /** If the user has a positive balance on his account. */
+            is_account_positive: boolean;
+            /** If a user has a birthday today. */
+            is_birthday: boolean;
+            /** `true` if client has some contracts that he should agree. */
+            is_contract: boolean;
+            /** `true` if the user makes payments for a family member, `false` otherwise. */
+            is_family_payer: boolean;
+            /** `true` if this is a first visit of the client. */
+            is_first: boolean;
+            /** `true` if the client has uncompleted one or more forms. */
+            is_form: boolean;
             /** `true` if for user exists not completed tasks. */
             is_task_active: boolean;
             /** `true` if for user exists urgent tasks. */
@@ -13200,8 +13246,22 @@ export interface WlLoginAttendanceAttendanceListByTokenResponse {
             a_note: Record<string, unknown>;
             /** Amount the client owns to the business. */
             html_credit: string;
-            /** User`s login notes.&lt;/dd&gt; */
+            /** User`s login notes. */
             html_note: string;
+            /** Count of unpaid visits if client has at least one. */
+            i_visit_credit: number;
+            /** If the user has a positive balance on his account. */
+            is_account_positive: boolean;
+            /** If a user has a birthday today. */
+            is_birthday: boolean;
+            /** `true` if client has some contracts that he should agree. */
+            is_contract: boolean;
+            /** `true` if the user makes payments for a family member, `false` otherwise. */
+            is_family_payer: boolean;
+            /** `true` if this is a first visit of the client. */
+            is_first: boolean;
+            /** `true` if the client has uncompleted one or more forms. */
+            is_form: boolean;
             /** `true` if for user exists not completed tasks. */
             is_task_active: boolean;
             /** `true` if for user exists urgent tasks. */
@@ -13446,8 +13506,22 @@ export interface WlLoginAttendanceAttendanceListByTokenResponse {
             a_note: Record<string, unknown>;
             /** Amount the client owns to the business. */
             html_credit: string;
-            /** User`s login notes.&lt;/dd&gt; */
+            /** User`s login notes. */
             html_note: string;
+            /** Count of unpaid visits if client has at least one. */
+            i_visit_credit: number;
+            /** If the user has a positive balance on his account. */
+            is_account_positive: boolean;
+            /** If a user has a birthday today. */
+            is_birthday: boolean;
+            /** `true` if client has some contracts that he should agree. */
+            is_contract: boolean;
+            /** `true` if the user makes payments for a family member, `false` otherwise. */
+            is_family_payer: boolean;
+            /** `true` if this is a first visit of the client. */
+            is_first: boolean;
+            /** `true` if the client has uncompleted one or more forms. */
+            is_form: boolean;
             /** `true` if for user exists not completed tasks. */
             is_task_active: boolean;
             /** `true` if for user exists urgent tasks. */
@@ -13692,8 +13766,22 @@ export interface WlLoginAttendanceAttendanceListByTokenResponse {
             a_note: Record<string, unknown>;
             /** Amount the client owns to the business. */
             html_credit: string;
-            /** User`s login notes.&lt;/dd&gt; */
+            /** User`s login notes. */
             html_note: string;
+            /** Count of unpaid visits if client has at least one. */
+            i_visit_credit: number;
+            /** If the user has a positive balance on his account. */
+            is_account_positive: boolean;
+            /** If a user has a birthday today. */
+            is_birthday: boolean;
+            /** `true` if client has some contracts that he should agree. */
+            is_contract: boolean;
+            /** `true` if the user makes payments for a family member, `false` otherwise. */
+            is_family_payer: boolean;
+            /** `true` if this is a first visit of the client. */
+            is_first: boolean;
+            /** `true` if the client has uncompleted one or more forms. */
+            is_form: boolean;
             /** `true` if for user exists not completed tasks. */
             is_task_active: boolean;
             /** `true` if for user exists urgent tasks. */
@@ -15312,7 +15400,7 @@ export interface WlCatalogCatalogListCatalogProductParams {
         i_last: number;
         /** List of possible sort order. @see CoreSidSortOrderSid */
         id_order: CoreSidSortOrderSid | null;
-        /** List of Setup -&gt; Store configuration -&gt; Categories and Layout sort options. @see WlShopCategoryShopCategorySortSid */
+        /** List of Setup -> Store configuration -> Categories and Layout sort options. @see WlShopCategoryShopCategorySortSid */
         id_sort: WlShopCategoryShopCategorySortSid;
         /** The business key. */
         k_business: string;
@@ -15339,7 +15427,7 @@ export interface WlCatalogCatalogListCatalogProductResponse {
         a_order: Array<number>;
         /** List of possible sort order. @see CoreSidSortOrderSid */
         id_order: CoreSidSortOrderSid | null;
-        /** List of Setup -&gt; Store configuration -&gt; Categories and Layout sort options. @see WlShopCategoryShopCategorySortSid */
+        /** List of Setup -> Store configuration -> Categories and Layout sort options. @see WlShopCategoryShopCategorySortSid */
         id_sort: WlShopCategoryShopCategorySortSid;
     }>;
     /** The list of products. Each element has the following keys: */
@@ -15926,8 +16014,22 @@ export interface WlReceptionApplicationMemberInfoResponse {
         };
         /** Amount the client owns to the business. */
         html_credit: string;
-        /** User`s login notes.&lt;/dd&gt; */
+        /** User`s login notes. */
         html_note: string;
+        /** Count of unpaid visits if client has at least one. */
+        i_visit_credit: number;
+        /** If the user has a positive balance on his account. */
+        is_account_positive: boolean;
+        /** If a user has a birthday today. */
+        is_birthday: boolean;
+        /** `true` if client has some contracts that he should agree. */
+        is_contract: boolean;
+        /** `true` if the user makes payments for a family member, `false` otherwise. */
+        is_family_payer: boolean;
+        /** `true` if this is a first visit of the client. */
+        is_first: boolean;
+        /** `true` if the client has uncompleted one or more forms. */
+        is_form: boolean;
         /** `true` if for user exists not completed tasks. */
         is_task_active: boolean;
         /** `true` if for user exists urgent tasks. */
@@ -16015,8 +16117,22 @@ export interface WlReceptionApplicationMemberInfoResponse {
             };
             /** Amount the client owns to the business. */
             html_credit: string;
-            /** User`s login notes.&lt;/dd&gt; */
+            /** User`s login notes. */
             html_note: string;
+            /** Count of unpaid visits if client has at least one. */
+            i_visit_credit: number;
+            /** If the user has a positive balance on his account. */
+            is_account_positive: boolean;
+            /** If a user has a birthday today. */
+            is_birthday: boolean;
+            /** `true` if client has some contracts that he should agree. */
+            is_contract: boolean;
+            /** `true` if the user makes payments for a family member, `false` otherwise. */
+            is_family_payer: boolean;
+            /** `true` if this is a first visit of the client. */
+            is_first: boolean;
+            /** `true` if the client has uncompleted one or more forms. */
+            is_form: boolean;
             /** `true` if for user exists not completed tasks. */
             is_task_active: boolean;
             /** `true` if for user exists urgent tasks. */
@@ -17077,8 +17193,22 @@ export interface WlMemberInfoInfoResponse {
         };
         /** Amount the client owns to the business. */
         html_credit: string;
-        /** User`s login notes.&lt;/dd&gt; */
+        /** User`s login notes. */
         html_note: string;
+        /** Count of unpaid visits if client has at least one. */
+        i_visit_credit: number;
+        /** If the user has a positive balance on his account. */
+        is_account_positive: boolean;
+        /** If a user has a birthday today. */
+        is_birthday: boolean;
+        /** `true` if client has some contracts that he should agree. */
+        is_contract: boolean;
+        /** `true` if the user makes payments for a family member, `false` otherwise. */
+        is_family_payer: boolean;
+        /** `true` if this is a first visit of the client. */
+        is_first: boolean;
+        /** `true` if the client has uncompleted one or more forms. */
+        is_form: boolean;
         /** `true` if for user exists not completed tasks. */
         is_task_active: boolean;
         /** `true` if for user exists urgent tasks. */
@@ -17153,8 +17283,22 @@ export interface WlMemberInfoInfoResponse {
             };
             /** Amount the client owns to the business. */
             html_credit: string;
-            /** User`s login notes.&lt;/dd&gt; */
+            /** User`s login notes. */
             html_note: string;
+            /** Count of unpaid visits if client has at least one. */
+            i_visit_credit: number;
+            /** If the user has a positive balance on his account. */
+            is_account_positive: boolean;
+            /** If a user has a birthday today. */
+            is_birthday: boolean;
+            /** `true` if client has some contracts that he should agree. */
+            is_contract: boolean;
+            /** `true` if the user makes payments for a family member, `false` otherwise. */
+            is_family_payer: boolean;
+            /** `true` if this is a first visit of the client. */
+            is_first: boolean;
+            /** `true` if the client has uncompleted one or more forms. */
+            is_form: boolean;
             /** `true` if for user exists not completed tasks. */
             is_task_active: boolean;
             /** `true` if for user exists urgent tasks. */
@@ -22381,7 +22525,7 @@ export interface WlEventBookEventViewElementResponse {
         /** List of not allowed decline reasons to payment reattempt. Each element is one of PayExceptionSid ... */
         a_payment_reattempt_not_decline_reason: Array<number>;
         /** Keys are list of IDs from {@link WlServiceServiceSid}, and values are flags whether wait list is ... */
-        a_wait_service: number;
+        a_wait_service: Array<unknown>;
         /** Minimum hours|days|months before class should be booked. */
         i_book_before: number;
         /** Maximum hours|days|months after class can be booked. */
@@ -23335,7 +23479,7 @@ export interface WlCatalogStaffAppCatalogCartCatalogCartParams {
         /** The list of purchase item additional options: */
         a_config?: {
             /** List of tuition components: */
-            a_tuition_component?: Record<string, unknown>;
+            a_event_list?: Record<string, unknown>;
             /** The custom price. */
             f_price?: string;
             /** The prorate date. This should be passed when `is_prorate`=`true`. */
@@ -23422,6 +23566,67 @@ export interface WlCatalogStaffAppCatalogCartCatalogCartResponse {
         /** Name of the code. */
         text_title: string;
     };
+    /** The list of cart items with the next structure: */
+    a_item: Array<{
+        /** The list of purchase item additional options: */
+        a_config?: {
+            /** List of tuition components: */
+            a_event_list?: Record<string, unknown>;
+            /** The custom price. */
+            f_price?: string;
+            /** The prorate date. This should be passed when `is_prorate`=`true`. */
+            dt_prorate?: string;
+            /** The promotion start date. */
+            dt_start?: string;
+            /** Determines whether to prorate the first payment. */
+            is_prorate?: boolean;
+            /** Determines if the client should pay for the first period now. */
+            is_prorate_fix?: boolean;
+            /** Determines whether the selected option 'pay prorate amount only' should only include the prorate ... */
+            is_prorate_only?: boolean;
+            /** The custom price of the gift card. */
+            m_custom?: string;
+            /** The date when the gift card email must be sent. */
+            dt_send_local?: string;
+            /** If `true`, the gift card will be sent via email. Otherwise, `false` if the gift card will be prin... */
+            is_mail: boolean;
+            /** The recipient's email. */
+            s_mail?: string;
+            /** The message. */
+            s_message?: string;
+            /** The recipient's name. */
+            s_recipient: string;
+            /** The sender's name. */
+            s_sender: string;
+            /** The amount of money for the prorate period. This should only be passed in the case of manual entry. */
+            m_prorate_custom: string;
+            /** The coupon key. */
+            k_coupon: string;
+            /** The coupon amount key. */
+            k_coupon_amount: string;
+        };
+        /** Information about taxes. If not passed, no custom taxes have been applied to the sale item. */
+        a_tax_custom?: {
+            /** The tax amount. */
+            f_tax: string;
+            /** The tax keys. */
+            k_tax: string;
+        };
+        /** The discount percentage, applied to the current item. */
+        f_discount_percent?: number;
+        /** The quantity of sale items. */
+        i_quantity: number;
+        /** List of sale categories on the store page. @see RsSaleSid */
+        id_sale: RsSaleSid;
+        /** The sale item key. */
+        k_id: string;
+        /** The store product option key. This will be `null` if the sale item has no options. */
+        k_shop_product_option: string;
+        /** The fixed price discount, applied to the current item. */
+        m_discount_fix?: string;
+        /** The custom price of the sale item. If not passed, no custom price has been applied to the sale item. */
+        m_price_custom?: string;
+    }>;
     /** Determines whether the business applied a commission at checkout. */
     is_commission: boolean;
     /** Determines, how staff sees discount codes in Store. */
@@ -24336,7 +24541,7 @@ export interface WlMailPatternAutomatedMarketingCustomTemplatePatternGetResponse
         text_html: string;
         /** JSON content of the email for Unlayer editor. */
         text_json: string;
-        /** &gt;Preview text of the email. */
+        /** >Preview text of the email. */
         text_preview: string;
         /** Content of the push notification. */
         text_push: string;
@@ -24371,7 +24576,7 @@ export interface WlMailPatternAutomatedMarketingCustomTemplatePatternGetResponse
         text_html: string;
         /** JSON content of the email for Unlayer editor. */
         text_json: string;
-        /** &gt;Preview text of the email. */
+        /** >Preview text of the email. */
         text_preview: string;
         /** Content of the push notification. */
         text_push: string;
