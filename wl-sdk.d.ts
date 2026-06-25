@@ -2785,6 +2785,8 @@ export declare enum WlScheduleClassViewDenyReasonSid {
     BUSINESS_INACTIVE = 10,
     /** Class is canceled */
     CLASS_CANCELED = 11,
+    /** Class is finished */
+    CLASS_FINISHED = 26,
     /** Class is full */
     CLASS_FULL = 14,
     /** Class does not exist anymore */
@@ -8638,7 +8640,7 @@ export interface WlBusinessConfigBusinessConfigResponse {
         /** List of not allowed decline reasons to payment reattempt. Each element is one of PayExceptionSid ... */
         a_payment_reattempt_not_decline_reason: Array<number>;
         /** Keys are list of IDs from {@link WlServiceServiceSid}, and values are flags whether wait list is ... */
-        a_wait_service: Array<unknown>;
+        a_wait_service: Array<boolean>;
         /** Minimum hours|days|months before class should be booked. */
         i_book_before: number;
         /** Maximum hours|days|months after class can be booked. */
@@ -20233,7 +20235,7 @@ export interface WlBookProcessStoreStoreGroupResponse {
         i_session: number;
         /** Login promotion key. */
         k_login_promotion: string | null;
-        /** Host login promotion key that grants the guest pass. Primary key in the RsLoginPromotionSql table. */
+        /** Host login promotion key that grants the guest pass. */
         k_login_promotion_guest_pass: string | null;
         /** Session pass key. */
         k_session_pass: string | null;
@@ -20998,7 +21000,7 @@ export interface WlEventBookEventViewElementResponse {
         /** List of not allowed decline reasons to payment reattempt. Each element is one of PayExceptionSid ... */
         a_payment_reattempt_not_decline_reason: Array<number>;
         /** Keys are list of IDs from {@link WlServiceServiceSid}, and values are flags whether wait list is ... */
-        a_wait_service: Array<unknown>;
+        a_wait_service: Array<boolean>;
         /** Minimum hours|days|months before class should be booked. */
         i_book_before: number;
         /** Maximum hours|days|months after class can be booked. */
