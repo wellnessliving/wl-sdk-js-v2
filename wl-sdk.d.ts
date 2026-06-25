@@ -7610,7 +7610,7 @@ export interface WlTaxTaxListParams {
 export interface WlTaxTaxListResponse {
     /** A list of taxes. */
     a_list: Array<{
-        /** The locations where the tax is applicable.</i> */
+        /** The locations where the tax is applicable. */
         a_location: Array<string>;
         /** The amount of the tax. */
         f_value: number;
@@ -23715,7 +23715,7 @@ export interface WlCatalogStaffAppCatalogCartCatalogCartParams {
         /** The list of purchase item additional options: */
         a_config?: {
             /** List of tuition components: */
-            a_tuition_component?: Record<string, unknown>;
+            a_event_list?: Record<string, unknown>;
             /** The custom price. */
             f_price?: string;
             /** The prorate date. This should be passed when `is_prorate`=`true`. */
@@ -23802,6 +23802,67 @@ export interface WlCatalogStaffAppCatalogCartCatalogCartResponse {
         /** Name of the code. */
         text_title: string;
     };
+    /** The list of cart items with the next structure: */
+    a_item: Array<{
+        /** The list of purchase item additional options: */
+        a_config?: {
+            /** List of tuition components: */
+            a_event_list?: Record<string, unknown>;
+            /** The custom price. */
+            f_price?: string;
+            /** The prorate date. This should be passed when `is_prorate`=`true`. */
+            dt_prorate?: string;
+            /** The promotion start date. */
+            dt_start?: string;
+            /** Determines whether to prorate the first payment. */
+            is_prorate?: boolean;
+            /** Determines if the client should pay for the first period now. */
+            is_prorate_fix?: boolean;
+            /** Determines whether the selected option 'pay prorate amount only' should only include the prorate ... */
+            is_prorate_only?: boolean;
+            /** The custom price of the gift card. */
+            m_custom?: string;
+            /** The date when the gift card email must be sent. */
+            dt_send_local?: string;
+            /** If `true`, the gift card will be sent via email. Otherwise, `false` if the gift card will be prin... */
+            is_mail: boolean;
+            /** The recipient's email. */
+            s_mail?: string;
+            /** The message. */
+            s_message?: string;
+            /** The recipient's name. */
+            s_recipient: string;
+            /** The sender's name. */
+            s_sender: string;
+            /** The amount of money for the prorate period. This should only be passed in the case of manual entry. */
+            m_prorate_custom: string;
+            /** The coupon key. */
+            k_coupon: string;
+            /** The coupon amount key. */
+            k_coupon_amount: string;
+        };
+        /** Information about taxes. If not passed, no custom taxes have been applied to the sale item. */
+        a_tax_custom?: {
+            /** The tax amount. */
+            f_tax: string;
+            /** The tax keys. */
+            k_tax: string;
+        };
+        /** The discount percentage, applied to the current item. */
+        f_discount_percent?: number;
+        /** The quantity of sale items. */
+        i_quantity: number;
+        /** List of sale categories on the store page. @see RsSaleSid */
+        id_sale: RsSaleSid | null;
+        /** The sale item key. */
+        k_id: string;
+        /** The store product option key. This will be `null` if the sale item has no options. */
+        k_shop_product_option: string;
+        /** The fixed price discount, applied to the current item. */
+        m_discount_fix?: string;
+        /** The custom price of the sale item. If not passed, no custom price has been applied to the sale item. */
+        m_price_custom?: string;
+    }>;
     /** Determines whether the business applied a commission at checkout. */
     is_commission: boolean;
     /** Determines, how staff sees discount codes in Store. */

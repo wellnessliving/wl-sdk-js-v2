@@ -1,6 +1,6 @@
 /*!
  * WellnessLiving JavaScript SDK (dev)
- * Spec version: 1.1.20260625123623
+ * Spec version: 1.1.20260625131715
  * Build date:   2026-06-25
  * Endpoints:    457
  *
@@ -210,7 +210,7 @@
    * OpenAPI spec version this SDK was generated from.
    * @type {string}
    */
-  WlClient.SPEC_VERSION = '1.1.20260625123623';
+  WlClient.SPEC_VERSION = '1.1.20260625131715';
 
   // ---------------------------------------------------------------------------
   // Generated API methods (457 total)
@@ -9338,6 +9338,7 @@
    * @param {string} params.uid_customer The key of the user who performed the purchase.
    * @returns {Promise<Object>} Response data.
    *  `a_discount_code` {Object} A list of available discount codes with the next structure:
+   *  `a_item` {Object[]} The list of cart items with the next structure:
    *  `is_commission` {boolean} Determines whether the business applied a commission at checkout.
    *  `is_discount_code_mode_select` {boolean} Determines, how staff sees discount codes in Store.
    *  `is_receipt_note` {boolean} Determines whether to display custom receipt notes at checkout.
