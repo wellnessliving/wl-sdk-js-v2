@@ -8236,55 +8236,6 @@ export interface WlHolidayBulkBusinessHolidayResponse {
         s_title: string;
     }>;
 }
-export interface ThothLayoutBeUserProfilePopupUserPopupParams {
-    /** Whether this is a backend context. */
-    is_backend: boolean;
-    /** Current frontend business key. Primary key in the RsBusinessSql table. */
-    k_business: string;
-}
-export interface ThothLayoutBeUserProfilePopupUserPopupResponse {
-    /** List of businesses for switching. One element contains: */
-    a_business: Array<{
-        /** Business key. Primary key from the RsBusinessSql table. */
-        k_business: string;
-        /** Business title. */
-        text_title: string;
-    }>;
-    /** List of locations for switching. One element contains: */
-    a_location: Array<{
-        /** Location business key. Primary key from the RsBusinessSql table. */
-        k_business: string;
-        /** Location title. */
-        text_title: string;
-    }>;
-    /** List of related profiles. One element contains: */
-    a_user: Array<{
-        /** Name of the related profile. */
-        s_name: string;
-        /** Login link for this profile. */
-        url_login: string;
-    }>;
-    /** Whether this is a backend context. */
-    is_backend: boolean;
-    /** Flag indicating general mode without a selected business. */
-    is_general: boolean;
-    /** Flag indicating that the current user has staff access. */
-    is_staff: boolean;
-    /** Current frontend business key. Primary key in the RsBusinessSql table. */
-    k_business: string;
-    /** Show business/location switching selects. */
-    show_select: boolean;
-    /** Current user ID. */
-    uid: string;
-    /** Logout link. */
-    url_logout: string;
-    /** Link to the profile page. */
-    url_profile: string;
-    /** Link to schedule (backend access). */
-    url_schedule: string;
-    /** Link to staff profile in backend popup. */
-    url_staff: string;
-}
 export interface ThothWlPayAccountChargeChargeParams {
     /** The account charge mode. @see RsPayAccountChargeSid */
     id_pay_account_charge: RsPayAccountChargeSid;
@@ -25288,28 +25239,12 @@ export declare class ThothWlPayNamespace {
     readonly bank: ThothWlPayBankNamespace;
     constructor(_client: WlClient);
 }
-export declare class ThothLayoutBeUserProfilePopupNamespace {
-    private readonly _client;
-    constructor(_client: WlClient);
-    userPopup(params?: ThothLayoutBeUserProfilePopupUserPopupParams): Promise<ThothLayoutBeUserProfilePopupUserPopupResponse>;
-}
-export declare class ThothLayoutBeUserProfileNamespace {
-    private readonly _client;
-    readonly popup: ThothLayoutBeUserProfilePopupNamespace;
-    constructor(_client: WlClient);
-}
-export declare class ThothLayoutBeNamespace {
-    private readonly _client;
-    readonly userProfile: ThothLayoutBeUserProfileNamespace;
-    constructor(_client: WlClient);
-}
 export declare class ThothNamespace {
     private readonly _client;
     readonly payHardware: ThothPayHardwareNamespace;
     readonly explorerSearch: ThothExplorerSearchNamespace;
     readonly reportCore: ThothReportCoreNamespace;
     readonly wlPay: ThothWlPayNamespace;
-    readonly layoutBe: ThothLayoutBeNamespace;
     constructor(_client: WlClient);
 }
 export declare class CoreRequestApiApplicationCredentialNamespace {

@@ -1,8 +1,8 @@
 // AUTO-GENERATED — DO NOT EDIT
 // WellnessLiving SDK — stable channel
-// OpenAPI spec version: 1.1.20260626113418
+// OpenAPI spec version: 1.1.20260626122054
 // Build date: 2026-06-26
-// Endpoints: 474
+// Endpoints: 473
 // Enums: 179
 export class WlApiError extends Error {
     constructor(status, body) {
@@ -5167,26 +5167,6 @@ export class ThothWlPayNamespace {
         this.bank = new ThothWlPayBankNamespace(this._client);
     }
 }
-export class ThothLayoutBeUserProfilePopupNamespace {
-    constructor(_client) {
-        this._client = _client;
-    }
-    userPopup(params) {
-        return this._client._request('/Thoth/LayoutBe/UserProfile/Popup/UserPopup.json', params, 'GET');
-    }
-}
-export class ThothLayoutBeUserProfileNamespace {
-    constructor(_client) {
-        this._client = _client;
-        this.popup = new ThothLayoutBeUserProfilePopupNamespace(this._client);
-    }
-}
-export class ThothLayoutBeNamespace {
-    constructor(_client) {
-        this._client = _client;
-        this.userProfile = new ThothLayoutBeUserProfileNamespace(this._client);
-    }
-}
 export class ThothNamespace {
     constructor(_client) {
         this._client = _client;
@@ -5194,7 +5174,6 @@ export class ThothNamespace {
         this.explorerSearch = new ThothExplorerSearchNamespace(this._client);
         this.reportCore = new ThothReportCoreNamespace(this._client);
         this.wlPay = new ThothWlPayNamespace(this._client);
-        this.layoutBe = new ThothLayoutBeNamespace(this._client);
     }
 }
 export class CoreRequestApiApplicationCredentialNamespace {

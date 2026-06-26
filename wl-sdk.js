@@ -1,8 +1,8 @@
 /*!
  * WellnessLiving JavaScript SDK (stable)
- * Spec version: 1.1.20260626113418
+ * Spec version: 1.1.20260626122054
  * Build date:   2026-06-26
- * Endpoints:    474
+ * Endpoints:    473
  *
  * Auto-generated from:
  * https://github.com/wellnessliving/openapi/blob/main/stable/openapi.yaml
@@ -210,10 +210,10 @@
    * OpenAPI spec version this SDK was generated from.
    * @type {string}
    */
-  WlClient.SPEC_VERSION = '1.1.20260626113418';
+  WlClient.SPEC_VERSION = '1.1.20260626122054';
 
   // ---------------------------------------------------------------------------
-  // Generated API methods (474 total)
+  // Generated API methods (473 total)
   // ---------------------------------------------------------------------------
 
   /**
@@ -2129,31 +2129,6 @@
   WlClient.prototype.wlHolidayBulkBusinessHoliday = function(params)
   {
     return this.request('/Wl/Holiday/BulkBusinessHoliday.json', params || {}, 'GET');
-  };
-
-  /**
-   *
-   * @param {Object} [params] Request parameters.
-   * @param {boolean} params.is_backend Whether this is a backend context.
-   * @param {string} params.k_business Current frontend business key. Primary key in the RsBusinessSql table.
-   * @returns {Promise<Object>} Response data.
-   *  `a_business` {Object[]} List of businesses for switching. One element contains:
-   *  `a_location` {Object[]} List of locations for switching. One element contains:
-   *  `a_user` {Object[]} List of related profiles. One element contains:
-   *  `is_backend` {boolean} Whether this is a backend context.
-   *  `is_general` {boolean} Flag indicating general mode without a selected business.
-   *  `is_staff` {boolean} Flag indicating that the current user has staff access.
-   *  `k_business` {string} Current frontend business key. Primary key in the RsBusinessSql table.
-   *  `show_select` {boolean} Show business/location switching selects.
-   *  `uid` {string} Current user ID.
-   *  `url_logout` {string} Logout link.
-   *  `url_profile` {string} Link to the profile page.
-   *  `url_schedule` {string} Link to schedule (backend access).
-   *  `url_staff` {string} Link to staff profile in backend popup.
-   */
-  WlClient.prototype.thothLayoutBeUserProfilePopupUserPopup = function(params)
-  {
-    return this.request('/Thoth/LayoutBe/UserProfile/Popup/UserPopup.json', params || {}, 'GET');
   };
 
   /**
