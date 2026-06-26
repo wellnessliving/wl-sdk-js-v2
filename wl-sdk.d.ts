@@ -18957,8 +18957,8 @@ export interface WlAppointmentBookFinishFinishMultipleParams {
     a_uid: Array<string>;
     /** Data to create new users. */
     a_user: {
-        /** The list of notes to add to the new user's profile. */
-        a_note: Array<string>;
+        /** The note or list of notes to add to the new user's profile. */
+        a_note: string | Array<string>;
         /** The new user's email address. */
         text_mail: string;
         /** The new user's first name. */
