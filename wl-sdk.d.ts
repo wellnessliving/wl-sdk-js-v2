@@ -1609,60 +1609,16 @@ export declare enum WlLoginMemberVaccinationStatusVaccinationStatusSid {
     /** Unknown */
     UNKNOWN = 4
 }
-/** Reasons why the client can't book this event. */
-export declare enum WlEventDenyReasonSid {
-    /** User is trying to book on behalf of another client, but does not have permission to do so */
-    ACCESS_DENIED = 1,
-    /** Manual restriction to book business, location or a certain class */
-    ACCESS_LIMITED = 2,
-    /** The business can not take one more client because of business subscription limitations */
-    ACCOUNT_LIMIT = 3,
-    /** Class is not available for certain age */
-    AGE_RESTRICTION = 4,
-    /** Liability Release needs to be agreed */
-    AGREE_NX = 5,
-    /** Client has unpaid fees */
-    BALANCE_NEGATIVE = 22,
-    /** It's too early to book a class */
-    BOOK_EARLY = 7,
-    /** It's too late to book a class */
-    BOOK_LATE = 8,
-    /** User's visit overlaps with another visit */
-    BOOK_OVERLAP = 25,
-    /** User's pricing options do not allow booking another visit within a certain period because of pricing option limitations */
-    BOOK_RESTRICT = 9,
-    /** Client is already booked for this session */
-    BOOKED_ALREADY = 6,
-    /** Business is inactive */
-    BUSINESS_INACTIVE = 10,
-    /** Class is canceled */
-    CLASS_CANCELED = 11,
-    /** Class is finished */
-    CLASS_FINISHED = 26,
-    /** Class is full */
-    CLASS_FULL = 14,
-    /** Class does not exist anymore */
-    CLASS_NOT_AVAILABLE_ANYMORE = 15,
-    /** Client is flagged at location */
-    CLIENT_FLAGGED = 12,
-    /** Credit card is required for booking services */
-    CREDIT_CARD_REQUIRE = 13,
-    /** Business is closed */
-    HOLIDAY = 16,
-    /** Login is required */
-    LOGIN_REQUIRED = 17,
-    /** Online booking is disabled for the class */
-    NOT_BOOKABLE = 18,
-    /** Online booking is disabled for this type of client */
-    NOT_BOOKABLE_BY_TYPE = 24,
-    /** Required personal details missing */
-    USER_INFO_MISSING = 19,
-    /** Visit to another class is required first */
-    VISIT_BEFORE = 20,
-    /** The wait list is full */
-    WAIT_LIST_LIMIT_MAX = 21,
-    /** Client has unsigned waiver */
-    WAIVER_NX = 23
+/** List of image types. */
+export declare enum CoreDriveDriveTypeSid {
+    /** Bmp image */
+    BMP = 4,
+    /** Gif image */
+    GIF = 1,
+    /** Jpeg image */
+    JPEG = 2,
+    /** Png image */
+    PNG = 3
 }
 /** Day time periods. */
 export declare enum RsScheduleTimeSid {
@@ -2186,17 +2142,6 @@ export declare enum WlReportGeneratorReportGeneratorStatusSid {
     QUEUED = 1,
     /** Generation of this report is now completed */
     READY = 3
-}
-/** List of image types. */
-export declare enum CoreDriveDriveTypeSid {
-    /** Bmp image */
-    BMP = 4,
-    /** Gif image */
-    GIF = 1,
-    /** Jpeg image */
-    JPEG = 2,
-    /** Png image */
-    PNG = 3
 }
 /** List of responses for Google Captcha token. */
 export declare enum CoreGoogleCaptchaCaptchaResponseSid {
@@ -4873,26 +4818,47 @@ export type ThothReportCoreGeneratorQueryParams = Record<string, unknown>;
 export interface ThothReportCoreGeneratorQueryResponse {
     /** A list of dynamic fields in this report. */
     a_dynamic: Array<{
+        /** Fields of the complex cell. */
         a_cell: Array<Record<string, unknown>>;
+        /** Elements of a customization from that are required by this filter field. */
         a_customization_element: Array<Array<unknown>>;
+        /** A list of scalar types of values that this field can get. */
         a_type: Array<unknown>;
+        /** Whether this field is dynamic or static. */
         is_dynamic: boolean;
+        /** Whether this field is used for export. */
         is_export?: boolean | null;
+        /** Whether this field should be hidden by default. It can later be shown by using the customization ... */
         is_hide_by_default: boolean;
+        /** Whether this field should be hidden if the entire column is empty. */
         is_hide_if_empty: boolean;
+        /** Whether this field is nullable. */
         is_null: boolean;
+        /** Whether the ordering by this field is available. */
         is_order?: boolean | null;
+        /** Whether this field should be shown during report render. */
         is_show: boolean;
+        /** Whether this field is stored in the report storage. */
         is_store: boolean;
+        /** Argument for the MySQL function `cast()`. */
         s_cast?: string | null;
+        /** Name of a subclass of ReportGeneratorCellAbstract which objects can be used as a value */
         s_class?: Record<string, unknown> | null;
+        /** CSS class that is used for formatting of this field. */
         s_class_css: string;
+        /** Name of formatting method that is used for formatting of this field during export. */
         s_format?: string | null;
+        /** Name of a public property in which value of this field is stored. */
         s_name: string;
+        /** A string by which report columns are sorted. */
         s_sort: string;
+        /** Type of this field, as specified in its PHP doc. */
         s_type: string;
+        /** Data to derive title of a column which values are represented by this report field. */
         text_title?: string | null;
+        /** Title of this field that is used during export. */
         text_title_export?: string | null;
+        /** Text of the cell info tooltip. */
         text_title_info?: string | null;
     }>;
     /** A list of fields in this report. */
@@ -6066,48 +6032,11 @@ export interface WlEventEventListGetResponse {
         /** List of book now tags connected to this event. */
         a_class_tab: Array<string>;
         /** Data about logo of the event. */
-        a_logo: {
-            /** Thumbnail height in pixels. */
-            i_height: number;
-            /** Thumbnail width in pixels. */
-            i_width: number;
-            /** `false` for the new wide-rectangle format; `true` for the legacy square format. */
-            is_old: boolean;
-            /** Thumbnail URL. */
-            s_url: string;
-        };
+        a_logo: Record<string, unknown>;
         /** List of scheduled sessions of the event. */
-        a_schedule: {
-            /** List of weekday numbers when event occur. */
-            a_day: Array<number>;
-            /** List of staff members providing event session. */
-            a_staff_member: Record<string, unknown>;
-            /** End date of the schedule in `MySql` format. */
-            dl_end: string;
-            /** Start date of the schedule in `MySql` format. */
-            dl_start: string;
-            /** Whether this is a single day schedule (start and end dates of the schedule are the same). */
-            is_day: boolean;
-            /** Class period key. */
-            k_class_period: string;
-            /** Location key. */
-            k_location: string;
-            /** Resource key, which has category {@link WlResourceResourceCategoryEnum}. */
-            k_resource_location: string;
-            /** Location title. */
-            text_location: string;
-            /** Room where the session takes place. */
-            text_room: string;
-            /** Start and end time of the scheduled sessions in human readable format. */
-            text_time: string;
-        };
+        a_schedule: Array<Record<string, unknown>>;
         /** List of search tags connected to this event. */
-        a_search_tag: {
-            /** Search tag key. */
-            k_search_tag: string;
-            /** Name of the tag. */
-            text_title: string;
-        };
+        a_search_tag: Array<Record<string, unknown>>;
         /** Whether event can be booked or not. */
         can_book: boolean;
         /** Whether current user can cancel already booked event. */
@@ -6130,8 +6059,8 @@ export interface WlEventEventListGetResponse {
         i_session_future: number;
         /** Number of past sessions in the event. */
         i_session_past: number;
-        /** Reasons why the client can't book this event. @see WlEventDenyReasonSid */
-        id_reason: WlEventDenyReasonSid;
+        /** ID of deny reason. */
+        id_reason: number;
         /** Whether booking of this event restricted because of age rules for [EventListApi](/Wl/Event/EventL... */
         is_age_restrict: boolean;
         /** `true` if this event booking is restricted and restricted because of client's age only. */
@@ -6806,11 +6735,17 @@ export interface WlPromotionPromotionGetResponse {
     }>;
     /** Guest passes settings for promotion. This will be `null` if there are no guest pass settings for ... */
     o_guest_settings: {
+        /** Count of days for accept guest invite. */
         i_claim_day: number;
+        /** Times that member can invite the same guest. */
         i_limit: number;
+        /** The time during which a member can invite a guest `i_limit` times. */
         i_limit_duration: number;
+        /** Type of the duration of `i_limit_duration`. One of {@link ADurationSid} constants. */
         id_limit_duration: number;
+        /** Whether guests can only enter the gym when the inviting member is checked in. */
         is_checkin: boolean;
+        /** Whether there are limits for a guest promotion. */
         is_limit: boolean;
     } | Array<unknown> | null;
 }
