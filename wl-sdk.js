@@ -1,6 +1,6 @@
 /*!
  * WellnessLiving JavaScript SDK (stable)
- * Spec version: 1.1.20260629092128
+ * Spec version: 1.1.20260629102105
  * Build date:   2026-06-29
  * Endpoints:    466
  *
@@ -210,7 +210,7 @@
    * OpenAPI spec version this SDK was generated from.
    * @type {string}
    */
-  WlClient.SPEC_VERSION = '1.1.20260629092128';
+  WlClient.SPEC_VERSION = '1.1.20260629102105';
 
   // ---------------------------------------------------------------------------
   // Generated API methods (466 total)
@@ -1735,6 +1735,10 @@
 
   /**
    * Retrieves information about currencies.
+   *
+   * Queries all active (non-removed) currencies from the database and returns them as an associative array
+   *  keyed by currency key, with each entry containing the currency sign, its display position, and the
+   *  international currency code.
    *
    * @param {Object} [params] Request parameters.
    * @returns {Promise<Object>} Response data.
