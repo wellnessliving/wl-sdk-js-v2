@@ -17959,6 +17959,8 @@ export interface WlResourceResourceListListResponse {
         k_resource_type: string;
         /** Street address of the resource for off-site locations. */
         text_address: string;
+        /** Name of the city with region and country for off-site locations. */
+        text_city: string;
         /** Additional directions or access tips for reaching an off-site location. */
         text_guide: string;
         /** Postal code of the resource for off-site locations. */
