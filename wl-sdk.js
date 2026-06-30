@@ -1,8 +1,8 @@
 /*!
  * WellnessLiving JavaScript SDK (dev)
- * Spec version: 1.1.20260626195448
+ * Spec version: 1.1.20260630140715
  * Build date:   2026-06-30
- * Endpoints:    458
+ * Endpoints:    449
  *
  * Auto-generated from:
  * https://github.com/wellnessliving/openapi/blob/main/dev/openapi.yaml
@@ -210,10 +210,10 @@
    * OpenAPI spec version this SDK was generated from.
    * @type {string}
    */
-  WlClient.SPEC_VERSION = '1.1.20260626195448';
+  WlClient.SPEC_VERSION = '1.1.20260630140715';
 
   // ---------------------------------------------------------------------------
-  // Generated API methods (458 total)
+  // Generated API methods (449 total)
   // ---------------------------------------------------------------------------
 
   /**
@@ -1284,192 +1284,6 @@
   };
 
   /**
-   * Deletes the quiz with the given key.
-   *
-   * Permanently removes the quiz and all associated elements.
-   * @deprecated Use {@link \Wl\Quiz\QuizElement72Api} instead.
-   *
-   * @param {Object} [params] Request parameters.
-   * @param {string} params.k_business Business key within which quiz is managed.
-   * @param {string} params.k_quiz Quiz key.
-   * @param {string} params.k_quiz_login Quiz login key.
-   * @returns {Promise<Object>} Response data.
-   */
-  WlClient.prototype.wlQuizQuizElementDelete = function(params)
-  {
-    return this.request('/Wl/Quiz/QuizElement.json', params || {}, 'DELETE');
-  };
-
-  /**
-   * Returns quiz element data including settings, elements, and access information for the given quiz.
-   *
-   * Loads the quiz configuration, element list, and access log for the specified business and user context,
-   * applying franchise and privilege checks before returning the result.
-   * @deprecated Use {@link \Wl\Quiz\QuizElement72Api} instead.
-   *
-   * @param {Object} [params] Request parameters.
-   * @param {boolean} params.can_anonymous Checks whether unauthorized user should be permitted to operate with form and make a response.
-   * @param {boolean} params.is_builder `true` for request quiz from form builder page, `false` otherwise.
-   * @param {boolean} params.is_simple Whether quiz response received by kiosk or direct mode link.
-   * @param {number} params.json_purchase_item List of purchase items for which this form is loaded in JSON format.
-   * @param {string} params.k_business Business key within which quiz is managed.
-   * @param {string} params.k_quiz Quiz key.
-   * @param {string} params.k_quiz_login Quiz login key.
-   * @param {string} params.uid_client UID of the client for which quiz requested.
-   * @returns {Promise<Object>} Response data.
-   *  `a_access_log` {Object[]} Access log data.
-   *  `a_element` {Object|Object|Object|Object[]} List of quiz elements.
-   *  `a_setting` {Object} Quiz settings.
-   *  `can_amend` {boolean} Whether user has privileges to amend form.
-   *  `i_responses` {number} Number of responses for specific quiz.
-   *  `is_active` {boolean} Quiz active status.
-   *  `is_imported` {boolean} `true` if quiz is imported, `false` otherwise.
-   *  `is_prevent_franchisee` {boolean} Whether form can be edited by franchisee.
-   *  `k_business_type` {?string} Business type key. Used only for forms in the system business.
-   *  `show_numbering` {boolean} Whether to show numbering of the form elements that supports numbering.
-   *  `text_title` {string} Quiz form title.
-   *  `url_quiz` {string} Direct URL to quiz.
-   *  `url_quiz_kiosk` {string} Kiosk direct URL to quiz.
-   */
-  WlClient.prototype.wlQuizQuizElementGet = function(params)
-  {
-    return this.request('/Wl/Quiz/QuizElement.json', params || {}, 'GET');
-  };
-
-  /**
-   * Creates or updates a quiz with the given elements and settings.
-   *
-   * When no quiz key is provided, a new quiz is created; when a key is given, the existing quiz
-   * is updated in place. Element list and configuration are saved in a single transaction.
-   * @deprecated Use {@link \Wl\Quiz\QuizElement72Api} instead.
-   *
-   * @param {Object} [params] Request parameters.
-   * @param {boolean} params.can_anonymous Checks whether unauthorized user should be permitted to operate with form and make a response.
-   * @param {boolean} params.is_simple Whether quiz response received by kiosk or direct mode link.
-   * @param {string} params.k_business Business key within which quiz is managed.
-   * @param {string} params.k_quiz Quiz key.
-   * @param {string} params.k_quiz_login Quiz login key.
-   * @returns {Promise<Object>} Response data.
-   *  `k_quiz` {string} Quiz key.
-   */
-  WlClient.prototype.wlQuizQuizElementPost = function(params)
-  {
-    return this.request('/Wl/Quiz/QuizElement.json', params || {}, 'POST');
-  };
-
-  /**
-   * Updates the active status of the given quiz.
-   *
-   * Toggles whether the quiz is available for respondents to fill out. Inactive quizzes are hidden
-   * from the booking and profile flows but their existing responses are preserved.
-   * @deprecated Use {@link \Wl\Quiz\QuizElement72Api} instead.
-   *
-   * @param {Object} [params] Request parameters.
-   * @param {string} params.k_business Business key within which quiz is managed.
-   * @param {string} params.k_quiz Quiz key.
-   * @param {string} params.k_quiz_login Quiz login key.
-   * @returns {Promise<Object>} Response data.
-   *  `a_setting` {Object} Quiz settings.
-   *  `url_quiz` {string} Direct URL to quiz.
-   *  `url_quiz_kiosk` {string} Kiosk direct URL to quiz.
-   */
-  WlClient.prototype.wlQuizQuizElementPut = function(params)
-  {
-    return this.request('/Wl/Quiz/QuizElement.json', params || {}, 'PUT');
-  };
-
-  /**
-   * Deletes the quiz with the given key.
-   *
-   * Permanently removes the quiz and all associated elements.
-   *
-   * @param {Object} [params] Request parameters.
-   * @param {string} params.k_business Business key within which quiz is managed.
-   * @param {string} params.k_quiz Quiz key.
-   * @param {string} params.k_quiz_login Quiz login key.
-   * @returns {Promise<Object>} Response data.
-   */
-  WlClient.prototype.wlQuizQuizElement72Delete = function(params)
-  {
-    return this.request('/Wl/Quiz/QuizElement72.json', params || {}, 'DELETE');
-  };
-
-  /**
-   * Returns quiz element data including settings, elements, and access information for the given quiz.
-   *
-   * Loads the quiz configuration, element list, and access log for the specified business and user context,
-   * applying franchise and privilege checks before returning the result.
-   *
-   * @param {Object} [params] Request parameters.
-   * @param {boolean} params.can_anonymous Checks whether unauthorized user should be permitted to operate with form and make a response.
-   * @param {boolean} params.is_builder `true` for request quiz from form builder page, `false` otherwise.
-   * @param {boolean} params.is_simple Whether quiz response received by kiosk or direct mode link.
-   * @param {number} params.json_purchase_item List of purchase items for which this form is loaded in JSON format.
-   * @param {string} params.k_business Business key within which quiz is managed.
-   * @param {string} params.k_quiz Quiz key.
-   * @param {string} params.k_quiz_login Quiz login key.
-   * @param {string} params.uid_client UID of the client for which quiz requested.
-   * @returns {Promise<Object>} Response data.
-   *  `a_access_log` {Object[]} Access log data.
-   *  `a_element` {Object|Object|Object|Object[]} List of quiz elements.
-   *  `a_setting` {Object} Quiz settings.
-   *  `can_amend` {boolean} Whether user has privileges to amend form.
-   *  `i_responses` {number} Number of responses for specific quiz.
-   *  `is_active` {boolean} Quiz active status.
-   *  `is_imported` {boolean} `true` if quiz is imported, `false` otherwise.
-   *  `is_prevent_franchisee` {boolean} Whether form can be edited by franchisee.
-   *  `k_business_type` {?string} Business type key. Used only for forms in the system business.
-   *  `show_numbering` {boolean} Whether to show numbering of the form elements that supports numbering.
-   *  `text_title` {string} Quiz form title.
-   *  `url_quiz` {string} Direct URL to quiz.
-   *  `url_quiz_kiosk` {string} Kiosk direct URL to quiz.
-   */
-  WlClient.prototype.wlQuizQuizElement72Get = function(params)
-  {
-    return this.request('/Wl/Quiz/QuizElement72.json', params || {}, 'GET');
-  };
-
-  /**
-   * Creates or updates a quiz with the given elements and settings.
-   *
-   * When no quiz key is provided, a new quiz is created; when a key is given, the existing quiz
-   * is updated in place. Element list and configuration are saved in a single transaction.
-   *
-   * @param {Object} [params] Request parameters.
-   * @param {boolean} params.can_anonymous Checks whether unauthorized user should be permitted to operate with form and make a response.
-   * @param {boolean} params.is_simple Whether quiz response received by kiosk or direct mode link.
-   * @param {string} params.k_business Business key within which quiz is managed.
-   * @param {string} params.k_quiz Quiz key.
-   * @param {string} params.k_quiz_login Quiz login key.
-   * @returns {Promise<Object>} Response data.
-   *  `k_quiz` {string} Quiz key.
-   */
-  WlClient.prototype.wlQuizQuizElement72Post = function(params)
-  {
-    return this.request('/Wl/Quiz/QuizElement72.json', params || {}, 'POST');
-  };
-
-  /**
-   * Updates the active status of the given quiz.
-   *
-   * Toggles whether the quiz is available for respondents to fill out. Inactive quizzes are hidden
-   * from the booking and profile flows but their existing responses are preserved.
-   *
-   * @param {Object} [params] Request parameters.
-   * @param {string} params.k_business Business key within which quiz is managed.
-   * @param {string} params.k_quiz Quiz key.
-   * @param {string} params.k_quiz_login Quiz login key.
-   * @returns {Promise<Object>} Response data.
-   *  `a_setting` {Object} Quiz settings.
-   *  `url_quiz` {string} Direct URL to quiz.
-   *  `url_quiz_kiosk` {string} Kiosk direct URL to quiz.
-   */
-  WlClient.prototype.wlQuizQuizElement72Put = function(params)
-  {
-    return this.request('/Wl/Quiz/QuizElement72.json', params || {}, 'PUT');
-  };
-
-  /**
    * Notifies messengers with new information.
    *
    * Accepts a channel key and a data payload, then dispatches a notification to the Fitbuilder messenger channel
@@ -1574,6 +1388,22 @@
   WlClient.prototype.wlSkinSkinForeignPut = function(params)
   {
     return this.request('/Wl/Skin/SkinForeign.json', params || {}, 'PUT');
+  };
+
+  /**
+   * Retrieves information about currencies.
+   *
+   * Queries all active (non-removed) currencies from the database and returns them as an associative array
+   *  keyed by currency key, with each entry containing the currency sign, its display position, and the
+   *  international currency code.
+   *
+   * @param {Object} [params] Request parameters.
+   * @returns {Promise<Object>} Response data.
+   *  `a_currency` {Object[]} Keys - currency keys. Values - information about currency:
+   */
+  WlClient.prototype.wlCurrencyCurrency = function(params)
+  {
+    return this.request('/Wl/Currency/Currency.json', params || {}, 'GET');
   };
 
   /**
@@ -5532,200 +5362,6 @@
   };
 
   /**
-   * Deletes the specified quiz response or list of responses for the given business.
-   *
-   * Validates access privileges and removes the specified response records, updating any related search indexes
-   * and activity logs.
-   *
-   * @param {Object} [params] Request parameters.
-   * @param {string[]} params.a_quiz_response_key Quiz response key list.
-   * @param {number} params.id_mode The mode type. One of the {@link WlClient.WlModeModeSid} constants.
-   * @param {string} params.k_business Business key within which quiz is managed.
-   * @param {string} params.k_quiz Quiz key.
-   * @param {?string} [params.k_quiz_response] Quiz response key.
-   * @returns {Promise<Object>} Response data.
-   */
-  WlClient.prototype.wlQuizResponseResponse65Delete = function(params)
-  {
-    return this.request('/Wl/Quiz/Response/Response65.json', params || {}, 'DELETE');
-  };
-
-  /**
-   * Returns quiz response data including element answers, dates, and access information.
-   *
-   * Loads the response for the specified quiz and user, resolving answers, formatted dates, and access flags such as
-   * amendment availability and PDF generation support.
-   *
-   * @param {Object} [params] Request parameters.
-   * @param {boolean} params.can_anonymous Checks whether unauthorized user should be permitted to operate with form and make a response.
-   * @param {boolean} params.is_answer `true` for load answers for response, `false` otherwise.
-   * @param {boolean} params.is_backend
-   * @param {boolean} params.is_simple Whether quiz response received by kiosk or direct mode link.
-   * @param {string} params.k_business Business key within which quiz is managed.
-   * @param {?string} [params.k_quiz_response] Quiz response key.
-   * @returns {Promise<Object>} Response data.
-   *  `a_access_log` {Object[]} Access log data.
-   *  `a_element` {Object|Object|Object|Object[]} List of quiz questions with responses.
-   *  `a_service_info` {Object} Information about service if response connected to visit.
-   *  `can_amend` {boolean} Whether response can be amended by current user.
-   *  `dtu_response` {string} Date when response was submitted.
-   *  `id_source` {number} List of sources where quiz response can be generated. See {@link WlClient.WlQuizResponseSourceSid}.
-   *  `id_status` {number} List of response statuses. See {@link WlClient.CoreQuizResponseResponseStatusSid}.
-   *  `show_numbering` {boolean} Whether to show numbering of the form elements that supports numbering.
-   *  `text_add_date` {string} Date when response added.
-   *  `text_amend_date` {string} Date when response amended.
-   *  `text_amend_user` {string} Name of the user who amend the response.
-   *  `text_complete_date` {string} Date when response completed.
-   *  `text_complete_user` {string} Name of the user who complete the response.
-   *  `text_response_by` {string} Name of the user who owned the response.
-   *  `text_title` {?string} Title of the filled form.
-   */
-  WlClient.prototype.wlQuizResponseResponse65Get = function(params)
-  {
-    return this.request('/Wl/Quiz/Response/Response65.json', params || {}, 'GET');
-  };
-
-  /**
-   * Saves a quiz response with the given element answers.
-   *
-   * Validates the submitted answers and persists the response record in a transaction. If
-   * [QuizResponseApi](/Core/Quiz/QuizResponse.json) is set, only validation runs and no record is created.
-   * Pass [QuizResponseApi](/Core/Quiz/QuizResponse.json) to bypass validation for pre-confirmed responses.
-   *
-   * @param {Object} [params] Request parameters.
-   * @param {boolean} params.can_anonymous Checks whether unauthorized user should be permitted to operate with form and make a response.
-   * @param {boolean} params.is_backend
-   * @param {boolean} params.is_simple Whether quiz response received by kiosk or direct mode link.
-   * @param {string} params.k_business Business key within which quiz is managed.
-   * @param {string} params.k_quiz Quiz key.
-   * @param {?string} [params.k_quiz_response] Quiz response key.
-   * @returns {Promise<Object>} Response data.
-   *  `k_quiz_response` {?string} Quiz response key.
-   */
-  WlClient.prototype.wlQuizResponseResponse65Post = function(params)
-  {
-    return this.request('/Wl/Quiz/Response/Response65.json', params || {}, 'POST');
-  };
-
-  /**
-   * Validates, updates and reindex response information for associated user.
-   *
-   * Used to amend an already-submitted response, for example when a business allows clients to
-   * edit their quiz answers after submission. Re-links the response to its owner and triggers
-   * downstream reindexing so search and reporting stay consistent.
-   *
-   * @param {Object} [params] Request parameters.
-   * @param {string[]} params.a_quiz_response_key Quiz response key list.
-   * @param {string} params.k_business Business key within which quiz is managed.
-   * @param {string} params.k_quiz Quiz key.
-   * @param {?string} [params.k_quiz_response] Quiz response key.
-   * @param {?string} [params.uid_link] User's key for the response association.
-   * @returns {Promise<Object>} Response data.
-   */
-  WlClient.prototype.wlQuizResponseResponse65Put = function(params)
-  {
-    return this.request('/Wl/Quiz/Response/Response65.json', params || {}, 'PUT');
-  };
-
-  /**
-   * Deletes the specified quiz response or list of responses for the given business.
-   *
-   * Validates access privileges and removes the specified response records, updating any related search indexes
-   * and activity logs.
-   * @deprecated Use {@link \Wl\Quiz\Response\Response65Api} instead.
-   *
-   * @param {Object} [params] Request parameters.
-   * @param {string[]} params.a_quiz_response_key Quiz response key list.
-   * @param {number} params.id_mode The mode type. One of the {@link WlClient.WlModeModeSid} constants.
-   * @param {string} params.k_business Business key within which quiz is managed.
-   * @param {string} params.k_quiz Quiz key.
-   * @param {?string} [params.k_quiz_response] Quiz response key.
-   * @returns {Promise<Object>} Response data.
-   */
-  WlClient.prototype.wlQuizResponseResponseDelete = function(params)
-  {
-    return this.request('/Wl/Quiz/Response/Response.json', params || {}, 'DELETE');
-  };
-
-  /**
-   * Returns quiz response data including element answers, dates, and access information.
-   *
-   * Loads the response for the specified quiz and user, resolving answers, formatted dates, and access flags such as
-   * amendment availability and PDF generation support.
-   * @deprecated Use {@link \Wl\Quiz\Response\Response65Api} instead.
-   *
-   * @param {Object} [params] Request parameters.
-   * @param {boolean} params.can_anonymous Checks whether unauthorized user should be permitted to operate with form and make a response.
-   * @param {boolean} params.is_answer `true` for load answers for response, `false` otherwise.
-   * @param {boolean} params.is_simple Whether quiz response received by kiosk or direct mode link.
-   * @param {string} params.k_business Business key within which quiz is managed.
-   * @param {?string} [params.k_quiz_response] Quiz response key.
-   * @returns {Promise<Object>} Response data.
-   *  `a_access_log` {Object[]} Access log data.
-   *  `a_element` {Object|Object|Object|Object[]} List of quiz questions with responses.
-   *  `a_service_info` {Object} Information about service if response connected to visit.
-   *  `can_amend` {boolean} Whether response can be amended by current user.
-   *  `dtu_response` {string} Date when response was submitted.
-   *  `id_source` {number} List of sources where quiz response can be generated. See {@link WlClient.WlQuizResponseSourceSid}.
-   *  `id_status` {number} List of response statuses. See {@link WlClient.CoreQuizResponseResponseStatusSid}.
-   *  `show_numbering` {boolean} Whether to show numbering of the form elements that supports numbering.
-   *  `text_add_date` {string} Date when response added.
-   *  `text_amend_date` {string} Date when response amended.
-   *  `text_amend_user` {string} Name of the user who amend the response.
-   *  `text_complete_date` {string} Date when response completed.
-   *  `text_complete_user` {string} Name of the user who complete the response.
-   *  `text_response_by` {string} Name of the user who owned the response.
-   *  `text_title` {?string} Title of the filled form.
-   */
-  WlClient.prototype.wlQuizResponseResponseGet = function(params)
-  {
-    return this.request('/Wl/Quiz/Response/Response.json', params || {}, 'GET');
-  };
-
-  /**
-   * Saves a quiz response with the given element answers.
-   *
-   * Validates the submitted answers and persists the response record in a transaction. If
-   * [QuizResponseApi](/Core/Quiz/QuizResponse.json) is set, only validation runs and no record is created.
-   * Pass [QuizResponseApi](/Core/Quiz/QuizResponse.json) to bypass validation for pre-confirmed responses.
-   * @deprecated Use {@link \Wl\Quiz\Response\Response65Api} instead.
-   *
-   * @param {Object} [params] Request parameters.
-   * @param {boolean} params.can_anonymous Checks whether unauthorized user should be permitted to operate with form and make a response.
-   * @param {boolean} params.is_simple Whether quiz response received by kiosk or direct mode link.
-   * @param {string} params.k_business Business key within which quiz is managed.
-   * @param {string} params.k_quiz Quiz key.
-   * @param {?string} [params.k_quiz_response] Quiz response key.
-   * @returns {Promise<Object>} Response data.
-   *  `k_quiz_response` {?string} Quiz response key.
-   */
-  WlClient.prototype.wlQuizResponseResponsePost = function(params)
-  {
-    return this.request('/Wl/Quiz/Response/Response.json', params || {}, 'POST');
-  };
-
-  /**
-   * Validates, updates and reindex response information for associated user.
-   *
-   * Used to amend an already-submitted response, for example when a business allows clients to
-   * edit their quiz answers after submission. Re-links the response to its owner and triggers
-   * downstream reindexing so search and reporting stay consistent.
-   * @deprecated Use {@link \Wl\Quiz\Response\Response65Api} instead.
-   *
-   * @param {Object} [params] Request parameters.
-   * @param {string[]} params.a_quiz_response_key Quiz response key list.
-   * @param {string} params.k_business Business key within which quiz is managed.
-   * @param {string} params.k_quiz Quiz key.
-   * @param {?string} [params.k_quiz_response] Quiz response key.
-   * @param {?string} [params.uid_link] User's key for the response association.
-   * @returns {Promise<Object>} Response data.
-   */
-  WlClient.prototype.wlQuizResponseResponsePut = function(params)
-  {
-    return this.request('/Wl/Quiz/Response/Response.json', params || {}, 'PUT');
-  };
-
-  /**
    * Returns the total reward points for the specified activity list or user.
    *
    * If `a_login_activity` is provided, returns the total points earned across those activities; otherwise returns
@@ -6639,6 +6275,19 @@
   };
 
   /**
+   * Allows canceling certain event enrollments within tuition.
+   *
+   * Send all users and events, which should be canceled to reduce tuition payment, cancel visits, and deactivate even pass.
+   *
+   * @param {Object} [params] Request body fields.
+   * @returns {Promise<Object>} Response data.
+   */
+  WlClient.prototype.wlTuitionEnrollmentTuitionEnrollmentCancel = function(params)
+  {
+    return this.request('/Wl/Tuition/Enrollment/TuitionEnrollmentCancel.json', params || {}, 'PUT');
+  };
+
+  /**
    * Refills the user account balance by the specified payment amount or adjusts it manually.
    *
    * Accepts the payment amount, account key or user-and-business identifiers, charge mode, and payment form
@@ -6680,6 +6329,25 @@
   };
 
   /**
+   * Retrieves information about user's ACH accounts.
+   *
+   * Validates the user, business, and location, then retrieves all saved ACH accounts for the resolved merchant.
+   *  Also reports whether the current owner is allowed to add a new ACH account.
+   *
+   * @param {Object} [params] Request parameters.
+   * @param {string} params.k_business ID of current business.
+   * @param {string} params.k_location Location to show information for.
+   * @param {string} params.uid ID of a user to show information for.
+   * @returns {Promise<Object>} Response data.
+   *  `a_list` {Object[]} List of ACH accounts:
+   *  `can_add` {boolean} Whether new ACH account can be added.
+   */
+  WlClient.prototype.thothWlPayBankAchList = function(params)
+  {
+    return this.request('/Thoth/WlPay/Bank/Ach/List.json', params || {}, 'GET');
+  };
+
+  /**
    * Returns All Transactions Report data for the specified date range.
    *
    * Provides access to the All Transactions Report used for revenue reconciliation and export. The report
@@ -6707,6 +6375,24 @@
   WlClient.prototype.thothWlPayTransactionReportTransactionAllPayment = function(params)
   {
     return this.request('/Thoth/WlPay/Transaction/Report/TransactionAllPayment.json', params || {}, 'GET');
+  };
+
+  /**
+   * Gets data for "edit payment address" widget.
+   *
+   * Returns the list of geographic regions and phone number format masks configured for the given business locale.
+   *  When no business key is provided, system-level defaults are returned.
+   *
+   * @param {Object} [params] Request parameters.
+   * @param {string} params.k_business Business key.
+   * @returns {Promise<Object>} Response data.
+   *  `a_geo` {Object[]} List of countries with their regions, keyed by country geo key. Each element:
+   *  `html_phone_mask` {string} Mask for phone entering (ready for output to the page).
+   *  `text_phone_mask` {string} Mask for phone entering.
+   */
+  WlClient.prototype.thothWlPayAddressWidgetWidgetEdit = function(params)
+  {
+    return this.request('/Thoth/WlPay/Address/Widget/WidgetEdit.json', params || {}, 'GET');
   };
 
   /**
@@ -7075,26 +6761,6 @@
   WlClient.prototype.wlMemberProgressLogVerify = function(params)
   {
     return this.request('/Wl/Member/Progress/Log/Verify.json', params || {}, 'PUT');
-  };
-
-  /**
-   * Gets information about subscription.
-   *
-   * Used in the backend settings UI to read the current state of a business subscription (e.g., Achieve or
-   * another product). Returns whether the subscription is active, the current plan tier, and the business
-   * locale. Requires backend access to the business.
-   *
-   * @param {Object} [params] Request parameters.
-   * @param {number} params.cid_subscription CID of the subscription information of which is requested.
-   * @param {string} params.k_business Business key for which subscription information is requested.
-   * @returns {Promise<Object>} Response data.
-   *  `id_locale` {number} A list of locales. See {@link WlClient.CoreLocaleLocaleSid}.
-   *  `id_plan` {number|number|number|number} Currently active plan ID for requested subscription.
-   *  `is_active` {boolean} Whether subscription is active.
-   */
-  WlClient.prototype.wlBusinessAccountSubscriptionSubscriptionInfo = function(params)
-  {
-    return this.request('/Wl/Business/Account/Subscription/SubscriptionInfo.json', params || {}, 'GET');
   };
 
   /**
@@ -8722,7 +8388,7 @@
    *  details in `a_user` when no UID is provided.
    *
    * @param {Object} [params] Request parameters.
-   * @param {number[]} params.a_pay The payment type for the appointment. One of the {@link WlClient.RsAppointmentPaySid} constants.
+   * @param {number[]} params.a_pay The payment type ID for each provider.
    * @param {string[]} params.a_uid List of user keys to book appointments.
    * @param {Object} params.a_user Data to create new users.
    * @param {boolean} params.is_walk_in If `true`, the client is a walk-in. Otherwise, this will be `false`.
@@ -8775,7 +8441,7 @@
    * @param {Object} params.a_book_data All data from the provider model `Wl_Appointment_Book_ProviderModel`:
    * @param {string[]} params.a_uid List of user keys to book appointments.
    * @param {Object} params.a_user Data to create new user.
-   * @param {number} params.id_pay The payment type ID for the appointment. One of the {@link WlClient.RsAppointmentPaySid} constants.
+   * @param {number} params.id_pay The payment type ID for the service. See {@link WlClient.RsAppointmentPaySid}.
    * @param {boolean} params.is_walk_in If `true`, the client is a walk-in. Otherwise, this will be `false`.
    * @param {string} params.k_appointment The appointment key.
    * @param {string} params.k_business The business key.
@@ -8824,7 +8490,7 @@
    * @param {Object} [params] Request parameters.
    * @param {string[]} params.a_uid List of user keys to book appointments.
    * @param {Object} params.a_user Data to create new user.
-   * @param {number} params.id_pay The payment type ID for the appointment. One of the {@link WlClient.RsAppointmentPaySid} constants.
+   * @param {number} params.id_pay The payment type ID for the service. See {@link WlClient.RsAppointmentPaySid}.
    * @param {boolean} params.is_walk_in If `true`, the client is a walk-in. Otherwise, this will be `false`.
    * @param {string} params.k_appointment The appointment key.
    * @param {string} params.k_business The business key.
@@ -9697,6 +9363,86 @@
   };
 
   /**
+   * Gets a list of saved bank cards.
+   *
+   * Validates the payment method, currency, business, location, and pay owner type, then loads the configured
+   *  merchant and returns the list of saved cards available to the given owner. For business owners, a system-wide
+   *  merchant must be configured; for users, a business-specific merchant is required.
+   *
+   * @param {Object} [params] Request parameters.
+   * @param {?number} params.id_pay_method Payment method. One of {@link WlClient.RsPayMethodSid} constants.
+   * @param {number} params.id_pay_mode Payment mode. See {@link WlClient.RsPayModeSid}.
+   * @param {number} params.id_pay_owner Payment owner kind. See {@link WlClient.RsPayOwnerSid}.
+   * @param {string} params.k_business Business key.
+   * @param {string} params.k_currency Currency key.
+   * @param {string} params.k_id Payment owner.
+   * @param {string} params.k_location Location key.
+   * @returns {Promise<Object>} Response data.
+   *  `a_pay_card` {Object} List of saved bank cards.
+   */
+  WlClient.prototype.thothWlPayBankCardWidgetWidgetSelect = function(params)
+  {
+    return this.request('/Thoth/WlPay/Bank/Card/Widget/WidgetSelect.json', params || {}, 'GET');
+  };
+
+  /**
+   * Deletes saved ACH.
+   *
+   * Removes the ACH bank account identified by `k_pay_bank` from the pay owner's saved payment methods
+   *  for the given business.
+   *
+   * @param {Object} [params] Request parameters.
+   * @param {string} params.k_business Business key.
+   * @param {string} params.k_pay_bank Pay bank key to delete.
+   * @returns {Promise<Object>} Response data.
+   */
+  WlClient.prototype.thothWlPayBankAchAddAddDelete = function(params)
+  {
+    return this.request('/Thoth/WlPay/Bank/Ach/Add/Add.json', params || {}, 'DELETE');
+  };
+
+  /**
+   * Gets widget for ACH account add.
+   *
+   * Validates the locale, business, and pay owner, then determines whether to use Direct Entry (Australia and New
+   *  Zealand) or ACH as the payment method. Returns the rendered widget HTML and the processor ID for the
+   *  resolved merchant.
+   *
+   * @param {Object} [params] Request parameters.
+   * @param {number} [params.id_locale] Locale ID. One of {@link WlClient.CoreLocaleLocaleSid} constants.
+   * @param {boolean} params.is_new Determines if the set of configs of the new payment form design is used.
+   * @param {string} params.k_business Business key.
+   * @param {string} params.k_location Location key.
+   * @param {string} params.k_pay_owner Pay owner key.
+   * @returns {Promise<Object>} Response data.
+   *  `html_widget` {string} The HTML form containing the fields required to add a card.
+   *  `id_pay_processor` {number} A list of payment gateways or processors. See {@link WlClient.ThothPayProcessorPayProcessorSid}.
+   */
+  WlClient.prototype.thothWlPayBankAchAddAddGet = function(params)
+  {
+    return this.request('/Thoth/WlPay/Bank/Ach/Add/Add.json', params || {}, 'GET');
+  };
+
+  /**
+   * Saves new ACH pay method.
+   *
+   * Processes the submitted ACH widget data, saves the bank account under the given pay owner and business,
+   *  and optionally marks it as the default payment method. Returns the saved account details including billing
+   *  address information.
+   *
+   * @param {Object} [params] Request parameters.
+   * @param {string} params.k_business Business key.
+   * @param {string} params.k_location Location key.
+   * @param {string} params.k_pay_owner Pay owner key.
+   * @returns {Promise<Object>} Response data.
+   *  `a_pay_bank` {Object} ACH account information:
+   */
+  WlClient.prototype.thothWlPayBankAchAddAddPost = function(params)
+  {
+    return this.request('/Thoth/WlPay/Bank/Ach/Add/Add.json', params || {}, 'POST');
+  };
+
+  /**
    * Deletes the specified credential for the application.
    *
    * Accepts a credential CID identifying the credential type (such as Google or Facebook), resolves
@@ -10180,7 +9926,7 @@
   };
 
   // ---------------------------------------------------------------------------
-  // Enum constants (189 total)
+  // Enum constants (167 total)
   // ---------------------------------------------------------------------------
 
   /**
@@ -12352,104 +12098,6 @@
   });
 
   /**
-   * The status of form actions.
-   *
-   * @enum {number}
-   */
-  WlClient.WlQuizActivityActivitySid = Object.freeze({
-    /** Form was added to the profile */
-    ADD: 1,
-    /** Form was saved as a draft */
-    DRAFT: 2,
-    /** Form was edited */
-    EDIT: 3,
-    /** Form was exported to CSV file */
-    EXPORT_CSV: 4,
-    /** Form was exported to PDF file */
-    EXPORT_PDF: 5,
-    /** Form was printed */
-    PRINTING: 6,
-    /** Form was submitted */
-    SUBMIT: 7,
-    /** Form was viewed */
-    VIEW: 8,
-  });
-
-  /**
-   * List of quiz frequency types.
-   *
-   * @enum {number}
-   */
-  WlClient.WlQuizQuizFrequencySid = Object.freeze({
-    /** Client will be asked to complete the quiz every time they book a service or purchase item */
-    EVERY: 1,
-    /** Client will be asked to complete the quiz the first time they book a service or purchase item */
-    FIRST: 2,
-    /** Client will be asked to complete the quiz only one time when they book a service or purchase item */
-    ONCE: 3,
-  });
-
-  /**
-   * A list of purchase types.
-   *
-   * @enum {number}
-   */
-  WlClient.RsPurchaseItemSid = Object.freeze({
-    /** Personal user's account refill */
-    ACCOUNT: 7,
-    /** Business account payment */
-    ACCOUNT_BUSINESS: 11,
-    /** Single appointment reservation */
-    APPOINTMENT: 8,
-    /** Single appointment reservation with deposit */
-    APPOINTMENT_DEPOSIT: 18,
-    /** Tips for the appointment */
-    APPOINTMENT_TIP: 22,
-    /** Expense that comes along with the payment business. It contains information about additional services which are */
-    BUSINESS_EXPENSE: 16,
-    /** A skipped purchase for the business account */
-    BUSINESS_SKIP: 17,
-    /** Business subscription payment */
-    BUSINESS_SUBSCRIPTION: 23,
-    /** Single classes */
-    CLASS_PERIOD: 2,
-    /** Collectors payments */
-    COLLECTOR_DEBT: 24,
-    /** Arbitrary money withdrawal with comment */
-    COMMENT: 13,
-    /** Gift Cards */
-    COUPON: 10,
-    /** Events and enrollments. Client can not book only one class, he needs to book the whole enrollment */
-    ENROLLMENT: 4,
-    /** Enrollment reservation with a deposit */
-    ENROLLMENT_DEPOSIT: 19,
-    /** Enrollment reservation with a discount */
-    ENROLLMENT_DISCOUNT: 21,
-    /** Payment by an installment plan */
-    INSTALLMENT: 14,
-    /** Recurrent payments */
-    MEMBERSHIP: 3,
-    /** Products */
-    PRODUCT: 9,
-    /** Promotions */
-    PROMOTION: 1,
-    /** Early cancellation fee for a memberships */
-    PROMOTION_CANCEL_FEE: 25,
-    /** A purchase to renew a promotion */
-    PROMOTION_RENEW: 12,
-    /** A purchase to book an asset */
-    RESOURCE: 15,
-    /** A purchase to book a deposit asset */
-    RESOURCE_DEPOSIT: 20,
-    /** Purchase item for appointments */
-    SERVICE: 6,
-    /** Tuition purchase item */
-    TUITION: 26,
-    /** Tuition fee purchase item */
-    TUITION_FEE: 27,
-  });
-
-  /**
    * A list of skin types.
    *
    * @enum {number}
@@ -13391,6 +13039,66 @@
     NON_INTEGRATED: 2,
     /** Virtual Zoom service integration */
     ZOOM: 1,
+  });
+
+  /**
+   * A list of purchase types.
+   *
+   * @enum {number}
+   */
+  WlClient.RsPurchaseItemSid = Object.freeze({
+    /** Personal user's account refill */
+    ACCOUNT: 7,
+    /** Business account payment */
+    ACCOUNT_BUSINESS: 11,
+    /** Single appointment reservation */
+    APPOINTMENT: 8,
+    /** Single appointment reservation with deposit */
+    APPOINTMENT_DEPOSIT: 18,
+    /** Tips for the appointment */
+    APPOINTMENT_TIP: 22,
+    /** Expense that comes along with the payment business. It contains information about additional services which are */
+    BUSINESS_EXPENSE: 16,
+    /** A skipped purchase for the business account */
+    BUSINESS_SKIP: 17,
+    /** Business subscription payment */
+    BUSINESS_SUBSCRIPTION: 23,
+    /** Single classes */
+    CLASS_PERIOD: 2,
+    /** Collectors payments */
+    COLLECTOR_DEBT: 24,
+    /** Arbitrary money withdrawal with comment */
+    COMMENT: 13,
+    /** Gift Cards */
+    COUPON: 10,
+    /** Events and enrollments. Client can not book only one class, he needs to book the whole enrollment */
+    ENROLLMENT: 4,
+    /** Enrollment reservation with a deposit */
+    ENROLLMENT_DEPOSIT: 19,
+    /** Enrollment reservation with a discount */
+    ENROLLMENT_DISCOUNT: 21,
+    /** Payment by an installment plan */
+    INSTALLMENT: 14,
+    /** Recurrent payments */
+    MEMBERSHIP: 3,
+    /** Products */
+    PRODUCT: 9,
+    /** Promotions */
+    PROMOTION: 1,
+    /** Early cancellation fee for a memberships */
+    PROMOTION_CANCEL_FEE: 25,
+    /** A purchase to renew a promotion */
+    PROMOTION_RENEW: 12,
+    /** A purchase to book an asset */
+    RESOURCE: 15,
+    /** A purchase to book a deposit asset */
+    RESOURCE_DEPOSIT: 20,
+    /** Purchase item for appointments */
+    SERVICE: 6,
+    /** Tuition purchase item */
+    TUITION: 26,
+    /** Tuition fee purchase item */
+    TUITION_FEE: 27,
   });
 
   /**
@@ -14700,42 +14408,6 @@
   });
 
   /**
-   * List of sources where quiz response can be generated.
-   *
-   * @enum {number}
-   */
-  WlClient.WlQuizResponseSourceSid = Object.freeze({
-    /** Quiz response received during booking process */
-    BOOKING: 2,
-    /** Quiz response was imported */
-    IMPORT: 6,
-    /** Quiz response received by kiosk mode link */
-    KIOSK: 7,
-    /** Quiz response received by direct link */
-    LINK: 1,
-    /** Quiz response received by direct link */
-    MANUAL: 5,
-    /** Quiz response received during purchase process */
-    PURCHASE: 4,
-    /** Quiz response received during registration process */
-    REGISTRATION: 3,
-  });
-
-  /**
-   * List of quick purchase item types.
-   *
-   * @enum {number}
-   */
-  WlClient.WlCatalogQuickPurchaseTypeSid = Object.freeze({
-    /** Classes */
-    CLASSES: 224,
-    /** Resource */
-    RESOURCE: 681,
-    /** Service */
-    SERVICE: 690,
-  });
-
-  /**
    * List of default categories of the rewards.
    *
    * @enum {number}
@@ -14942,6 +14614,30 @@
   });
 
   /**
+   * A list of account holder types which can be chosen.
+   *
+   * @enum {number}
+   */
+  WlClient.RsPayBankAchHolderSid = Object.freeze({
+    /** Account holder is a business */
+    BUSINESS: 2,
+    /** Account holder is a person */
+    PERSONAL: 1,
+  });
+
+  /**
+   * A list of account types which can be chosen.
+   *
+   * @enum {number}
+   */
+  WlClient.RsPayBankAchTypeSid = Object.freeze({
+    /** Checking account */
+    CHECKING: 1,
+    /** Savings account */
+    SAVINGS: 2,
+  });
+
+  /**
    * Lead conversion type.
    *
    * @enum {number}
@@ -15057,414 +14753,6 @@
     ONLY_ME: 1,
     /** Item is available for selected staff roles */
     SELECTED_STAFF_ROLE: 3,
-  });
-
-  /**
-   * List of possible plans for BaseSubscription subscription.
-   *
-   * @enum {number}
-   */
-  WlClient.WlBusinessAccountSubscriptionBaseBaseSubscriptionSid = Object.freeze({
-    /** Advanced */
-    ADVANCED: 4,
-    /** Basic */
-    BASIC: 3,
-    /** Business(Legacy) */
-    BUSINESS: 7,
-    /** Business */
-    BUSINESS_2405: 11,
-    /** Business(Legacy) */
-    BUSINESS_LIGHT: 8,
-    /** Business Max */
-    BUSINESS_MAX: 9,
-    /** Business Pro */
-    BUSINESS_PRO: 10,
-    /** Enterprise */
-    ENTERPRISE: 6,
-    /** None */
-    FREE: 1,
-    /** Business Partner */
-    PARTNER: 2,
-    /** Platform Access */
-    PLATFORM_ACCESS: 15,
-    /** Professional */
-    PROFESSIONAL: 5,
-    /** Starter */
-    STARTER: 12,
-    /** Starter */
-    STARTER_2502: 13,
-    /** Trial */
-    TRIAL: 14,
-  });
-
-  /**
-   * List of possible plans for SmsSubscription subscription.
-   *
-   * @enum {number}
-   */
-  WlClient.WlBusinessAccountSubscriptionSmsSmsSubscriptionSid = Object.freeze({
-    /** 1000 Messages */
-    CENTER_1000: 5,
-    /** 10000 Messages */
-    CENTER_10000: 8,
-    /** 2500 Messages */
-    CENTER_2500: 6,
-    /** 25000 Messages */
-    CENTER_25000: 9,
-    /** 500 Messages */
-    CENTER_500: 4,
-    /** 5000 Messages */
-    CENTER_5000: 7,
-    /** Message Center Custom */
-    CENTER_CUSTOM: 10,
-    /** Enterprise */
-    ENTERPRISE: 11,
-    /** None */
-    FREE: 1,
-    /** Message Center Professional */
-    PREMIUM: 3,
-  });
-
-  /**
-   * List of possible plans for AchieveSubscription subscription.
-   *
-   * @enum {number}
-   */
-  WlClient.WlBusinessAccountSubscriptionAchieveAchieveSubscriptionSid = Object.freeze({
-    /** Basic */
-    FREE: 1,
-    /** Premium */
-    PREMIUM: 2,
-    /** White Label (Legacy) */
-    WHITE: 3,
-    /** White Label */
-    WHITE0125: 7,
-    /** White Label (Business Max) */
-    WHITE_MAX: 4,
-    /** White Label (Legacy) */
-    WHITE_PLUS: 6,
-    /** White Label (Business Pro) */
-    WHITE_PRO: 5,
-  });
-
-  /**
-   * List of possible plans for MarketingSuiteSubscription subscription.
-   *
-   * @enum {number}
-   */
-  WlClient.WlBusinessAccountSubscriptionMarketingSuiteMarketingSuiteSubscriptionSid = Object.freeze({
-    /** Pro */
-    BASIC: 2,
-    /** Standard (Business) */
-    BASIC_BUSINESS: 4,
-    /** Standard (Legacy) */
-    BASIC_OLD: 3,
-    /** Base */
-    FREE: 1,
-    /** Ultimate */
-    PRO: 5,
-  });
-
-  /**
-   * List of possible plans for CollectionsSubscription subscription.
-   *
-   * @enum {number}
-   */
-  WlClient.WlBusinessAccountSubscriptionCollectionsCollectionsSubscriptionSid = Object.freeze({
-    /** None */
-    FREE: 1,
-    /** Integration Requested */
-    INTEGRATION_REQUESTED: 3,
-    /** Professional */
-    PROFESSIONAL: 2,
-  });
-
-  /**
-   * List of possible plans for ZapierSubscription subscription.
-   *
-   * @enum {number}
-   */
-  WlClient.WlBusinessAccountSubscriptionZapierZapierSubscriptionSid = Object.freeze({
-    /** None */
-    FREE: 1,
-    /** Professional */
-    PROFESSIONAL: 2,
-  });
-
-  /**
-   * List of possible plans for FitliveSubscription subscription.
-   *
-   * @enum {number}
-   */
-  WlClient.WlBusinessAccountSubscriptionFitliveFitliveSubscriptionSid = Object.freeze({
-    /** Advanced */
-    ADVANCED: 5,
-    /** Basic */
-    BASIC: 4,
-    /** None */
-    FREE: 1,
-    /** Professional */
-    LICENCED: 2,
-    /** Suspended */
-    SUSPENDED: 3,
-  });
-
-  /**
-   * List of possible plans for AiAgentSubscription subscription.
-   *
-   * @enum {number}
-   */
-  WlClient.WlBusinessAccountSubscriptionAiAgentAiAgentSubscriptionSid = Object.freeze({
-    /** Chat Agent */
-    CHAT_AGENT: 4,
-    /** Dental Phone Agent */
-    DENTAL_PHONE_AGENT: 5,
-    /** None */
-    FREE: 1,
-    /** Professional */
-    PROFESSIONAL: 2,
-    /** Assistant */
-    STANDARD: 3,
-  });
-
-  /**
-   * List of possible plans for DoorSubscription subscription.
-   *
-   * @enum {number}
-   */
-  WlClient.WlBusinessAccountSubscriptionDoorDoorSubscriptionSid = Object.freeze({
-    /** Brivo */
-    BASE: 2,
-    /** None */
-    FREE: 1,
-    /** Passport */
-    PASSPORT: 3,
-  });
-
-  /**
-   * List of possible plans for FitbuilderSubscription subscription.
-   *
-   * @enum {number}
-   */
-  WlClient.WlBusinessAccountSubscriptionFitbuilderFitbuilderSubscriptionSid = Object.freeze({
-    /** None */
-    FREE: 1,
-    /** Professional */
-    PROFESSIONAL: 2,
-  });
-
-  /**
-   * List of possible plans for QuizSubscription subscription.
-   *
-   * @enum {number}
-   */
-  WlClient.WlBusinessAccountSubscriptionQuizQuizSubscriptionSid = Object.freeze({
-    /** Business */
-    BUSINESS: 3,
-    /** None */
-    FREE: 1,
-    /** Professional */
-    PROFESSIONAL: 2,
-    /** Starter */
-    STARTER: 4,
-  });
-
-  /**
-   * List of possible plans for ZoomSubscription subscription.
-   *
-   * @enum {number}
-   */
-  WlClient.WlBusinessAccountSubscriptionZoomZoomSubscriptionSid = Object.freeze({
-    /** Basic */
-    BASIC: 2,
-    /** None */
-    FREE: 1,
-    /** Professional */
-    PROFESSIONAL: 3,
-  });
-
-  /**
-   * List of possible plans for FinanceSubscription subscription.
-   *
-   * @enum {number}
-   */
-  WlClient.WlBusinessAccountSubscriptionFinanceFinanceSubscriptionSid = Object.freeze({
-    /** None */
-    FREE: 1,
-    /** Professional */
-    PROFESSIONAL: 2,
-  });
-
-  /**
-   * List of possible plans for FitvidSubscription subscription.
-   *
-   * @enum {number}
-   */
-  WlClient.WlBusinessAccountSubscriptionFitvidFitvidSubscriptionSid = Object.freeze({
-    /** Basic */
-    BASIC: 2,
-    /** Enterprise */
-    ENTERPRISE: 3,
-    /** None */
-    FREE: 1,
-    /** Premium */
-    PREMIUM: 4,
-  });
-
-  /**
-   * List of possible plans for FitzoneSubscription subscription.
-   *
-   * @enum {number}
-   */
-  WlClient.WlBusinessAccountSubscriptionFitzoneFitzoneSubscriptionSid = Object.freeze({
-    /** None */
-    FREE: 1,
-    /** Professional */
-    PROFESSIONAL: 2,
-  });
-
-  /**
-   * List of possible plans for PostcardSubscription subscription.
-   *
-   * @enum {number}
-   */
-  WlClient.WlBusinessAccountSubscriptionPostcardPostcardSubscriptionSid = Object.freeze({
-    /** Basic */
-    BASIC: 3,
-    /** None */
-    FREE: 1,
-    /** Professional */
-    PROFESSIONAL: 2,
-  });
-
-  /**
-   * List of possible plans for ReviewSubscription subscription.
-   *
-   * @enum {number}
-   */
-  WlClient.WlBusinessAccountSubscriptionReviewReviewSubscriptionSid = Object.freeze({
-    /** None */
-    FREE: 1,
-    /** Professional */
-    PROFESSIONAL: 2,
-  });
-
-  /**
-   * List of possible plans for RewardSubscription subscription.
-   *
-   * @enum {number}
-   */
-  WlClient.WlBusinessAccountSubscriptionRewardRewardSubscriptionSid = Object.freeze({
-    /** None */
-    FREE: 1,
-    /** Professional */
-    PROFESSIONAL: 2,
-  });
-
-  /**
-   * List of possible plans for WebsiteSubscription subscription.
-   *
-   * @enum {number}
-   */
-  WlClient.WlBusinessAccountSubscriptionWebsiteWebsiteSubscriptionSid = Object.freeze({
-    /** Basic */
-    BASIC: 2,
-    /** Basic */
-    BASIC_LARGE: 6,
-    /** Enterprise */
-    ENTERPRISE: 4,
-    /** None */
-    FREE: 1,
-    /** Premium */
-    PREMIUM: 3,
-    /** Premium (Business Max) */
-    PREMIUM_MAX: 7,
-    /** Professional */
-    PROFESSIONAL: 5,
-  });
-
-  /**
-   * List of possible plans for AssetSubscription subscription.
-   *
-   * @enum {number}
-   */
-  WlClient.WlBusinessAccountSubscriptionAssetAssetSubscriptionSid = Object.freeze({
-    /** None */
-    FREE: 1,
-    /** Professional */
-    PROFESSIONAL: 2,
-  });
-
-  /**
-   * List of possible plans for ApiSubscription subscription.
-   *
-   * @enum {number}
-   */
-  WlClient.WlBusinessAccountSubscriptionApiApiSubscriptionSid = Object.freeze({
-    /** None */
-    FREE: 1,
-    /** Premium */
-    PREMIUM: 2,
-  });
-
-  /**
-   * List of possible plans for GoHighLevelSubscription subscription.
-   *
-   * @enum {number}
-   */
-  WlClient.WlBusinessAccountSubscriptionGoHighLevelGoHighLevelSubscriptionSid = Object.freeze({
-    /** Standard */
-    BASIC: 2,
-    /** Free */
-    FREE: 1,
-  });
-
-  /**
-   * List of possible plans for EmailSubscription subscription.
-   *
-   * @enum {number}
-   */
-  WlClient.WlBusinessAccountSubscriptionEmailEmailSubscriptionSid = Object.freeze({
-    /** None */
-    FREE: 1,
-    /** Standard */
-    STANDARD: 2,
-  });
-
-  /**
-   * List of possible plans for ConstantContactSubscription subscription.
-   *
-   * @enum {number}
-   */
-  WlClient.WlBusinessAccountSubscriptionEmlConstantContactSubscriptionSid = Object.freeze({
-    /** None */
-    FREE: 1,
-    /** Standard */
-    STANDARD: 2,
-  });
-
-  /**
-   * List of possible plans for MailchimpSubscription subscription.
-   *
-   * @enum {number}
-   */
-  WlClient.WlBusinessAccountSubscriptionEmlMailchimpSubscriptionSid = Object.freeze({
-    /** None */
-    FREE: 1,
-    /** Standard */
-    STANDARD: 2,
-  });
-
-  /**
-   * List of possible plans for BusinessCoachSubscription subscription.
-   *
-   * @enum {number}
-   */
-  WlClient.WlBusinessAccountSubscriptionBusinessCoachBusinessCoachSubscriptionSid = Object.freeze({
-    /** Business Success Coaching */
-    BUSINESS_SUCCESS_COACHING: 2,
-    /** No subscription */
-    FREE: 1,
   });
 
   /**
@@ -15589,6 +14877,28 @@
     RESOURCE_PERIOD: 4,
     /** Staff working hours */
     STAFF_PERIOD: 3,
+  });
+
+  /**
+   * List of sources where quiz response can be generated.
+   *
+   * @enum {number}
+   */
+  WlClient.WlQuizResponseSourceSid = Object.freeze({
+    /** Quiz response received during booking process */
+    BOOKING: 2,
+    /** Quiz response was imported */
+    IMPORT: 6,
+    /** Quiz response received by kiosk mode link */
+    KIOSK: 7,
+    /** Quiz response received by direct link */
+    LINK: 1,
+    /** Quiz response received by direct link */
+    MANUAL: 5,
+    /** Quiz response received during purchase process */
+    PURCHASE: 4,
+    /** Quiz response received during registration process */
+    REGISTRATION: 3,
   });
 
   /**
@@ -15753,6 +15063,98 @@
     STAFF: 1,
     /** User */
     USER: 2,
+  });
+
+  /**
+   * An enum of credit card types.
+   *
+   * @enum {number}
+   */
+  WlClient.ThothWlPayBankCardCardTypeEnum = Object.freeze({
+    /** Credit Card */
+    CREDIT: 1,
+    /** Debit Card */
+    DEBIT: 2,
+  });
+
+  /**
+   * A list of card types.
+   *
+   * @enum {number}
+   */
+  WlClient.WlCardCardSystemSid = Object.freeze({
+    /** American Express */
+    AMERICAN_EXPRESS: 1,
+    /** Bank of Montreal (BMO) */
+    BMO: 2,
+    /** Canadian Imperial Bank of Commerce (CIBC) */
+    CIBC: 3,
+    /** Diners Club International */
+    DINNER_CLUB: 4,
+    /** Discover */
+    DISCOVER: 5,
+    /** HSBC Bank Canada */
+    HSBC_CANADA: 6,
+    /** Japan Credit Bureau (JCB) */
+    JCB: 7,
+    /** Mastercard */
+    MASTERCARD: 8,
+    /** Royal Bank of Canada */
+    ROYAL_BANK: 9,
+    /** Scotiabank */
+    SCOTIBANK: 10,
+    /** TD Canada Trust */
+    TD_CANADA: 11,
+    /** The card system can't be determined */
+    UNDEFINED: 13,
+    /** Union Pay */
+    UNION_PAY: 14,
+    /** Visa */
+    VISA: 12,
+  });
+
+  /**
+   * A list of modes in which payment form can be shown.
+   *
+   * @enum {number}
+   */
+  WlClient.RsPayModeSid = Object.freeze({
+    /** The form is show in the mobile device */
+    MOBILE: 2,
+    /** A form is shown in a simple mode */
+    SIMPLE: 3,
+    /** A form is shown in the web browser */
+    WEB: 1,
+  });
+
+  /**
+   * A list of bank account types.
+   *
+   * @enum {number}
+   */
+  WlClient.RsPayBankSid = Object.freeze({
+    /** Bank account for ACH direct bank transactions. USA-specific system */
+    ACH: 2,
+    /** A credit card */
+    CARD: 1,
+    /** Bank account for Direct Entry direct bank transactions.  Australian-specific system */
+    DIRECT_ENTRY: 3,
+  });
+
+  /**
+   * A list of SEC codes which can be chosen.
+   *
+   * @enum {number}
+   */
+  WlClient.RsPayBankAchSecSid = Object.freeze({
+    /** Corporate bank account */
+    CCD: 4,
+    /** Prearranged Payment & Deposit */
+    PPD: 2,
+    /** Telephone Initiated Entry */
+    TEL: 3,
+    /** Web Initiated Entry */
+    WEB: 1,
   });
 
   /**
