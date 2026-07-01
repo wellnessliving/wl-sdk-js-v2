@@ -5563,6 +5563,26 @@ export interface WlScheduleScheduleAvailableDateResponse {
     /** Nearest session date available for booking in user's or business timezone. */
     dl_next_available: string | null;
 }
+export type WlScheduleSchedulePostBasedGetParams = Record<string, unknown>;
+export type WlScheduleSchedulePostBasedGetResponse = Record<string, unknown>;
+export interface WlScheduleSchedulePostBasedPostParams {
+    /** Whether API is called in the backend mode. */
+    is_backend: boolean;
+    /** Whether the schedule is shown in the widget. */
+    is_widget: boolean;
+    /** Business key for which schedule should be got. */
+    k_business: string;
+    /** User key who get the schedule. */
+    uid: string;
+}
+export interface WlScheduleSchedulePostBasedPostResponse {
+    /** Schedule info. Prepares only in the backend mode. */
+    a_result: Array<Array<unknown>> | null;
+    /** Schedule session data. */
+    a_schedule: Array<unknown>;
+    /** Parsed template of the schedule. */
+    html_template: string;
+}
 export interface WlVisitVisitStatusGetParams {
     /** The business key. */
     k_business: string;
@@ -25738,6 +25758,10 @@ export declare class WlScheduleNamespace {
     cancelPost(params?: WlScheduleCancelPostParams): Promise<WlScheduleCancelPostResponse>;
     /** Finds the nearest class session that can be booked by the current user. */
     scheduleAvailableDate(params?: WlScheduleScheduleAvailableDateParams): Promise<WlScheduleScheduleAvailableDateResponse>;
+    /** Returns parsed template for the schedule page. */
+    schedulePostBasedGet(params?: WlScheduleSchedulePostBasedGetParams): Promise<WlScheduleSchedulePostBasedGetResponse>;
+    /** Processes POST request to get the schedule for printing. */
+    schedulePostBasedPost(params?: WlScheduleSchedulePostBasedPostParams): Promise<WlScheduleSchedulePostBasedPostResponse>;
 }
 export declare class WlVisitNamespace {
     private readonly _client;

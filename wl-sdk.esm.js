@@ -1,8 +1,8 @@
 // AUTO-GENERATED — DO NOT EDIT
 // WellnessLiving SDK — stable channel
-// OpenAPI spec version: 1.1.20260701085357
+// OpenAPI spec version: 1.1.20260701092857
 // Build date: 2026-07-01
-// Endpoints: 466
+// Endpoints: 468
 // Enums: 183
 export class WlApiError extends Error {
     constructor(status, body) {
@@ -5659,6 +5659,14 @@ export class WlScheduleNamespace {
     /** Finds the nearest class session that can be booked by the current user. */
     scheduleAvailableDate(params) {
         return this._client._request('/Wl/Schedule/ScheduleAvailableDate.json', params, 'GET');
+    }
+    /** Returns parsed template for the schedule page. */
+    schedulePostBasedGet(params) {
+        return this._client._request('/Wl/Schedule/SchedulePostBased.json', params, 'GET');
+    }
+    /** Processes POST request to get the schedule for printing. */
+    schedulePostBasedPost(params) {
+        return this._client._request('/Wl/Schedule/SchedulePostBased.json', params, 'POST');
     }
 }
 export class WlVisitNamespace {
