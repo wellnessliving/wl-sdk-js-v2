@@ -2281,7 +2281,9 @@ export declare enum RsSaleSid {
     /** Products: water, t-shirts, etc. That is available for quick buy */
     QUICK_BUY = 10,
     /** Tuition */
-    TUITION = 14
+    TUITION = 14,
+    /** Tuition fees */
+    TUITION_FEE = 15
 }
 /** A list of types of visit note. */
 export declare enum WlVisitNoteSidNoteSid {

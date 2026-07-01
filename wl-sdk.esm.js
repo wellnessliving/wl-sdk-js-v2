@@ -1,6 +1,6 @@
 // AUTO-GENERATED — DO NOT EDIT
 // WellnessLiving SDK — dev channel
-// OpenAPI spec version: 1.1.20260701133339
+// OpenAPI spec version: 1.1.20260701150634
 // Build date: 2026-07-01
 // Endpoints: 468
 // Enums: 183
@@ -2349,6 +2349,8 @@ export var RsSaleSid;
     RsSaleSid[RsSaleSid["QUICK_BUY"] = 10] = "QUICK_BUY";
     /** Tuition */
     RsSaleSid[RsSaleSid["TUITION"] = 14] = "TUITION";
+    /** Tuition fees */
+    RsSaleSid[RsSaleSid["TUITION_FEE"] = 15] = "TUITION_FEE";
 })(RsSaleSid || (RsSaleSid = {}));
 /** A list of types of visit note. */
 export var WlVisitNoteSidNoteSid;
